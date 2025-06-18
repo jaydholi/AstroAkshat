@@ -27,91 +27,84 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(192, 38, 211, 0.15) 0%, transparent 20%);
         }
 
-        /* Celestial Elements */
-        .celestial {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(1px);
-            z-index: 0;
-        }
-
-        .sun {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, #f59e0b, #b45309);
-            top: -50px;
-            right: -50px;
-            opacity: 0.3;
-            filter: blur(10px);
-        }
-
-        .moon {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, #94a3b8, #475569);
-            bottom: -30px;
-            left: -30px;
-            opacity: 0.2;
-            filter: blur(8px);
-        }
-
-        .stars {
+        /* Solar System Animation */
+        .solar-system {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Zodiac Ring */
-        .zodiac-ring {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(109, 40, 217, 0.3);
-            border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
         }
 
-        .zodiac-ring::before {
-            content: '';
+        .orbit {
             position: absolute;
-            width: 320px;
-            height: 320px;
-            border: 1px solid rgba(192, 38, 211, 0.3);
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
             border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        /* Planet sizes and orbit distances */
+        .sun {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #f59e0b, #b45309);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 50px #f59e0b;
+            z-index: 1;
         }
+
+        .mercury { width: 8px; height: 8px; }
+        .venus { width: 12px; height: 12px; }
+        .earth { width: 13px; height: 13px; }
+        .mars { width: 10px; height: 10px; }
+        .jupiter { width: 28px; height: 28px; }
+        .saturn { width: 24px; height: 24px; }
+        .uranus { width: 18px; height: 18px; }
+        .neptune { width: 17px; height: 17px; }
+        .pluto { width: 6px; height: 6px; }
+
+        /* Orbit sizes */
+        .mercury-orbit { width: 120px; height: 120px; }
+        .venus-orbit { width: 180px; height: 180px; }
+        .earth-orbit { width: 250px; height: 250px; }
+        .mars-orbit { width: 320px; height: 320px; }
+        .jupiter-orbit { width: 450px; height: 450px; }
+        .saturn-orbit { width: 600px; height: 600px; }
+        .uranus-orbit { width: 750px; height: 750px; }
+        .neptune-orbit { width: 850px; height: 850px; }
+        .pluto-orbit { width: 950px; height: 950px; }
+
+        /* Planet colors */
+        .mercury { background: #a9a9a9; }
+        .venus { background: #e6c229; }
+        .earth { background: #6b93d6; }
+        .mars { background: #e27b58; }
+        .jupiter { background: #c88b3a; }
+        .saturn { background: #e4d191; }
+        .uranus { background: #d1e7e7; }
+        .neptune { background: #5b5ddf; }
+        .pluto { background: #d6c7b7; }
 
         /* Main Content */
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
@@ -138,7 +131,8 @@
             border: 3px solid var(--accent);
             box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
             margin-bottom: 1rem;
-            background-color: #fff; /* Placeholder color */
+            background-color: #fff;
+            z-index: 3;
         }
 
         .astrologer-img {
@@ -149,6 +143,7 @@
             border: 2px solid var(--primary);
             box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
             margin-top: 1rem;
+            z-index: 3;
         }
 
         .logo {
@@ -162,6 +157,7 @@
             color: transparent;
             position: relative;
             display: inline-block;
+            z-index: 3;
         }
 
         .logo::after {
@@ -180,6 +176,7 @@
             text-transform: uppercase;
             color: var(--accent);
             margin-bottom: 1rem;
+            z-index: 3;
         }
 
         .astrologer-name {
@@ -187,6 +184,7 @@
             font-size: 1.3rem;
             color: var(--text);
             margin-top: 0.5rem;
+            z-index: 3;
         }
 
         .coming-soon {
@@ -194,6 +192,7 @@
             font-family: 'Playfair Display', serif;
             margin: 2rem 0;
             position: relative;
+            z-index: 3;
         }
 
         .coming-soon::before, .coming-soon::after {
@@ -221,6 +220,7 @@
             line-height: 1.6;
             font-size: 1.1rem;
             opacity: 0.9;
+            z-index: 3;
         }
 
         /* Countdown */
@@ -228,6 +228,7 @@
             display: flex;
             gap: 1.5rem;
             margin: 2rem 0;
+            z-index: 3;
         }
 
         .countdown-item {
@@ -268,6 +269,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            z-index: 3;
         }
 
         .contact-card::before {
@@ -322,7 +324,7 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
         .footer a {
@@ -354,14 +356,6 @@
             .countdown-number {
                 font-size: 2rem;
             }
-            .zodiac-ring {
-                width: 200px;
-                height: 200px;
-            }
-            .zodiac-ring::before {
-                width: 220px;
-                height: 220px;
-            }
             .logo-img {
                 width: 100px;
                 height: 100px;
@@ -370,15 +364,70 @@
                 width: 80px;
                 height: 80px;
             }
+            
+            /* Adjust solar system for mobile */
+            .mercury-orbit { width: 80px; height: 80px; }
+            .venus-orbit { width: 120px; height: 120px; }
+            .earth-orbit { width: 160px; height: 160px; }
+            .mars-orbit { width: 200px; height: 200px; }
+            .jupiter-orbit { width: 300px; height: 300px; }
+            .saturn-orbit { width: 400px; height: 400px; }
+            .uranus-orbit { width: 500px; height: 500px; }
+            .neptune-orbit { width: 580px; height: 580px; }
+            .pluto-orbit { width: 650px; height: 650px; }
         }
     </style>
 </head>
 <body>
-    <!-- Celestial Elements -->
-    <div class="celestial sun"></div>
-    <div class="celestial moon"></div>
-    <div class="stars" id="stars"></div>
-    <div class="zodiac-ring"></div>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        
+        <!-- Mercury -->
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        
+        <!-- Venus -->
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        
+        <!-- Earth -->
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        
+        <!-- Mars -->
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+        
+        <!-- Jupiter -->
+        <div class="orbit jupiter-orbit">
+            <div class="planet jupiter"></div>
+        </div>
+        
+        <!-- Saturn -->
+        <div class="orbit saturn-orbit">
+            <div class="planet saturn"></div>
+        </div>
+        
+        <!-- Uranus -->
+        <div class="orbit uranus-orbit">
+            <div class="planet uranus"></div>
+        </div>
+        
+        <!-- Neptune -->
+        <div class="orbit neptune-orbit">
+            <div class="planet neptune"></div>
+        </div>
+        
+        <!-- Pluto -->
+        <div class="orbit pluto-orbit">
+            <div class="planet pluto"></div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
@@ -434,32 +483,41 @@
     </div>
 
     <script>
-        // Create twinkling stars
-        const starsContainer = document.getElementById('stars');
-        const starCount = 200;
-
-        for (let i = 0; i < starCount; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
             
-            // Random size between 1-3px
-            const size = Math.random() * 2 + 1;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px)`;
             
-            // Random position
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px)`;
             
-            // Random animation duration (2-8s)
-            const duration = Math.random() * 6 + 2;
-            star.style.setProperty('--duration', `${duration}s`);
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px)`;
             
-            // Random delay
-            star.style.animationDelay = `${Math.random() * 5}s`;
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px)`;
             
-            starsContainer.appendChild(star);
+            // Jupiter (12 years)
+            document.querySelector('.jupiter').style.transform = `rotate(${(now / 5000) % 360}deg) translateX(225px)`;
+            
+            // Saturn (29 years)
+            document.querySelector('.saturn').style.transform = `rotate(${(now / 12000) % 360}deg) translateX(300px)`;
+            
+            // Uranus (84 years)
+            document.querySelector('.uranus').style.transform = `rotate(${(now / 34000) % 360}deg) translateX(375px)`;
+            
+            // Neptune (165 years)
+            document.querySelector('.neptune').style.transform = `rotate(${(now / 67000) % 360}deg) translateX(425px)`;
+            
+            // Pluto (248 years)
+            document.querySelector('.pluto').style.transform = `rotate(${(now / 100000) % 360}deg) translateX(475px)`;
+            
+            requestAnimationFrame(animatePlanets);
         }
+        
+        animatePlanets();
 
         // Countdown timer (set to 1 week from now)
         const countdownDate = new Date();
@@ -492,15 +550,6 @@
         // Update countdown every second
         updateCountdown();
         const countdownInterval = setInterval(updateCountdown, 1000);
-
-        // Animate zodiac ring
-        const zodiacRing = document.querySelector('.zodiac-ring');
-        function animateRing() {
-            const rotation = (Date.now() / 20000) % 360;
-            zodiacRing.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
     </script>
 </body>
 </html>
