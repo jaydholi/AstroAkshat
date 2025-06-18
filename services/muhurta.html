@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>મુહૂર્ત | અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description"
+        content="મુહૂર્ત સેવાઓ - લગ્ન, ગૃહપ્રવેશ, વ્યવસાય આરંભ જેવા મહત્વપૂર્ણ કાર્યો માટે શુભ મુહૂર્ત નિર્ધારણ">
+    <meta name="keywords"
+        content="મુહૂર્ત, શુભ મુહૂર્ત, લગ્ન મુહૂર્ત, ગૃહપ્રવેશ મુહૂર્ત, જ્યોતિષ, અક્ષત જ્યોતિષ">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            background-color: #fff;
+        }
+
+        .page-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.2rem;
+            color: #f8f8f8;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .highlight-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Muhurta Grid */
+        .muhurta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .muhurta-card {
+            background: rgba(109, 40, 217, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .muhurta-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Factors List */
+        .factors-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .factors-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .factors-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .process-step {
+            background: rgba(30, 27, 75, 0.5);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 3rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header-content">
+                <img src="/images/logo.png" alt="મુહૂર્ત" class="logo-img">
+            </div>
+            
+            <h1 class="page-title">મુહૂર્ત સેવાઓ</h1>
+            <p class="page-subtitle">મહત્વપૂર્ણ જીવનની ઘટનાઓ માટે શુભ સમયનું નિર્ધારણ</p>
+            
+            <div class="content-section">
+                <h2 class="section-title">મુહૂર્ત શું છે?</h2>
+                <p>મુહૂર્ત એ જ્યોતિષ શાસ્ત્રની એક શાખા છે જે શુભ સમયની ગણતરી અને નિર્ધારણ સાથે સંબંધિત છે. વૈદિક જ્યોતિષ મુજબ, દરેક મહત્વપૂર્ણ કાર્ય માટે યોગ્ય સમય (મુહૂર્ત) પસંદ કરવાથી તે કાર્યમાં સફળતા મળવાની સંભાવના વધી જાય છે. મુહૂર્ત ગણતરીમાં તિથિ, વાર, નક્ષત્ર, યોગ, કરણ અને ગ્રહ સ્થિતિ જેવા અનેક પરિબળોને ધ્યાનમાં લેવામાં આવે છે.</p>
+                
+                <div class="highlight-box">
+                    <p>શુભ મુહૂર્ત પર કરવામાં આવેલા કાર્યોમાં દેવી-દેવતાઓની કૃપા પ્રાપ્ત થાય છે અને કાર્ય સરળતાથી પૂર્ણ થાય છે. મુહૂર્ત શાસ્ત્ર દ્વારા લગ્ન, ગૃહપ્રવેશ, વ્યવસાય આરંભ જેવા 400થી વધુ કાર્યો માટે શુભ સમય નક્કી કરવામાં આવે છે.</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">મુખ્ય મુહૂર્ત સેવાઓ</h2>
+                <p>અમે નીચેની મુહૂર્ત સેવાઓ પ્રદાન કરીએ છીએ:</p>
+                
+                <div class="muhurta-grid">
+                    <div class="muhurta-card">
+                        <h3>લગ્ન મુહૂર્ત</h3>
+                        <p>વર-કન્યાની જન્મકુંડળી જોઈ લગ્ન માટે શુભ તિથિ, નક્ષત્ર અને લગ્નમુહૂર્ત નક્કી કરવું.</p>
+                    </div>
+                    
+                    <div class="muhurta-card">
+                        <h3>ગૃહપ્રવેશ મુહૂર્ત</h3>
+                        <p>નવા ઘરમાં પ્રવેશવાનો શુભ સમય નક્કી કરવો. ઘરમાં સુખ-શાંતિ અને સમૃદ્ધિ માટે.</p>
+                    </div>
+                    
+                    <div class="muhurta-card">
+                        <h3>વ્યવસાય આરંભ મુહૂર્ત</h3>
+                        <p>નવા વ્યવસાય, દુકાન અથવા કંપનીના ઉદ્ઘાટન માટે શુભ મુહૂર્ત.</p>
+                    </div>
+                    
+                    <div class="muhurta-card">
+                        <h3>નામકરણ મુહૂર્ત</h3>
+                        <p>બાળકના જન્મ પછી નામકરણ સંસ્કાર માટે યોગ્ય સમય નક્કી કરવો.</p>
+                    </div>
+                    
+                    <div class="muhurta-card">
+                        <h3>યાત્રા મુહૂર્ત</h3>
+                        <p>લાંબી યાત્રા અથવા પ્રવાસ પર જતા પહેલાં શુભ સમય નક્કી કરવો.</p>
+                    </div>
+                    
+                    <div class="muhurta-card">
+                        <h3>ઔષધ આરંભ મુહૂર્ત</h3>
+                        <p>ગંભીર રોગોમાં દવા અથવા ચિકિત્સા આરંભવા માટે યોગ્ય સમય.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">મુહૂર્ત નિર્ધારણમાં ધ્યાનમાં લેવાતા પરિબળો</h2>
+                <p>શુભ મુહૂર્ત નક્કી કરતી વખતે નીચેના પરિબળો ધ્યાનમાં લેવામાં આવે છે:</p>
+                <ul class="factors-list">
+                    <li><strong>તિથિ:</strong> ચંદ્રની કલાઓના આધારે દરેક દિવસની શુભ-અશુભ સ્થિતિ</li>
+                    <li><strong>વાર:</strong> સપ્તાહના દિવસો અને તેમની શુભતા</li>
+                    <li><strong>નક્ષત્ર:</strong> 27 નક્ષત્રોમાંથી વર્તમાન નક્ષત્રની ગણતરી</li>
+                    <li><strong>યોગ:</strong> સૂર્ય અને ચંદ્રની સાપેક્ષ સ્થિતિ પર આધારિત 27 યોગ</li>
+                    <li><strong>કરણ:</strong> તિથિના અર્ધભાગ પર આધારિત 11 કરણ</li>
+                    <li><strong>ગ્રહ સ્થિતિ:</strong> ગ્રહોની વર્તમાન સ્થિતિ અને ચાલ</li>
+                    <li><strong>ચંદ્ર બળ:</strong> જન્મકુંડળીમાં ચંદ્રની સ્થિતિ અને બળ</li>
+                    <li><strong>લગ્નકુંડળી:</strong> વર-કન્યાની જન્મકુંડળીનું મેળાપ (લગ્ન મુહૂર્ત માટે)</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">મુહૂર્ત નિર્ધારણ પ્રક્રિયા</h2>
+                <p>અમારી મુહૂર્ત સેવાની પ્રક્રિયા:</p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-birthday-cake"></i></div>
+                        <h3>જન્મ વિગતો</h3>
+                        <p>યજમાન અને સંબંધિત વ્યક્તિઓની જન્મ તારીખ, સમય અને સ્થળની માહિતી</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <h3>પંચાંગ અધ્યયન</h3>
+                        <p>વર્તમાન અને આગામી તિથિઓનું વિસ્તૃત અધ્યયન</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>ગ્રહ ગણતરી</h3>
+                        <p>ગ્રહોની સ્થિતિ અને ચાલની ગણતરી</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-star"></i></div>
+                        <h3>નક્ષત્ર વિશ્લેષણ</h3>
+                        <p>નક્ષત્રો, યોગ અને કરણનું વિશ્લેષણ</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>કુંડળી મેળાપ</h3>
+                        <p>લગ્ન મુહૂર્ત માટે વર-કન્યાની કુંડળી મેળાપ</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-clock"></i></div>
+                        <h3>મુહૂર્ત નિર્ધારણ</h3>
+                        <p>સર્વ પરિબળોને ધ્યાનમાં લઈ શુભ સમયનું નિર્ધારણ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">મુહૂર્તનું મહત્વ</h2>
+                <p>શુભ મુહૂર્ત પર કાર્યો કરવાથી નીચેના લાભો મળે છે:</p>
+                <ul class="factors-list">
+                    <li>કાર્યમાં સરળતા અને સફળતા મળે છે</li>
+                    <li>ગ્રહ દોષોની અસર ઘટે છે</li>
+                    <li>કાર્યની શરૂઆતમાં આવતી અડચણો દૂર થાય છે</li>
+                    <li>દેવી-દેવતાઓની કૃપા પ્રાપ્ત થાય છે</li>
+                    <li>કાર્યના લાંબા સમય સુધી ટકાઉ પરિણામ મળે છે</li>
+                    <li>કુટુંબમાં સુખ-શાંતિ અને સમૃદ્ધિ આવે છે</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://wa.me/919925312156?text=હું મુહૂર્ત સેવા માટે સંપર્ક કરવા માંગુ છું" class="cta-button">
+                    <i class="fab fa-whatsapp"></i> હમણાં જ સંપર્ક કરો
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+    </script>
+</body>
+
+</html>
