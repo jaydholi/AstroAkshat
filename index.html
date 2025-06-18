@@ -51,90 +51,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Noto Serif Gujarati', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'Noto Serif Gujarati', serif;
-            font-size: 1rem;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text);
-        } */
-
         /* Solar System Animation */
         .solar-system {
             position: fixed;
@@ -289,7 +205,6 @@
             justify-content: center;
             align-items: center;
             margin-top: 80px;
-            /* Added to account for fixed navbar */
         }
 
         .content-wrapper {
@@ -440,11 +355,30 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(109, 40, 217, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-icon {
@@ -463,195 +397,6 @@
         .service-desc {
             font-size: 0.95rem;
             opacity: 0.9;
-        }
-
-        /* Contact Info */
-        .contact-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(109, 40, 217, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 3rem;
-            max-width: 500px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .contact-title {
-            font-family: 'Noto Serif Gujarati', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .contact-details {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .contact-details a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .contact-details a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .contact-details a:hover::after {
-            width: 100%;
-        }
-
-        Footer */ .footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            position: relative;
-            z-index: 3;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .footer a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer a:hover {
-            color: var(--secondary);
-        }
-
-        /* Responsive
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: left 0.3s ease;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo {
-                font-size: 2.2rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .services-title {
-                font-size: 2rem;
-            }
-
-            .services-title::before,
-            .services-title::after {
-                display: none;
-            }
-
-            .logo-img {
-                width: 100px;
-                height: 100px;
-            }
-
-            .astrologer-img {
-                width: 80px;
-                height: 80px;
-            }
-
-            /* Adjust solar system for mobile */
-        .mercury-orbit {
-            width: 80px;
-            height: 80px;
-        }
-
-        .venus-orbit {
-            width: 120px;
-            height: 120px;
-        }
-
-        .earth-orbit {
-            width: 160px;
-            height: 160px;
-        }
-
-        .mars-orbit {
-            width: 200px;
-            height: 200px;
-        }
-
-        .jupiter-orbit {
-            width: 300px;
-            height: 300px;
-        }
-
-        .saturn-orbit {
-            width: 400px;
-            height: 400px;
-        }
-
-        .uranus-orbit {
-            width: 500px;
-            height: 500px;
-        }
-
-        .neptune-orbit {
-            width: 580px;
-            height: 580px;
-        }
-
-        .pluto-orbit {
-            width: 650px;
-            height: 650px;
         }
 
         /* Social Media Section */
@@ -716,9 +461,9 @@
             background: #25D366;
         }
 
-        /* .facebook {
+        .facebook {
             background: #3b5998;
-        } */
+        }
 
         .instagram {
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
@@ -753,69 +498,183 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
         }
 
+        /* Contact Info */
+        .contact-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .contact-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .contact-details a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .contact-details a:hover::after {
+            width: 100%;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .social-icons {
+            .header-content {
+                flex-direction: column;
                 gap: 1rem;
             }
 
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .services-title {
+                font-size: 2rem;
+            }
+
+            .services-title::before,
+            .services-title::after {
+                display: none;
+            }
+
+            .logo-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .astrologer-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .social-icons {
+                gap: 1rem;
+            }
+            
             .social-icon {
                 width: 45px;
                 height: 45px;
                 font-size: 1.3rem;
             }
-
+            
             .social-title {
                 font-size: 1.1rem;
             }
-
+            
             .social-title::before,
             .social-title::after {
                 font-size: 0.8rem;
             }
-
+            
             .social-title::before {
                 left: -25px;
             }
-
+            
             .social-title::after {
                 right: -25px;
             }
-
+            
             .channel-link {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
-        }
 
-        /* } */
+            /* Adjust solar system for mobile */
+            .mercury-orbit {
+                width: 80px;
+                height: 80px;
+            }
+
+            .venus-orbit {
+                width: 120px;
+                height: 120px;
+            }
+
+            .earth-orbit {
+                width: 160px;
+                height: 160px;
+            }
+
+            .mars-orbit {
+                width: 200px;
+                height: 200px;
+            }
+
+            .jupiter-orbit {
+                width: 300px;
+                height: 300px;
+            }
+
+            .saturn-orbit {
+                width: 400px;
+                height: 400px;
+            }
+
+            .uranus-orbit {
+                width: 500px;
+                height: 500px;
+            }
+
+            .neptune-orbit {
+                width: 580px;
+                height: 580px;
+            }
+
+            .pluto-orbit {
+                width: 650px;
+                height: 650px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <!-- <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ લોગો">
-                અક્ષત જ્યોતિષ દર્પણ 
-            </a>
-            
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="/service.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="/about.html" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="/blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="/Images.html" class="nav-link">Gallery</a></li>
-                <li class="nav-item"><a href="/contact.html" class="nav-link">Contact Us</a></li>
-            </ul>
-            
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav> -->
-
     <!-- Solar System Animation -->
     <div class="solar-system">
         <div class="sun"></div>
@@ -887,7 +746,8 @@
             <h2 class="services-title" id="services">અમારી સેવાઓ</h2>
 
             <div class="services-grid">
-                <div class="service-card">
+                <!-- Kundali Analysis -->
+                <div class="service-card" onclick="window.open('/services/kundali-analysis.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -897,7 +757,8 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Grah Dosh Nivaran -->
+                <div class="service-card" onclick="window.open('/services/grah-dosh-nivaran.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-fire-alt"></i>
                     </div>
@@ -907,7 +768,8 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Kaal Sarp Dosh Shanti -->
+                <div class="service-card" onclick="window.open('/services/kaal-sarp-dosh.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-dragon"></i>
                     </div>
@@ -917,18 +779,19 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Vastu Shanti Poojan -->
+                <div class="service-card" onclick="window.open('/services/vastu-shanti.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
                     <h3 class="service-title">વાસ્તુ શાંતિ પૂજન</h3>
                     <p class="service-desc">
-                        ઘર, ઑફિસ અને વ્યવસાયિક પ્રદેશો માટે કોઈ પણ જાત ના તોડ ફોડ વગર..વાસ્તુદોષ નું નિવારણ અને શાંતિ
-                        પૂજન.
+                        ઘર, ઑફિસ અને વ્યવસાયિક પ્રદેશો માટે કોઈ પણ જાત ના તોડ ફોડ વગર..વાસ્તુદોષ નું નિવારણ અને શાંતિ પૂજન.
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Vedic Poojan -->
+                <div class="service-card" onclick="window.open('/services/vedic-poojan.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-om"></i>
                     </div>
@@ -938,7 +801,8 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Chandi Yagya -->
+                <div class="service-card" onclick="window.open('/services/chandi-yagya.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-fire"></i>
                     </div>
@@ -948,7 +812,8 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Rudrabhishek -->
+                <div class="service-card" onclick="window.open('/services/rudrabhishek.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-water"></i>
                     </div>
@@ -958,7 +823,8 @@
                     </p>
                 </div>
 
-                <div class="service-card">
+                <!-- Muhurta Nirdharan -->
+                <div class="service-card" onclick="window.open('/services/muhurta.html', '_blank')">
                     <div class="service-icon">
                         <i class="fas fa-star"></i>
                     </div>
@@ -968,7 +834,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="contact-card" id="contact">
                 <h3 class="contact-title">અમારો સંપર્ક</h3>
                 <div class="contact-details">
@@ -977,35 +842,36 @@
                     <p><i class="fas fa-map-marker-alt"></i> સરનામું: અક્ષત જ્યોતિષ દર્પણ, ભુજ, કચ્છગુજરાત</p>
                 </div>
             </div>
+
+            <!-- Social Media Links -->
+            <div class="social-media-section">
+                <h3 class="social-title">અમને સોશિયલ મીડિયા પર ફોલો કરો</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/919925312156" target="_blank" class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <!-- <a href="https://www.facebook.com/yourpage" target="_blank" class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a> -->
+                    <a href="https://www.instagram.com/akshat_jyotish_darpan/" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a> -->
+                </div>
+                
+                <!-- WhatsApp Channel Link -->
+                <div class="whatsapp-channel">
+                    <a href="https://whatsapp.com/channel/0029VavPk3K6LwHpMbE2no1H" target="_blank" class="channel-link">
+                        <i class="fab fa-whatsapp"></i> દૈનિક પંચાંગ મેળવવા અમારા WhatsApp ચેનલમાં જોડાઓ
+                    </a>
+                </div>
+            </div>
+
+            
         </div>
     </div>
-    <!-- Social Media Links -->
-    <div class="social-media-section">
-        <h3 class="social-title">અમને સોશિયલ મીડિયા પર ફોલો કરો</h3>
-        <div class="social-icons">
-            <a href="https://wa.me/919925312156" target="_blank" class="social-icon whatsapp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <!-- <a href="https://www.facebook.com/yourpage" target="_blank" class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a> -->
-            <a href="https://www.instagram.com/akshat_jyotish_darpan/" target="_blank" class="social-icon instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-
-        </div>
-
-        <!-- WhatsApp Channel Link -->
-        <div class="whatsapp-channel">
-            <a href="https://whatsapp.com/channel/0029VavPk3K6LwHpMbE2no1H" target="_blank" class="channel-link">
-                <i class="fab fa-whatsapp"></i> દૈનિક પંચાંગ મેળવવા અમારા WhatsApp ચેનલમાં જોડાઓ
-            </a>
-        </div>
-    </div>
-    <!-- <div class="footer">
-        All Right Reserved &copy; <span id="current-year"></span> | અક્ષત જ્યોતિષ દર્પણ
-        Designed & Developed <a href="https://jaydholi.netlify.app" target="_blank">programming_jay & team</a> દ્વારા
-    </div> -->
 
     <script>
         // Create planet animations
@@ -1046,24 +912,6 @@
 
         // Update current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.innerHTML = navMenu.classList.contains('active') ?
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close menu when clicking a nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
     </script>
 </body>
 
