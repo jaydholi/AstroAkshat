@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>રુદ્રાભિષેક પૂજા | અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description"
+        content="ભગવાન શિવની કૃપા મેળવવા માટે રુદ્રાભિષેક પૂજા - રુદ્રાધ્યાયનું પાઠ અને શિવલિંગનું અભિષેક">
+    <meta name="keywords"
+        content="રુદ્રાભિષેક, શિવ પૂજા, રુદ્રાધ્યાય, શિવલિંગ અભિષેક, જ્યોતિષ, અક્ષત જ્યોતિષ">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Cosmic Background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(109,40,217,0.1) 0%, rgba(15,23,42,0.9) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(109,40,217,0.2) 0%, rgba(30,27,75,0.8) 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            background-image: url('/images/shiva-bg.png');
+            background-blend-mode: overlay;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(109,40,217,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+
+        .highlight-box {
+            background: rgba(245,158,11,0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(109,40,217,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(109,40,217,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: var(--accent);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Materials List */
+        .materials-list {
+            list-style-type: none;
+            columns: 2;
+            column-gap: 2rem;
+        }
+
+        .materials-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            break-inside: avoid;
+        }
+
+        .materials-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Process Timeline */
+        .process-timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 3rem 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(30,27,75,0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -3.1rem;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid var(--dark);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+
+        .cta-button-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .cta-button-secondary {
+            background: rgba(245,158,11,0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .materials-list {
+                columns: 1;
+            }
+            
+            .process-timeline {
+                padding-left: 2rem;
+            }
+            
+            .timeline-step::before {
+                left: -2.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="page-title">રુદ્રાભિષેક પૂજા</h1>
+            <p class="page-subtitle">ભગવાન શિવની કૃપા મેળવવા માટે રુદ્રાધ્યાયનું પાઠ અને શિવલિંગનું અભિષેક</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-card">
+            <h2 class="section-title">રુદ્રાભિષેક પૂજા વિશે</h2>
+            <p>રુદ્રાભિષેક એ ભગવાન શિવની સૌથી શ્રેષ્ઠ પૂજા વિધિઓમાંની એક છે. આ પૂજામાં શિવલિંગ પર વિવિધ પવિત્ર પદાર્થો જેવા કે દૂધ, દહીં, ઘી, મધ, શરબત, જળ, બિલ્વપત્ર વગેરે થી અભિષેક કરવામાં આવે છે અને રુદ્રાધ્યાય (મહા મૃત્યુંજય મંત્ર)નું પાઠ કરવામાં આવે છે. આ પૂજા દ્વારા ભગવાન શિવની કૃપા પ્રાપ્ત થાય છે અને જીવનમાં આવતી તમામ પ્રકારની મુશ્કેલીઓથી મુક્તિ મળે છે.</p>
+            
+            <div class="highlight-box">
+                <p><strong>મહત્વપૂર્ણ:</strong> રુદ્રાભિષેક પૂજા ખાસ કરીને સોમવાર, પ્રદોષ કાળ અથવા મહા શિવરાત્રિના દિવસે કરવામાં આવે તો વિશેષ ફળદાયી ગણવામાં આવે છે.</p>
+            </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="content-card">
+            <h2 class="section-title">રુદ્રાભિષેક પૂજાના લાભો</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div>
+                        <h3>આરોગ્ય લાભ</h3>
+                        <p>દીર્ઘાયુષ્ય અને સારા આરોગ્યની પ્રાપ્તિ, ગંભીર રોગોથી મુક્તિ</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div>
+                        <h3>આર્થિક લાભ</h3>
+                        <p>આર્થિક સમસ્યાઓનું નિવારણ, સમૃદ્ધિ અને સંપત્તિની પ્રાપ્તિ</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        <h3>પારિવારિક લાભ</h3>
+                        <p>કુટુંબમાં શાંતિ અને સુખ-સમૃદ્ધિ, પારિવારિક કલહનું નિવારણ</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h3>કારકિર્દી લાભ</h3>
+                        <p>નોકરી અને વ્યવસાયમાં પ્રગતિ, કાર્યસ્થળે સન્માન</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3>માનસિક લાભ</h3>
+                        <p>માનસિક શાંતિ, તણાવ અને ચિંતામાંથી મુક્તિ</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h3>આધ્યાત્મિક લાભ</h3>
+                        <p>આધ્યાત્મિક ઉન્નતિ, જ્ઞાન અને મોક્ષનો માર્ગ પ્રશસ્ત</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Materials Section -->
+        <div class="content-card">
+            <h2 class="section-title">રુદ્રાભિષેક માટે જરૂરી સામગ્રી</h2>
+            <p>રુદ્રાભિષેક પૂજા માટે નીચેની સામગ્રીની જરૂર પડે છે:</p>
+            
+            <ul class="materials-list">
+                <li>શિવલિંગ (ધાતુ, પથ્થર અથવા મૃત્તિકાનું)</li>
+                <li>દૂધ (ગાયનું દૂધ શ્રેષ્ઠ)</li>
+                <li>દહીં (શુદ્ધ અને તાજું)</li>
+                <li>ઘી (શુદ્ધ ગાયનું ઘી)</li>
+                <li>મધ (શુદ્ધ અને અખંડિત)</li>
+                <li>શરબત (ખાંડ અથવા ગુડનું)</li>
+                <li>ગંગાજળ અથવા શુદ્ધ જળ</li>
+                <li>બિલ્વપત્ર (બેલપત્ર)</li>
+                <li>ધૂપ, દીપ અને નૈવેધ્ય</li>
+                <li>અક્ષત (ચોખા)</li>
+                <li>ફળ અને ફૂલ (શ્વેત અથવા રક્ત પુષ્પ)</li>
+                <li>રુદ્રાક્ષની માળા</li>
+                <li>ચંદન</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>નોંધ:</strong> જો તમે આમાંથી કોઈપણ સામગ્રી લાવવામાં અસમર્થ હોવ તો અમે તમારા માટે સંપૂર્ણ સામગ્રીની વ્યવસ્થા કરીશું. તમારે ફક્ત તમારી હાજરી જ જરૂરી છે.</p>
+            </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="content-card">
+            <h2 class="section-title">રુદ્રાભિષેક પૂજા પ્રક્રિયા</h2>
+            
+            <div class="process-timeline">
+                <div class="timeline-step">
+                    <h3>1. સંકલ્પ અને આવાહન</h3>
+                    <p>પૂજાનો સંકલ્પ લઈને ભગવાન શિવનું આવાહન કરવામાં આવે છે. શિવલિંગને પવિત્ર જળથી શુદ્ધ કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>2. પંચામૃત અભિષેક</h3>
+                    <p>શિવલિંગ પર દૂધ, દહીં, ઘી, મધ અને શરબત (પંચામૃત)થી અભિષેક કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>3. જળાભિષેક</h3>
+                    <p>ગંગાજળ અથવા શુદ્ધ જળથી શિવલિંગનું અભિષેક કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>4. બિલ્વપત્ર અર્પણ</h3>
+                    <p>બિલ્વપત્ર (બેલપત્ર) શિવલિંગ પર અર્પણ કરવામાં આવે છે. બિલ્વપત્ર શિવજીને ખૂબ જ પ્રિય છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>5. રુદ્રાધ્યાય પાઠ</h3>
+                    <p>રુદ્રાધ્યાય (મહા મૃત્યુંજય મંત્ર)નું પાઠ કરવામાં આવે છે. આ મંત્ર શિવજીની સૌથી શક્તિશાળી સ્તુતિ છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>6. આરતી અને પ્રસાદ વિતરણ</h3>
+                    <p>ભગવાન શિવની આરતી કરી પ્રસાદ વિતરણ કરવામાં આવે છે. પૂજાનું સમાપન કરવામાં આવે છે.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="section-title">રુદ્રાભિષેક પૂજા બુક કરો</h2>
+            <p>અમારા અનુભવી પંડિતો દ્વારા વૈદિક વિધિ-વિધાન પ્રમાણે રુદ્રાભિષેક પૂજા કરાવવા માટે સંપર્ક કરો</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/919925312156" class="cta-button cta-button-primary">
+                    <i class="fab fa-whatsapp"></i> વોટ્સઍપ પર સંપર્ક કરો
+                </a>
+                <a href="tel:9925312156" class="cta-button cta-button-secondary">
+                    <i class="fas fa-phone-alt"></i> કોલ કરો
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate benefit cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            benefitCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
