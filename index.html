@@ -3,171 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroAkshat - Coming Soon</title>
+    <title>AstroAkshat - Vedic Astrology Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset */
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            color: #fff;
-            height: 100vh;
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(192, 38, 211, 0.15) 0%, transparent 20%);
+        }
+
+        /* Celestial Elements */
+        .celestial {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            z-index: 0;
+        }
+
+        .sun {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #f59e0b, #b45309);
+            top: -50px;
+            right: -50px;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+
+        .moon {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #94a3b8, #475569);
+            bottom: -30px;
+            left: -30px;
+            opacity: 0.2;
+            filter: blur(8px);
         }
 
         .stars {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            overflow: hidden;
         }
 
         .star {
             position: absolute;
-            background-color: #fff;
+            background-color: white;
             border-radius: 50%;
             animation: twinkle var(--duration) infinite ease-in-out;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
+            0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
         }
 
-        .content {
+        /* Zodiac Ring */
+        .zodiac-ring {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .zodiac-ring::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(192, 38, 211, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Main Content */
+        .container {
             position: relative;
             z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-            max-width: 800px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            margin-bottom: 1rem;
+            background-color: #fff; /* Placeholder color */
+        }
+
+        .astrologer-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
+            margin-top: 1rem;
         }
 
         .logo {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fdc830, #f37335);
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 10px rgba(243, 115, 53, 0.3);
+            position: relative;
+            display: inline-block;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #e6e6e6;
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .astrologer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 0.5rem;
         }
 
         .coming-soon {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            animation: pulse 2s infinite;
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            margin: 2rem 0;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .coming-soon::before, .coming-soon::after {
+            content: '✷';
+            position: absolute;
+            color: var(--accent);
+            font-size: 1.5rem;
         }
 
-        .contact-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .coming-soon::before {
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .contact-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #fdc830;
+        .coming-soon::after {
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .contact-details {
-            font-size: 1.1rem;
+        .description {
+            max-width: 600px;
+            margin: 0 auto 3rem;
             line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
-        .contact-details a {
-            color: #f37335;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-details a:hover {
-            color: #fdc830;
-            text-decoration: underline;
-        }
-
+        /* Countdown */
         .countdown {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .countdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 5px;
-            min-width: 80px;
+            background: rgba(30, 27, 75, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            min-width: 100px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .countdown-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #fdc830;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            line-height: 1;
         }
 
         .countdown-label {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 0.5rem;
+            color: #a5b4fc;
         }
 
-        @media (max-width: 600px) {
+        /* Contact Info */
+        .contact-card {
+            background: rgba(30, 27, 75, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .contact-details a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .contact-details a:hover::after {
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
             .logo {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             .coming-soon {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             .countdown {
                 flex-wrap: wrap;
+                justify-content: center;
             }
             .countdown-item {
-                min-width: 70px;
+                min-width: 80px;
+                padding: 1rem 0.5rem;
+            }
+            .countdown-number {
+                font-size: 2rem;
+            }
+            .zodiac-ring {
+                width: 200px;
+                height: 200px;
+            }
+            .zodiac-ring::before {
+                width: 220px;
+                height: 220px;
+            }
+            .logo-img {
+                width: 100px;
+                height: 100px;
+            }
+            .astrologer-img {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Celestial Elements -->
+    <div class="celestial sun"></div>
+    <div class="celestial moon"></div>
     <div class="stars" id="stars"></div>
-    
-    <div class="content">
-        <div class="logo">અક્ષત જ્યોતિષ દર્પણ </div>
-        <div class="subtitle">જ્યોતિષશાસ્ત્ર એટલે વિજ્ઞાન અને શ્રદ્ધાનો અદભૂત સમન્વય </div>
-        <div class="coming-soon">Coming Soon</div>
-        <div class="subtitle">Stay Tuned</div>
+    <div class="zodiac-ring"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="logo-container">
+            <!-- Replace with your actual logo image -->
+            <img src="https://via.placeholder.com/120/6d28d9/ffffff?text=AA" alt="AstroAkshat Logo" class="logo-img">
+            
+            <h1 class="logo">AstroAkshat</h1>
+            <div class="tagline">Jyotish Darpan</div>
+            
+            <!-- Replace with Rajesh Saraswat's actual image -->
+            <img src="https://via.placeholder.com/100/c026d3/ffffff?text=RS" alt="Rajesh Saraswat" class="astrologer-img">
+            <div class="astrologer-name">Rajesh Saraswat</div>
+        </div>
+        
+        <h2 class="coming-soon">Coming Soon</h2>
+        
+        <p class="description">
+            We're preparing something mystical and insightful for you. Our cosmic wisdom and astrological guidance will soon be at your fingertips.
+        </p>
         
         <div class="countdown">
             <div class="countdown-item">
@@ -188,20 +419,24 @@
             </div>
         </div>
         
-        <div class="contact-info">
-            <div class="contact-title">For now, contact us at:</div>
+        <div class="contact-card">
+            <h3 class="contact-title">Cosmic Connection</h3>
             <div class="contact-details">
-                Phone: <a href="tel:9925312156">9925312156</a><br>
-                Contact Person: Rajesh Saraswat<br>
-                Service: Akshat Jyotish Darpan
+                <p>Phone: <a href="tel:9925312156">+91 99253 12156</a></p>
+                <p>Astrologer: Rajesh Saraswat</p>
+                <p>Service: Akshat Jyotish Darpan</p>
             </div>
         </div>
     </div>
 
+    <div class="footer">
+        Design and Developed by <a href="#" target="_blank">PROGRAMMING_JAY & TEAM</a> | All Rights Reserved &copy; AstroAkshat
+    </div>
+
     <script>
-        // Create stars
+        // Create twinkling stars
         const starsContainer = document.getElementById('stars');
-        const starCount = 100;
+        const starCount = 200;
 
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
@@ -216,8 +451,8 @@
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
             
-            // Random animation duration (2-5s)
-            const duration = Math.random() * 3 + 2;
+            // Random animation duration (2-8s)
+            const duration = Math.random() * 6 + 2;
             star.style.setProperty('--duration', `${duration}s`);
             
             // Random delay
@@ -226,28 +461,46 @@
             starsContainer.appendChild(star);
         }
 
-        // Countdown timer (set to 30 days from now)
+        // Countdown timer (set to 1 week from now)
         const countdownDate = new Date();
-        countdownDate.setDate(countdownDate.getDate() + 30);
+        countdownDate.setDate(countdownDate.getDate() + 7); // 1 week countdown
 
         function updateCountdown() {
             const now = new Date();
             const diff = countdownDate - now;
             
+            // Calculate time units
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
             
+            // Update display
             document.getElementById('days').textContent = days.toString().padStart(2, '0');
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // If countdown ends
+            if (diff <= 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.coming-soon').textContent = "We're Live!";
+                document.querySelector('.description').textContent = "AstroAkshat Jyotish Darpan is now available for consultations.";
+            }
         }
 
         // Update countdown every second
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Animate zodiac ring
+        const zodiacRing = document.querySelector('.zodiac-ring');
+        function animateRing() {
+            const rotation = (Date.now() / 20000) % 360;
+            zodiacRing.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
     </script>
 </body>
 </html>
