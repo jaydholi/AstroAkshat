@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>કુંડળી વિશ્લેષણ સેવા | અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description"
+        content="પ્રોફેશનલ જન્મકુંડળી વિશ્લેષણ સેવા - ગ્રહોની સ્થિતિ, દશા અને અનુદશાનું અધ્યયન, ભવિષ્યવાણી અને ઉપાયો">
+    <meta name="keywords"
+        content="કુંડળી વિશ્લેષણ, જન્મકુંડળી, જ્યોતિષ, ગ્રહ દોષ, ભવિષ્યવાણી, રાજેશભાઈ સારસ્વત, અક્ષત જ્યોતિષ">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            background-color: #fff;
+        }
+
+        .page-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.2rem;
+            color: #f8f8f8;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Details */
+        .service-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .service-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .benefits-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .process-step {
+            background: rgba(109, 40, 217, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: var(--dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .service-details {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+            
+            .page-title {
+                font-size: 3rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header-content">
+                <img src="/images/logo.png" alt="કુંડળી વિશ્લેષણ" class="logo-img">
+            </div>
+            
+            <h1 class="page-title">કુંડળી વિશ્લેષણ સેવા</h1>
+            <p class="page-subtitle">જન્મકુંડળીનું સંપૂર્ણ વિશ્લેષણ અને ગ્રહ દોષોનું નિવારણ</p>
+            
+            <div class="service-details">
+                <div>
+                    <img src="/images/logo.png" alt="કુંડળી નમૂનો" class="service-image">
+                </div>
+                
+                <div class="service-content">
+                    <div class="service-section">
+                        <h2 class="section-title">સેવા વિશે</h2>
+                        <p>જન્મકુંડળી એ વ્યક્તિના જન્મ સમયે આકાશમાં ગ્રહોની સ્થિતિનો નકશો છે. અમારું કુંડળી વિશ્લેષણ તમારા જીવનના તમામ પાસાઓ - કારકિર્દી, આરોગ્ય, લગ્ન, સંબંધો અને આર્થિક સ્થિતિ વિશે સમગ્ર માહિતી આપે છે. રાજેશભાઈ સારસ્વત દ્વારા વૈદિક પદ્ધતિઓ અનુસાર કરવામાં આવતું આ વિશ્લેષણ ખૂબ જ સચોટ અને ઉપયોગી છે.</p>
+                    </div>
+                    
+                    <div class="service-section">
+                        <h2 class="section-title">લાભો</h2>
+                        <ul class="benefits-list">
+                            <li>જીવનના તમામ પાસાઓ વિશે સ્પષ્ટ જ્ઞાન</li>
+                            <li>ગ્રહ દોષોની ઓળખ અને નિવારણ</li>
+                            <li>ભવિષ્યમાં આવનારી સમસ્યાઓની અગાઉથી જાણકારી</li>
+                            <li>શુભ મુહૂર્ત અને યોગ્ય સમયની જાણકારી</li>
+                            <li>જીવનમાં સફળતા માટેના ઉપાયો</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-section">
+                <h2 class="section-title">પ્રક્રિયા</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>જન્મ વિગતો</h3>
+                            <p>તમારી સચોટ જન્મ તારીખ, સમય અને સ્થળની માહિતી આપો</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>કુંડળી તૈયારી</h3>
+                            <p>અમે તમારી જન્મકુંડળી તૈયાર કરીએ છીએ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>ગ્રહ વિશ્લેષણ</h3>
+                            <p>ગ્રહોની સ્થિતિ અને પરસ્પર સંબંધનું અધ્યયન</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>રિપોર્ટ અને સલાહ</h3>
+                            <p>વિસ્તૃત રિપોર્ટ અને ઉપાયો સાથેની સલાહ આપવામાં આવે છે</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://wa.me/919925312156?text=હું કુંડળી વિશ્લેષણ સેવા માટે રજિસ્ટર કરવા માંગુ છું" class="cta-button">
+                    <i class="fab fa-whatsapp"></i> હમણાં જ જોડાઓ
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+    </script>
+</body>
+
+</html>
