@@ -51,6 +51,90 @@
             line-height: 1.6;
         }
 
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
         /* Solar System Animation */
         .solar-system {
             position: fixed;
@@ -204,6 +288,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin-top: 80px; /* Added to account for fixed navbar */
         }
 
         .content-wrapper {
@@ -464,6 +549,33 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
@@ -546,6 +658,29 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ લોગો">
+                અક્ષત જ્યોતિષ
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/service.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="/about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="/blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/Images.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="/contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
     <!-- Solar System Animation -->
     <div class="solar-system">
         <div class="sun"></div>
@@ -606,12 +741,6 @@
                     <h1 class="logo">અક્ષત જ્યોતિષ દર્પણ</h1>
                     <div class="tagline">જ્યોતિષશાસ્ત્ર એટલે વિજ્ઞાન અને શ્રદ્ધાનો અદભૂત સમન્વય</div>
                 </div>
-
-                <!-- <div class="astrologer-container">
-                    Replace with Rajesh Sarswat's actual image -->
-                <!-- <img src="/images/rajeshsarswat.png" alt="રાજેશ સારસ્વત - વૈદિક જ્યોતિષી" class="astrologer-img">
-                    <div class="astrologer-name">જ્યોતિષી રાજેશ સારસ્વત</div>
-                </div> -->
             </div>
 
             <p class="description">
@@ -620,7 +749,7 @@
                 ખુલ્લો રહેશે.
             </p>
 
-            <h2 class="services-title">અમારી સેવાઓ</h2>
+            <h2 class="services-title" id="services">અમારી સેવાઓ</h2>
 
             <div class="services-grid">
                 <div class="service-card">
@@ -645,8 +774,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="<i class=" fas fa-dragon"></i>
-
+                        <i class="fas fa-dragon"></i>
                     </div>
                     <h3 class="service-title">કાલ સર્પ દોષ શાંતિ</h3>
                     <p class="service-desc">
@@ -705,13 +833,12 @@
                 </div>
             </div>
 
-            <div class="contact-card">
+            <div class="contact-card" id="contact">
                 <h3 class="contact-title">અમારો સંપર્ક</h3>
                 <div class="contact-details">
                     <p><i class="fas fa-phone-alt"></i> ફોન: <a href="tel:9925312156">+91 99253 12156</a></p>
                     <p><i class="fas fa-user"></i> જ્યોતિષી: રાજેશ સારસ્વત</p>
-                    <p><i class="fas fa-map-marker-alt"></i> સરનામું: અક્ષત જ્યોતિષ દર્પણ, ભુજ, કચ્છ ગુજરાત</p>
-                    <!-- <p><i class="fas fa-envelope"></i> ઇમેઇલ: <a href="mailto:contact@astroakshat.com">contact@astroakshat.com</a></p> -->
+                    <p><i class="fas fa-map-marker-alt"></i> સરનામું: અક્ષત જ્યોતિષ દર્પણ, ભુજ, કચ્છગુજરાત</p>
                 </div>
             </div>
         </div>
@@ -761,6 +888,24 @@
 
         // Update current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
     </script>
 </body>
 
