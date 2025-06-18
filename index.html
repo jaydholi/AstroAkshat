@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroAkshat - Vedic Astrology Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <title>AstroAkshat - Premium Vedic Astrology Services | Coming Soon</title>
+    <meta name="description"
+        content="AstroAkshat Jyotish Darpan by Rajesh Joshi - Premium Vedic astrology services coming soon. Get personalized horoscope readings and astrological guidance.">
+    <meta name="keywords"
+        content="vedic astrology, jyotish, horoscope, rajesh joshi, astroakshat, astrology services, coming soon">
+    <meta name="author" content="AstroAkshat">
+    <meta property="og:title" content="AstroAkshat - Premium Vedic Astrology Services">
+    <meta property="og:description"
+        content="Premium Vedic astrology services by Rajesh Joshi coming soon. Personalized horoscope readings and astrological guidance.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
     <style>
         :root {
             --primary: #6d28d9;
@@ -25,10 +42,9 @@
             color: var(--text);
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
         }
 
         /* Solar System Animation */
@@ -40,6 +56,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 0;
+            pointer-events: none;
         }
 
         .orbit {
@@ -55,6 +72,8 @@
             position: absolute;
             border-radius: 50%;
             transform-origin: center;
+            top: 0;
+            left: 50%;
         }
 
         /* Planet sizes and orbit distances */
@@ -69,37 +88,133 @@
             z-index: 1;
         }
 
-        .mercury { width: 8px; height: 8px; }
-        .venus { width: 12px; height: 12px; }
-        .earth { width: 13px; height: 13px; }
-        .mars { width: 10px; height: 10px; }
-        .jupiter { width: 28px; height: 28px; }
-        .saturn { width: 24px; height: 24px; }
-        .uranus { width: 18px; height: 18px; }
-        .neptune { width: 17px; height: 17px; }
-        .pluto { width: 6px; height: 6px; }
+        .mercury {
+            width: 8px;
+            height: 8px;
+        }
+
+        .venus {
+            width: 12px;
+            height: 12px;
+        }
+
+        .earth {
+            width: 13px;
+            height: 13px;
+        }
+
+        .mars {
+            width: 10px;
+            height: 10px;
+        }
+
+        .jupiter {
+            width: 28px;
+            height: 28px;
+        }
+
+        .saturn {
+            width: 24px;
+            height: 24px;
+        }
+
+        .uranus {
+            width: 18px;
+            height: 18px;
+        }
+
+        .neptune {
+            width: 17px;
+            height: 17px;
+        }
+
+        .pluto {
+            width: 6px;
+            height: 6px;
+        }
 
         /* Orbit sizes */
-        .mercury-orbit { width: 120px; height: 120px; }
-        .venus-orbit { width: 180px; height: 180px; }
-        .earth-orbit { width: 250px; height: 250px; }
-        .mars-orbit { width: 320px; height: 320px; }
-        .jupiter-orbit { width: 450px; height: 450px; }
-        .saturn-orbit { width: 600px; height: 600px; }
-        .uranus-orbit { width: 750px; height: 750px; }
-        .neptune-orbit { width: 850px; height: 850px; }
-        .pluto-orbit { width: 950px; height: 950px; }
+        .mercury-orbit {
+            width: 120px;
+            height: 120px;
+        }
+
+        .venus-orbit {
+            width: 180px;
+            height: 180px;
+        }
+
+        .earth-orbit {
+            width: 250px;
+            height: 250px;
+        }
+
+        .mars-orbit {
+            width: 320px;
+            height: 320px;
+        }
+
+        .jupiter-orbit {
+            width: 450px;
+            height: 450px;
+        }
+
+        .saturn-orbit {
+            width: 600px;
+            height: 600px;
+        }
+
+        .uranus-orbit {
+            width: 750px;
+            height: 750px;
+        }
+
+        .neptune-orbit {
+            width: 850px;
+            height: 850px;
+        }
+
+        .pluto-orbit {
+            width: 950px;
+            height: 950px;
+        }
 
         /* Planet colors */
-        .mercury { background: #a9a9a9; }
-        .venus { background: #e6c229; }
-        .earth { background: #6b93d6; }
-        .mars { background: #e27b58; }
-        .jupiter { background: #c88b3a; }
-        .saturn { background: #e4d191; }
-        .uranus { background: #d1e7e7; }
-        .neptune { background: #5b5ddf; }
-        .pluto { background: #d6c7b7; }
+        .mercury {
+            background: #a9a9a9;
+        }
+
+        .venus {
+            background: #e6c229;
+        }
+
+        .earth {
+            background: #6b93d6;
+        }
+
+        .mars {
+            background: #e27b58;
+        }
+
+        .jupiter {
+            background: #c88b3a;
+        }
+
+        .saturn {
+            background: #e4d191;
+        }
+
+        .uranus {
+            background: #d1e7e7;
+        }
+
+        .neptune {
+            background: #5b5ddf;
+        }
+
+        .pluto {
+            background: #d6c7b7;
+        }
 
         /* Main Content */
         .container {
@@ -108,19 +223,38 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            flex: 1;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
             text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 2rem;
         }
 
         .logo-img {
@@ -132,7 +266,12 @@
             box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
             margin-bottom: 1rem;
             background-color: #fff;
-            z-index: 3;
+        }
+
+        .astrologer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .astrologer-img {
@@ -142,8 +281,14 @@
             object-fit: cover;
             border: 2px solid var(--primary);
             box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
-            margin-top: 1rem;
-            z-index: 3;
+        }
+
+        .astrologer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-top: 0.5rem;
+            white-space: nowrap;
         }
 
         .logo {
@@ -157,7 +302,6 @@
             color: transparent;
             position: relative;
             display: inline-block;
-            z-index: 3;
         }
 
         .logo::after {
@@ -176,15 +320,6 @@
             text-transform: uppercase;
             color: var(--accent);
             margin-bottom: 1rem;
-            z-index: 3;
-        }
-
-        .astrologer-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--text);
-            margin-top: 0.5rem;
-            z-index: 3;
         }
 
         .coming-soon {
@@ -192,10 +327,10 @@
             font-family: 'Playfair Display', serif;
             margin: 2rem 0;
             position: relative;
-            z-index: 3;
         }
 
-        .coming-soon::before, .coming-soon::after {
+        .coming-soon::before,
+        .coming-soon::after {
             content: '✷';
             position: absolute;
             color: var(--accent);
@@ -220,7 +355,6 @@
             line-height: 1.6;
             font-size: 1.1rem;
             opacity: 0.9;
-            z-index: 3;
         }
 
         /* Countdown */
@@ -228,7 +362,7 @@
             display: flex;
             gap: 1.5rem;
             margin: 2rem 0;
-            z-index: 3;
+            justify-content: center;
         }
 
         .countdown-item {
@@ -269,7 +403,8 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            z-index: 3;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-card::before {
@@ -325,6 +460,8 @@
             color: rgba(255, 255, 255, 0.6);
             position: relative;
             z-index: 3;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
         }
 
         .footer a {
@@ -339,90 +476,141 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .logo {
                 font-size: 3rem;
             }
+
             .coming-soon {
                 font-size: 2.5rem;
             }
+
+            .coming-soon::before,
+            .coming-soon::after {
+                display: none;
+            }
+
             .countdown {
                 flex-wrap: wrap;
-                justify-content: center;
             }
+
             .countdown-item {
                 min-width: 80px;
                 padding: 1rem 0.5rem;
             }
+
             .countdown-number {
                 font-size: 2rem;
             }
+
             .logo-img {
                 width: 100px;
                 height: 100px;
             }
+
             .astrologer-img {
                 width: 80px;
                 height: 80px;
             }
-            
+
             /* Adjust solar system for mobile */
-            .mercury-orbit { width: 80px; height: 80px; }
-            .venus-orbit { width: 120px; height: 120px; }
-            .earth-orbit { width: 160px; height: 160px; }
-            .mars-orbit { width: 200px; height: 200px; }
-            .jupiter-orbit { width: 300px; height: 300px; }
-            .saturn-orbit { width: 400px; height: 400px; }
-            .uranus-orbit { width: 500px; height: 500px; }
-            .neptune-orbit { width: 580px; height: 580px; }
-            .pluto-orbit { width: 650px; height: 650px; }
+            .mercury-orbit {
+                width: 80px;
+                height: 80px;
+            }
+
+            .venus-orbit {
+                width: 120px;
+                height: 120px;
+            }
+
+            .earth-orbit {
+                width: 160px;
+                height: 160px;
+            }
+
+            .mars-orbit {
+                width: 200px;
+                height: 200px;
+            }
+
+            .jupiter-orbit {
+                width: 300px;
+                height: 300px;
+            }
+
+            .saturn-orbit {
+                width: 400px;
+                height: 400px;
+            }
+
+            .uranus-orbit {
+                width: 500px;
+                height: 500px;
+            }
+
+            .neptune-orbit {
+                width: 580px;
+                height: 580px;
+            }
+
+            .pluto-orbit {
+                width: 650px;
+                height: 650px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Solar System Animation -->
     <div class="solar-system">
         <div class="sun"></div>
-        
+
         <!-- Mercury -->
         <div class="orbit mercury-orbit">
             <div class="planet mercury"></div>
         </div>
-        
+
         <!-- Venus -->
         <div class="orbit venus-orbit">
             <div class="planet venus"></div>
         </div>
-        
+
         <!-- Earth -->
         <div class="orbit earth-orbit">
             <div class="planet earth"></div>
         </div>
-        
+
         <!-- Mars -->
         <div class="orbit mars-orbit">
             <div class="planet mars"></div>
         </div>
-        
+
         <!-- Jupiter -->
         <div class="orbit jupiter-orbit">
             <div class="planet jupiter"></div>
         </div>
-        
+
         <!-- Saturn -->
         <div class="orbit saturn-orbit">
             <div class="planet saturn"></div>
         </div>
-        
+
         <!-- Uranus -->
         <div class="orbit uranus-orbit">
             <div class="planet uranus"></div>
         </div>
-        
+
         <!-- Neptune -->
         <div class="orbit neptune-orbit">
             <div class="planet neptune"></div>
         </div>
-        
+
         <!-- Pluto -->
         <div class="orbit pluto-orbit">
             <div class="planet pluto"></div>
@@ -431,125 +619,137 @@
 
     <!-- Main Content -->
     <div class="container">
-        <div class="logo-container">
-            <!-- Replace with your actual logo image -->
-            <img src="./images/logo.png" alt="AstroAkshat Logo" class="logo-img">
-            
-            <h1 class="logo">અક્ષત જ્યોતિષ દર્પણ</h1>
-            <div class="tagline">જ્યોતિષશાસ્ત્ર એટલે વિજ્ઞાન અને શ્રદ્ધાનો અદભૂત સમન્વય </div>
-            
-            <!-- Replace with Rajesh Saraswat's actual image -->
-            <img src="./images/rajeshjoshi.png" alt="Rajesh Saraswat" class="astrologer-img">
-            <div class="astrologer-name">Rajesh Saraswat</div>
-        </div>
-        
-        <h2 class="coming-soon">Coming Soon</h2>
-        
-        <p class="description">
-            We're preparing something mystical and insightful for you. Our cosmic wisdom and astrological guidance will soon be at your fingertips.
-        </p>
-        
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Days</div>
+        <div class="content-wrapper">
+            <div class="header-content">
+                <div class="logo-container">
+                    <!-- Replace with your actual logo image -->
+                    <img src="/images/logo.png" alt="AstroAkshat Logo" class="logo-img">
+                    <h1 class="logo">અક્ષત જ્યોતિષ દર્પણ </h1>
+                    <div class="tagline">જ્યોતિષશાસ્ત્ર એટલે વિજ્ઞાન અને શ્રદ્ધાનો અદભૂત સમન્વય </div>
+                </div>
+
+                <!-- Astrologer Container
+                <div class="astrologer-container">
+                    Replace with Rajesh Joshi's actual image -->
+                <!-- <img src="/images/rajeshjoshi.png" alt="Rajesh Joshi - Vedic Astrologer" class="astrologer-img">
+                    <div class="astrologer-name">Rajesh Joshi</div>
+                </div> -->
             </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
-            </div>
-        </div>
-        
-        <div class="contact-card">
-            <h3 class="contact-title">સંપર્ક </h3>
-            <div class="contact-details">
-                <p>Phone: <a href="tel:9925312156">+91 99253 12156</a></p>
-                <p>જ્યોતિષ: રાજેશભાઈ સારસ્વત </p>
-                <p>અક્ષત જ્યોતિષ દર્પણ</p>
+
+            <h2 class="coming-soon">Coming Soon</h2>
+
+            <p class="description">
+                We're preparing something mystical and insightful for you. Our cosmic wisdom and astrological guidance
+                will soon be at your fingertips.
+            </p>
+
+            <!-- <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div> -->
+
+            <div class="contact-card">
+                <h3 class="contact-title">Contact</h3>
+                <div class="contact-details">
+                    <p>Phone: <a href="tel:9925312156">+91 99253 12156</a></p>
+                    <p>Astrologer: Rajesh Joshi</p>
+                    <p>Service: Akshat Jyotish Darpan</p>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="footer">
-       | All Rights Reserved &copy; AstroAkshat|  Design and Developed by <a href="#" target="_blank">PROGRAMMING_JAY & TEAM</a> 
+        All Rights Reserved &copy; <span id="current-year"></span> | AstroAkshat Design and Developed by <a
+            href="https://jaydholi.netlify.app" target="_blank">PROGRAMMING_JAY & TEAM</a>
     </div>
 
     <script>
         // Create planet animations
         function animatePlanets() {
             const now = Date.now();
-            
+
             // Mercury - fastest orbit (88 Earth days)
-            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px)`;
-            
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
             // Venus (225 days)
-            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px)`;
-            
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
             // Earth (365 days)
-            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px)`;
-            
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
             // Mars (687 days)
-            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px)`;
-            
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
             // Jupiter (12 years)
-            document.querySelector('.jupiter').style.transform = `rotate(${(now / 5000) % 360}deg) translateX(225px)`;
-            
+            document.querySelector('.jupiter').style.transform = `rotate(${(now / 5000) % 360}deg) translateX(225px) rotate(${-((now / 5000) % 360)}deg)`;
+
             // Saturn (29 years)
-            document.querySelector('.saturn').style.transform = `rotate(${(now / 12000) % 360}deg) translateX(300px)`;
-            
+            document.querySelector('.saturn').style.transform = `rotate(${(now / 12000) % 360}deg) translateX(300px) rotate(${-((now / 12000) % 360)}deg)`;
+
             // Uranus (84 years)
-            document.querySelector('.uranus').style.transform = `rotate(${(now / 34000) % 360}deg) translateX(375px)`;
-            
+            document.querySelector('.uranus').style.transform = `rotate(${(now / 34000) % 360}deg) translateX(375px) rotate(${-((now / 34000) % 360)}deg)`;
+
             // Neptune (165 years)
-            document.querySelector('.neptune').style.transform = `rotate(${(now / 67000) % 360}deg) translateX(425px)`;
-            
+            document.querySelector('.neptune').style.transform = `rotate(${(now / 67000) % 360}deg) translateX(425px) rotate(${-((now / 67000) % 360)}deg)`;
+
             // Pluto (248 years)
-            document.querySelector('.pluto').style.transform = `rotate(${(now / 100000) % 360}deg) translateX(475px)`;
-            
+            document.querySelector('.pluto').style.transform = `rotate(${(now / 100000) % 360}deg) translateX(475px) rotate(${-((now / 100000) % 360)}deg)`;
+
             requestAnimationFrame(animatePlanets);
         }
-        
+
         animatePlanets();
 
-        // Countdown timer (set to 1 week from now)
-        const countdownDate = new Date();
-        countdownDate.setDate(countdownDate.getDate() + 7); // 1 week countdown
+        // // Countdown timer (set to 1 week from now)
+        // const countdownDate = new Date();
+        // countdownDate.setDate(countdownDate.getDate() + 7); // 1 week countdown
 
-        function updateCountdown() {
-            const now = new Date();
-            const diff = countdownDate - now;
-            
-            // Calculate time units
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            // Update display
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            // If countdown ends
-            if (diff <= 0) {
-                clearInterval(countdownInterval);
-                document.querySelector('.coming-soon').textContent = "We're Live!";
-                document.querySelector('.description').textContent = "AstroAkshat Jyotish Darpan is now available for consultations.";
-            }
-        }
+        // function updateCountdown() {
+        //     const now = new Date();
+        //     const diff = countdownDate - now;
 
-        // Update countdown every second
-        updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1000);
+        //     // Calculate time units
+        //     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        //     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        //     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        //     // Update display
+        //     document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        //     document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        //     document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        //     document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+        //     // If countdown ends
+        //     if (diff <= 0) {
+        //         clearInterval(countdownInterval);
+        //         document.querySelector('.coming-soon').textContent = "We're Live!";
+        //         document.querySelector('.description').textContent = "AstroAkshat Jyotish Darpan is now available for consultations.";
+        //     }
+        // }
+
+        // // Update countdown every second
+        // updateCountdown();
+        // const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>
