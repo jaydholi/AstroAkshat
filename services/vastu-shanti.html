@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>વાસ્તુ શાંતિ | અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description"
+        content="વાસ્તુ શાંતિ સેવા - ઘર, ઓફિસ અને વ્યવસાયિક સ્થળો માટે વાસ્તુ દોષ નિવારણ અને સુધારણા">
+    <meta name="keywords"
+        content="વાસ્તુ શાંતિ, વાસ્તુ દોષ, વાસ્તુ સુધારણા, જ્યોતિષ, ઘરનું વાસ્તુ, અક્ષત જ્યોતિષ">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            background-color: #fff;
+        }
+
+        .page-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.2rem;
+            color: #f8f8f8;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .highlight-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Directions Grid */
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .direction-card {
+            background: rgba(109, 40, 217, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .direction-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Lists */
+        .styled-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .styled-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .styled-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Remedies Grid */
+        .remedies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .remedy-card {
+            background: rgba(30, 27, 75, 0.5);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .remedy-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 3rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header-content">
+                <img src="/images/logo.png" alt="વાસ્તુ શાંતિ" class="logo-img">
+            </div>
+            
+            <h1 class="page-title">વાસ્તુ શાંતિ</h1>
+            <p class="page-subtitle">ઘર, ઓફિસ અને વ્યવસાયિક સ્થળો માટે વાસ્તુ દોષ નિવારણ</p>
+            
+            <div class="content-section">
+                <h2 class="section-title">વાસ્તુ શાંતિ શું છે?</h2>
+                <p>વાસ્તુ શાંતિ એ પ્રાચીન ભારતીય વિજ્ઞાન છે જે માનવ નિવાસ અને ઇમારતોને પ્રકૃતિ અને બ્રહ્માંડીય શક્તિઓ સાથે સંવાદિતા માં રાખવા માટેનાં સિદ્ધાંતો આપે છે. વાસ્તુ શાસ્ત્ર મુજબ, જો ઇમારતની રચના અને દિશાઓ યોગ્ય રીતે ન હોય, તો તે વાસ્તુ દોષ ઊભો કરે છે, જે રહેવાસીઓના જીવનમાં અસંતુલન અને સમસ્યાઓ લાવે છે.</p>
+                
+                <div class="highlight-box">
+                    <p>વાસ્તુ શાંતિ પૂજા અને સુધારણાઓ દ્વારા આ દોષોને દૂર કરી શકાય છે, જે ઘરમાં સકારાત્મક ઊર્જાનો પ્રવાહ સ્થાપિત કરે છે અને સુખ, શાંતિ અને સમૃદ્ધિ લાવે છે.</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">વાસ્તુ દિશાઓ અને તેમનું મહત્વ</h2>
+                <p>વાસ્તુ શાસ્ત્ર મુજબ આઠ મુખ્ય દિશાઓ અને તેમનું મહત્વ:</p>
+                
+                <div class="directions-grid">
+                    <div class="direction-card">
+                        <h3>પૂર્વ (ઈશાન)</h3>
+                        <p>સૂર્યોદયની દિશા. આરોગ્ય અને ઊર્જા માટે મહત્વપૂર્ણ. આ દિશામાં ખુલ્લી જગ્યા અને બારીઓ રાખવી જોઈએ.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>પશ્ચિમ (નૈઋત્ય)</h3>
+                        <p>સંપત્તિ અને સમૃદ્ધિ સાથે સંકળાયેલ. આ દિશામાં ભારે ફર્નિચર અને સ્ટોરેજ રાખી શકાય.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>ઉત્તર (વાયવ્ય)</h3>
+                        <p>ધન અને કારકિર્દીની દિશા. આ દિશા સ્વચ્છ અને અવરોધરહિત રાખવી જોઈએ.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>દક્ષિણ (આગ્નેય)</h3>
+                        <p>નામ અને યશ સાથે જોડાયેલ. આ દિશામાં અગ્નિ સાથે સંબંધિત વસ્તુઓ (રસોડું) રાખી શકાય.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>ઈશાન (ઈશાન-ઉત્તરપૂર્વ)</h3>
+                        <p>આધ્યાત્મિકતા અને શાંતિની દિશા. આ સ્થાન પવિત્ર રાખવું જોઈએ.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>આગ્નેય (આગ્નેય-દક્ષિણપૂર્વ)</h3>
+                        <p>ઊર્જા અને સક્રિયતાની દિશા. રસોડું માટે આદર્શ સ્થાન.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>વાયવ્ય (વાયવ્ય-ઉત્તરપશ્ચિમ)</h3>
+                        <p>વાયુ અને સંચારની દિશા. ગેસ્ટ રૂમ અથવા સ્ટડી રૂમ માટે યોગ્ય.</p>
+                    </div>
+                    
+                    <div class="direction-card">
+                        <h3>નૈઋત્ય (નૈઋત્ય-દક્ષિણપશ્ચિમ)</h3>
+                        <p>સ્થિરતા અને ભારની દિશા. માસ્ટર બેડરૂમ માટે શ્રેષ્ઠ.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">વાસ્તુ દોષના લક્ષણો</h2>
+                <p>જો તમારા ઘરમાં નીચેની સમસ્યાઓ હોય, તો તે વાસ્તુ દોષનું સૂચન કરી શકે છે:</p>
+                <ul class="styled-list">
+                    <li>સતત આર્થિક સમસ્યાઓ અને ધનનું અભાવ</li>
+                    <li>કુટુંબ સભ્યો વચ્ચે વારંવાર કજિયા અને તણાવ</li>
+                    <li>બાળકોનું અભ્યાસમાં મન ન લાગવું</li>
+                    <li>ઘરમાં રહેતા લોકોને સતત આરોગ્ય સમસ્યાઓ</li>
+                    <li>વ્યવસાયમાં અચાનક નુકસાન અથવા સ્થગિત થવું</li>
+                    <li>ઘરમાં નકારાત્મક લાગણી અથવા ભારણ</li>
+                    <li>ઘરમાં પ્રવેશતા પ્રાણીઓ (સાપ, કીડીઓ, વગેરે)ની સમસ્યા</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">વાસ્તુ શાંતિના ઉપાયો</h2>
+                <p>વાસ્તુ દોષ દૂર કરવા માટેના સામાન્ય ઉપાયો:</p>
+                
+                <div class="remedies-grid">
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-om"></i></div>
+                        <h3>વાસ્તુ પૂજા</h3>
+                        <p>અનુભવી જ્યોતિષી દ્વારા વાસ્તુ શાંતિ પૂજા કરાવવી</p>
+                    </div>
+                    
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-water"></i></div>
+                        <h3>જળ સ્થાપન</h3>
+                        <p>ઈશાન ખૂણે તાંબાનું પાત્ર ભરીને રાખવું</p>
+                    </div>
+                    
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-magnet"></i></div>
+                        <h3>ચુંબકીય સંતુલન</h3>
+                        <p>યોગ્ય સ્થાને પિરામિડ અથવા ચુંબક મૂકવા</p>
+                    </div>
+                    
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-paint-roller"></i></div>
+                        <h3>રંગોનું સંતુલન</h3>
+                        <p>દિશા અનુસાર યોગ્ય રંગોનો ઉપયોગ</p>
+                    </div>
+                    
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-door-open"></i></div>
+                        <h3>પ્રવેશદ્વાર સુધારણા</h3>
+                        <p>મુખ્ય દરવાજાની સ્થિતિ અને દિશા સુધારવી</p>
+                    </div>
+                    
+                    <div class="remedy-card">
+                        <div class="remedy-icon"><i class="fas fa-tree"></i></div>
+                        <h3>પ્રકૃતિ સાથે જોડાણ</h3>
+                        <p>યોગ્ય સ્થાને તુલસી, મનીપ્લાન્ટ જેવા છોડ લગાવવા</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">વાસ્તુ શાંતિ પ્રક્રિયા</h2>
+                <p>અમારી વાસ્તુ શાંતિ સેવાની પ્રક્રિયા:</p>
+                
+                <ul class="styled-list">
+                    <li><strong>સાઇટ નિરીક્ષણ:</strong> ઘર/ઓફિસનું ભૌતિક નિરીક્ષણ અને માપ</li>
+                    <li><strong>કમ્પાસ અધ્યયન:</strong> ચોક્કસ દિશાઓનું નિર્ધારણ</li>
+                    <li><strong>જન્મકુંડળી વિશ્લેષણ:</strong> રહેવાસીઓની જન્મકુંડળી સાથે વાસ્તુનું સંવાદીકરણ</li>
+                    <li><strong>દોષ નિર્ધારણ:</strong> વાસ્તુ દોષોની ઓળખ અને તેની તીવ્રતા</li>
+                    <li><strong>ઉપાય નિર્ધારણ:</strong> વ્યક્તિગતકૃત ઉપાયો અને સુધારણાઓ</li>
+                    <li><strong>શાંતિ પૂજા:</strong> વાસ્તુ શાંતિ પૂજા અને હોમનું આયોજન</li>
+                    <li><strong>અનુસરણ માર્ગદર્શન:</strong> લાંબા સમય સુધી લાભ મેળવવા માટેની સલાહ</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://wa.me/919925312156?text=હું વાસ્તુ શાંતિ સેવા માટે સંપર્ક કરવા માંગુ છું" class="cta-button">
+                    <i class="fab fa-whatsapp"></i> હમણાં જ સંપર્ક કરો
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+    </script>
+</body>
+
+</html>

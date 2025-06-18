@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ગ્રહ દોષ નિવારણ | અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description"
+        content="પ્રોફેશનલ ગ્રહ દોષ નિવારણ સેવા - મંગળ દોષ, શનિ દોષ, રાહુ-કેતુ દોષ સહિતના તમામ પ્રકારના ગ્રહ દોષો માટે વૈદિક ઉપાયો અને પૂજા">
+    <meta name="keywords"
+        content="ગ્રહ દોષ નિવારણ, મંગળ દોષ, શનિ દોષ, રાહુ દોષ, કેતુ દોષ, જ્યોતિષ, રાજેશભાઈ સારસ્વત, અક્ષત જ્યોતિષ">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Cosmic Background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(109,40,217,0.1) 0%, rgba(15,23,42,0.9) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(109,40,217,0.2) 0%, rgba(30,27,75,0.8) 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(109,40,217,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+
+        /* Navgrah Grid */
+        .navgrah-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .planet-card {
+            background: rgba(109,40,217,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(109,40,217,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .planet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: var(--accent);
+        }
+
+        .planet-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .planet-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(245,158,11,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .planet-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .planet-effects {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .remedies-list {
+            list-style-type: none;
+        }
+
+        .remedies-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .remedies-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Process Timeline */
+        .process-timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 3rem 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(30,27,75,0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -3.1rem;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid var(--dark);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+
+        .cta-button-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .cta-button-secondary {
+            background: rgba(245,158,11,0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .navgrah-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-timeline {
+                padding-left: 2rem;
+            }
+            
+            .timeline-step::before {
+                left: -2.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="page-title">ગ્રહ દોષ નિવારણ</h1>
+            <p class="page-subtitle">ગ્રહ દોષોના અશુભ પ્રભાવો દૂર કરી જીવનમાં સુખ-શાંતિ અને સમૃદ્ધિ લાવો</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-card">
+            <h2 class="section-title">ગ્રહ દોષ નિવારણ વિશે</h2>
+            <p>જ્યોતિષ શાસ્ત્ર મુજબ જ્યારે જન્મકુંડળીમાં કોઈ ગ્રહ નબળો હોય, અશુભ સ્થાને હોય અથવા અન્ય ગ્રહો સાથે ખરાબ સંબંધ ધરાવતો હોય ત્યારે ગ્રહ દોષ ઉત્પન્ન થાય છે. આ દોષોના કારણે વ્યક્તિના જીવનમાં અનેક સમસ્યાઓ ઊભી થાય છે જેમાં આરોગ્ય સમસ્યાઓ, આર્થિક મુશ્કેલીઓ, કારકિર્દીમાં અવરોધો અને પારિવારિક અસ્થિરતા સામેલ હોઈ શકે છે.</p>
+            
+            <div style="background: rgba(245,158,11,0.1); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); margin: 1.5rem 0;">
+                <p><strong>મહત્વપૂર્ણ:</strong> ગ્રહ દોષ નિવારણ માટે યોગ્ય સમયે અને યોગ્ય વિધિ-વિધાન સાથે પૂજા કરવી જરૂરી છે. અમારા અનુભવી જ્યોતિષીઓ તમારી કુંડળીનું વિશ્લેષણ કરી યોગ્ય ઉપાયો સૂચવશે.</p>
+            </div>
+        </div>
+
+        <!-- Navgrah Dosha Section -->
+        <div class="content-card">
+            <h2 class="section-title">નવગ્રહ દોષ અને તેમના ઉપાયો</h2>
+            
+            <div class="navgrah-grid">
+                <!-- Surya Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="planet-name">સૂર્ય દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> આંખોની તકલીફ, પિતા સાથે સમસ્યા, હૃદય રોગ, સરકારી કામમાં અડચણ</p>
+                    <!-- <ul class="remedies-list">
+                        <li>રવિવારે સૂર્ય નમસ્કાર</li>
+                        <li>તાંબુના વાસણમાં દાન</li>
+                        <li>આદિત્ય હૃદય સ્તોત્ર પાઠ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Chandra Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="planet-name">ચંદ્ર દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> માનસિક તણાવ, માતા સાથે કલહ, શરીરમાં પાણીની અસંતુલન</p>
+                    <!-- <ul class="remedies-list">
+                        <li>સોમવારે શિવ અભિષેક</li>
+                        <li>ચાંદીનું દાન</li>
+                        <li>ચંદ્ર ગાયત્રી મંત્ર જપ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Mangal Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="planet-name">મંગળ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> લગ્નમાં વિલંબ, ભાઈ-બહેન સાથે સમસ્યા, અકસ્માતનો ભય</p>
+                    <!-- <ul class="remedies-list">
+                        <li>મંગળવારે હનુમાન ચાલીસા પાઠ</li>
+                        <li>લાલ મસૂર, ગુડ દાન</li>
+                        <li>મંગળ યંત્ર સ્થાપના</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Budh Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <div class="planet-name">બુધ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> વાણી સંબંધી સમસ્યાઓ, શિક્ષણમાં અડચણ, વ્યવસાયિક નુકસાન</p>
+                    <!-- <ul class="remedies-list">
+                        <li>બુધવારે ગણેશ પૂજા</li>
+                        <li>હરિતાળ દાન</li>
+                        <li>બુધ ગાયત્રી મંત્ર જપ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Guru Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="planet-name">ગુરુ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> સંતાન સમસ્યાઓ, ધાર્મિક અશ્રદ્ધા, ન્યાયિક કેસ</p>
+                    <!-- <ul class="remedies-list">
+                        <li>ગુરુવારે ગુરુ પૂજા</li>
+                        <li>પીળા વસ્ત્ર/હલદી દાન</li>
+                        <li>બૃહસ્પતિ સ્તોત્ર પાઠ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Shukra Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-venus"></i>
+                        </div>
+                        <div class="planet-name">શુક્ર દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> દામ્પત્ય સમસ્યાઓ, મૂત્ર સંબંધી રોગ, કલામાં અડચણ</p>
+                    <!-- <ul class="remedies-list">
+                        <li>શુક્રવારે લક્ષ્મી પૂજા</li>
+                        <li>સફેદ ફૂલોનું દાન</li>
+                        <li>શુક્ર બીજ મંત્ર જપ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Shani Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="planet-name">શનિ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> આર્થિક નુકસાન, નોકરીમાં અસ્થિરતા, લાંબી બીમારી</p>
+                    <!-- <ul class="remedies-list">
+                        <li>શનિવારે શનિશ્ચર પૂજા</li>
+                        <li>કાળા તિલ/તેલ દાન</li>
+                        <li>શનિ સ્તોત્ર પાઠ</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Rahu Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <div class="planet-name">રાહુ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> અણધારી ઘટનાઓ, ડર-ભ્રમણા, સામાજિક પ્રતિષ્ઠાને નુકસાન</p>
+                    <!-- <ul class="remedies-list">
+                        <li>રાહુ કવચ પાઠ</li>
+                        <li>નીલમ રત્ન ધારણ</li>
+                        <li>ભૂત-પ્રેત બાધા નિવારણ પૂજા</li>
+                    </ul> -->
+                </div>
+                
+                <!-- Ketu Dosha -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">
+                            <i class="fas fa-comet"></i>
+                        </div>
+                        <div class="planet-name">કેતુ દોષ</div>
+                    </div>
+                    <p class="planet-effects"><strong>પ્રભાવ:</strong> આધ્યાત્મિક સંકટ, ગુપ્ત શત્રુ, ચર્મ રોગ</p>
+                    <!-- <ul class="remedies-list">
+                        <li>કેતુ શાંતિ પૂજા</li>
+                        <li>લહસુનિયા દાન</li>
+                        <li>ગણેશ શાંતિ પૂજા</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="content-card">
+            <h2 class="section-title">ગ્રહ શાંતિ પૂજા પ્રક્રિયા</h2>
+            
+            <div class="process-timeline">
+                <div class="timeline-step">
+                    <h3>1. જન્મકુંડળી વિશ્લેષણ</h3>
+                    <p>તમારી સચોટ જન્મ તારીખ, સમય અને સ્થળની માહિતી લઈને કુંડળી તૈયાર કરવામાં આવે છે અને ગ્રહ દોષોનું વિશ્લેષણ કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>2. દોષ નિર્ધારણ</h3>
+                    <p>કયા ગ્રહ દોષનો પ્રભાવ છે અને તેની તીવ્રતા કેટલી છે તે નક્કી કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>3. ઉપાય નિર્ધારણ</h3>
+                    <p>તમારી જન્મકુંડળી અને વર્તમાન ગોચર અનુસાર યોગ્ય ઉપાયો અને પૂજા વિધિ નક્કી કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>4. પૂજા અને હોમ</h3>
+                    <p>અનુભવી પંડિતો દ્વારા વૈદિક વિધિ-વિધાન પ્રમાણે પૂજા અને હોમ કરવામાં આવે છે.</p>
+                </div>
+                
+                <div class="timeline-step">
+                    <h3>5. દાન અને સમાપન</h3>
+                    <p>ગ્રહ શાંતિ માટે યોગ્ય વસ્તુઓનું દાન કરવામાં આવે છે અને પૂજાનું સમાપન કરવામાં આવે છે.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="section-title">ગ્રહ દોષથી મુક્તિ મેળવો</h2>
+            <p>અમારા અનુભવી જ્યોતિષીઓ સાથે સંપર્ક કરો અને તમારી જન્મકુંડળી અનુસાર યોગ્ય ઉપાયો મેળવો</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/919925312156" class="cta-button cta-button-primary">
+                    <i class="fab fa-whatsapp"></i> વોટ્સઍપ પર સંપર્ક કરો
+                </a>
+                <a href="tel:9925312156" class="cta-button cta-button-secondary">
+                    <i class="fas fa-phone-alt"></i> કોલ કરો
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate planet cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const planetCards = document.querySelectorAll('.planet-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            planetCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
