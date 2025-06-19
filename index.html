@@ -762,7 +762,6 @@
         }
 
         /* Footer */
-        /* Footer Styles */
         .footer {
             background: linear-gradient(to bottom, #1e1b4b, #0f172a);
             color: var(--text);
@@ -994,32 +993,53 @@
             opacity: 0.8;
         }
 
-        @media (max-width: 768px) {
-            .footer-columns {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+        /* ========================
+           RESPONSIVE ADJUSTMENTS
+           ======================== */
 
-            .footer-legal {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-        }
-
-        /* Responsive adjustments */
+        /* Medium devices (tablets, 768px and up) */
         @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
             .about-content {
                 flex-direction: column;
                 text-align: center;
             }
-
+            
+            .about-img {
+                margin-bottom: 2rem;
+            }
+            
             .contact-container {
                 flex-direction: column;
             }
         }
 
+        /* Small devices (landscape phones, 576px and up) */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+            
             .nav-links {
                 position: fixed;
                 top: var(--nav-height);
@@ -1035,110 +1055,255 @@
                 transition: right 0.5s ease;
                 border-left: 1px solid rgba(109, 40, 217, 0.3);
             }
-
+            
             .nav-links.active {
                 right: 0;
             }
-
+            
             .hamburger {
                 display: block;
             }
-
+            
             .hamburger.active div:nth-child(1) {
                 transform: rotate(-45deg) translate(-5px, 6px);
             }
-
+            
             .hamburger.active div:nth-child(2) {
                 opacity: 0;
             }
-
+            
             .hamburger.active div:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
-
+            
             .hero-title {
                 font-size: 2.5rem;
             }
-
+            
             .hero-subtitle {
                 font-size: 1.2rem;
             }
-
+            
+            .hero-img {
+                width: 180px;
+                height: 180px;
+            }
+            
             .section-title {
                 font-size: 2rem;
+                margin-bottom: 2rem;
             }
-
+            
             .section-title::before,
             .section-title::after {
                 display: none;
             }
-
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
             /* Adjust solar system for mobile */
             .mercury-orbit {
                 width: 80px;
                 height: 80px;
             }
-
+            
             .venus-orbit {
                 width: 120px;
                 height: 120px;
             }
-
+            
             .earth-orbit {
                 width: 160px;
                 height: 160px;
             }
-
+            
             .mars-orbit {
                 width: 200px;
                 height: 200px;
             }
-
+            
             .jupiter-orbit {
                 width: 300px;
                 height: 300px;
             }
-
+            
             .saturn-orbit {
                 width: 400px;
                 height: 400px;
             }
-
+            
             .uranus-orbit {
                 width: 500px;
                 height: 500px;
             }
-
+            
             .neptune-orbit {
                 width: 580px;
                 height: 580px;
             }
-
+            
             .pluto-orbit {
                 width: 650px;
                 height: 650px;
             }
+            
+            /* Contact form adjustments */
+            .form-control {
+                padding: 10px 12px;
+            }
+            
+            .submit-btn {
+                padding: 10px 25px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .channel-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
         }
 
+        /* Extra small devices (portrait phones, less than 576px) */
         @media (max-width: 576px) {
             .hero-title {
                 font-size: 2rem;
             }
-
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
             .hero-img {
                 width: 150px;
                 height: 150px;
             }
-
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
             .about-img {
                 width: 100%;
                 height: auto;
+                max-width: 300px;
             }
-
+            
             .services-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .service-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+            }
+            
+            .service-title {
+                font-size: 1.3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .testimonial-img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-icon {
+                margin-bottom: 0.5rem;
+            }
         }
+
+        /* Very small devices (phones under 400px) */
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-img {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .channel-link {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+            
+            .footer-logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .footer-tagline {
+                font-size: 1rem;
+            }
+        }
+
+        /* Prevent scrolling when menu is open */
+        body.no-scroll {
+            overflow: hidden;
+        }
+        
     </style>
 </head>
 
@@ -1465,13 +1630,6 @@
                                 <p><a href="tel:+919925312156">+91 99253 12156</a></p>
                             </div>
                         </div>
-                        <!-- <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <div class="contact-text">
-                                <h4>ઇમેઇલ</h4>
-                                <p><a href="mailto:akshatjyotishdarpan@gmail.com">akshatjyotishdarpan@gmail.com</a></p>
-                            </div>
-                        </div> -->
                         <div class="contact-item">
                             <i class="fas fa-clock contact-icon"></i>
                             <div class="contact-text">
@@ -1485,16 +1643,10 @@
                         <a href="https://wa.me/919925312156" target="_blank" class="social-link whatsapp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <!-- <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a> -->
                         <a href="https://www.instagram.com/akshat_jyotish_darpan/" target="_blank"
                             class="social-link instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <!-- <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-link youtube">
-                            <i class="fab fa-youtube"></i>
-                        </a> -->
                     </div>
                     <!-- WhatsApp Channel Link -->
                     <div class="whatsapp-channel">
@@ -1573,22 +1725,14 @@
                             aria-label="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <!-- <a href="https://www.facebook.com/yourpage" target="_blank" class="social-icon facebook"
-                            aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a> -->
                         <a href="https://www.instagram.com/akshat_jyotish_darpan/" target="_blank"
                             class="social-icon instagram" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <!-- <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-icon youtube"
-                            aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a> -->
                     </div>
                 </div>
-
-                <div class="footer-nav">
+ 
+                <!-- <div class="footer-nav">
                     <h3 class="footer-heading">ઝડપી લિંક્સ</h3>
                     <ul class="nav-links">
                         <li><a href="/INDEX.html">હોમ</a></li>
@@ -1598,7 +1742,7 @@
                         <li><a href="/pages/testimonal.html">અનુભવો</a></li>
                         <li><a href="/pages/contact.html">સંપર્ક</a></li>
                     </ul>
-                </div>
+                </div>  -->
 
                 <div class="footer-services">
                     <h3 class="footer-heading">અમારી સેવાઓ</h3>
@@ -1630,12 +1774,6 @@
                                 <a href="tel:+919925312156">+91 99253 12156</a>
                             </div>
                         </div>
-                        <!-- <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <div class="contact-text">
-                                <a href="mailto:akshatjyotishdarpan@gmail.com">akshatjyotishdarpan@gmail.com</a>
-                            </div>
-                        </div> -->
                         <div class="contact-item">
                             <i class="fas fa-clock contact-icon"></i>
                             <div class="contact-text">
@@ -1647,11 +1785,6 @@
             </div>
 
             <div class="footer-bottom">
-                <!-- <div class="footer-legal">
-                    <a href="/privacy-policy.html" class="legal-link">ગોપનીયતા નીતિ</a>
-                    <a href="/terms-conditions.html" class="legal-link">નિયમો અને શરતો</a>
-                    <a href="/disclaimer.html" class="legal-link">ડિસ્ક્લેમર</a>
-                </div> -->
                 <div class="footer-copyright">
                     <p>&copy; <span id="current-year"></span> અક્ષત જ્યોતિષ દર્પણ. બધા હક્કો આરક્ષિત.</p>
                 </div>
@@ -1659,15 +1792,16 @@
         </div>
     </footer>
 
-
     <script>
         // Navigation toggle for mobile
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
+            body.classList.toggle('no-scroll');
         });
 
         // Close mobile menu when clicking on a link
@@ -1675,6 +1809,7 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 hamburger.classList.remove('active');
+                body.classList.remove('no-scroll');
             });
         });
 
