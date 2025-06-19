@@ -402,24 +402,25 @@
 
         .about-content {
             display: flex;
-            align-items: center;
-            gap: 3rem;
-            max-width: 1100px;
-            margin: 0 auto;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 2rem;
         }
 
         .about-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
+            max-width: 300px;
+            /* Adjust width as needed */
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
             object-fit: cover;
-            border: 3px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .about-text {
             flex: 1;
+            min-width: 250px;
         }
+
 
         .about-text p {
             margin-bottom: 1.5rem;
@@ -1002,24 +1003,24 @@
             .hero-title {
                 font-size: 3rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.3rem;
             }
-            
+
             .section-title {
                 font-size: 2.2rem;
             }
-            
+
             .about-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .about-img {
                 margin-bottom: 2rem;
             }
-            
+
             .contact-container {
                 flex-direction: column;
             }
@@ -1030,16 +1031,16 @@
             .navbar {
                 padding: 0 1.5rem;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
             }
-            
+
             .logo-img {
                 width: 35px;
                 height: 35px;
             }
-            
+
             .nav-links {
                 position: fixed;
                 top: var(--nav-height);
@@ -1055,127 +1056,127 @@
                 transition: right 0.5s ease;
                 border-left: 1px solid rgba(109, 40, 217, 0.3);
             }
-            
+
             .nav-links.active {
                 right: 0;
             }
-            
+
             .hamburger {
                 display: block;
             }
-            
+
             .hamburger.active div:nth-child(1) {
                 transform: rotate(-45deg) translate(-5px, 6px);
             }
-            
+
             .hamburger.active div:nth-child(2) {
                 opacity: 0;
             }
-            
+
             .hamburger.active div:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
-            
+
             .hero-title {
                 font-size: 2.5rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.2rem;
             }
-            
+
             .hero-img {
                 width: 180px;
                 height: 180px;
             }
-            
+
             .section-title {
                 font-size: 2rem;
                 margin-bottom: 2rem;
             }
-            
+
             .section-title::before,
             .section-title::after {
                 display: none;
             }
-            
+
             .section {
                 padding: 3rem 0;
             }
-            
+
             .container {
                 padding: 1.5rem;
             }
-            
+
             /* Adjust solar system for mobile */
             .mercury-orbit {
                 width: 80px;
                 height: 80px;
             }
-            
+
             .venus-orbit {
                 width: 120px;
                 height: 120px;
             }
-            
+
             .earth-orbit {
                 width: 160px;
                 height: 160px;
             }
-            
+
             .mars-orbit {
                 width: 200px;
                 height: 200px;
             }
-            
+
             .jupiter-orbit {
                 width: 300px;
                 height: 300px;
             }
-            
+
             .saturn-orbit {
                 width: 400px;
                 height: 400px;
             }
-            
+
             .uranus-orbit {
                 width: 500px;
                 height: 500px;
             }
-            
+
             .neptune-orbit {
                 width: 580px;
                 height: 580px;
             }
-            
+
             .pluto-orbit {
                 width: 650px;
                 height: 650px;
             }
-            
+
             /* Contact form adjustments */
             .form-control {
                 padding: 10px 12px;
             }
-            
+
             .submit-btn {
                 padding: 10px 25px;
             }
-            
+
             .social-links {
                 justify-content: center;
             }
-            
+
             .channel-link {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
-            
+
             .footer-columns {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .footer-legal {
                 flex-direction: column;
                 align-items: center;
@@ -1188,74 +1189,74 @@
             .hero-title {
                 font-size: 2rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.1rem;
             }
-            
+
             .hero-img {
                 width: 150px;
                 height: 150px;
             }
-            
+
             .hero-description {
                 font-size: 1rem;
             }
-            
+
             .cta-button {
                 padding: 12px 25px;
                 font-size: 1rem;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .about-img {
                 width: 100%;
                 height: auto;
                 max-width: 300px;
             }
-            
+
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .service-card {
                 min-height: auto;
                 padding: 1.5rem;
             }
-            
+
             .service-icon {
                 font-size: 2.5rem;
             }
-            
+
             .service-title {
                 font-size: 1.3rem;
             }
-            
+
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .gallery-item {
                 height: 200px;
             }
-            
+
             .testimonial-card {
                 padding: 1.5rem;
             }
-            
+
             .testimonial-img {
                 width: 50px;
                 height: 50px;
             }
-            
+
             .contact-item {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .contact-icon {
                 margin-bottom: 0.5rem;
             }
@@ -1266,34 +1267,34 @@
             .hero-title {
                 font-size: 1.8rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1rem;
             }
-            
+
             .hero-img {
                 width: 130px;
                 height: 130px;
             }
-            
+
             .cta-button {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-            
+
             .section-title {
                 font-size: 1.6rem;
             }
-            
+
             .channel-link {
                 font-size: 0.8rem;
                 padding: 8px 12px;
             }
-            
+
             .footer-logo-text {
                 font-size: 1.3rem;
             }
-            
+
             .footer-tagline {
                 font-size: 1rem;
             }
@@ -1303,7 +1304,6 @@
         body.no-scroll {
             overflow: hidden;
         }
-        
     </style>
 </head>
 
@@ -1731,7 +1731,7 @@
                         </a>
                     </div>
                 </div>
- 
+
                 <!-- <div class="footer-nav">
                     <h3 class="footer-heading">ઝડપી લિંક્સ</h3>
                     <ul class="nav-links">
