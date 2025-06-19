@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>જ્યોતિષ બ્લોગ - અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description" content="જ્યોતિષ, વાસ્તુ અને આધ્યાત્મિકતા પર નિષ્ણાત લેખો અને માર્ગદર્શન">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+            --nav-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            line-height: 1.6;
+            padding-top: var(--nav-height);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Blog Header */
+        .blog-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border-radius: 5px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Categories */
+        .categories {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+        }
+
+        .categories-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 0.5rem 1.5rem;
+            background: rgba(109, 40, 217, 0.2);
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .category-item:hover {
+            background: var(--primary);
+        }
+
+        .category-link {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - var(--nav-height));
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.5s ease;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .blog-content {
+                padding: 1rem;
+            }
+
+            .category-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img">
+            <span>અક્ષત જ્યોતિષ દર્પણ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/INDEX.html">હોમ</a></li>
+            <li><a href="/pages/about-us.html">અમારા વિશે</a></li>
+            <li><a href="/pages/services.html">સેવાઓ</a></li>
+            <li><a href="/pages/blog.html">બ્લોગ</a></li>
+            <li><a href="/pages/gallery.html">ગેલેરી</a></li>
+            <li><a href="/pages/testimonal.html">અનુભવો</a></li>
+            <li><a href="/pages/contact.html">સંપર્ક</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="page-title">જ્યોતિષ બ્લોગ</h1>
+            <p class="page-subtitle">જ્યોતિષ, વાસ્તુ અને આધ્યાત્મિકતા પર નિષ્ણાત લેખો અને માર્ગદર્શન</p>
+        </div>
+
+        <!-- Blog Categories -->
+        <div class="categories">
+            <h2 class="categories-title">બ્લોગ શ્રેણીઓ</h2>
+            <ul class="category-list">
+                <li class="category-item"><a href="#" class="category-link">જ્યોતિષ શાસ્ત્ર</a></li>
+                <li class="category-item"><a href="#" class="category-link">વાસ્તુ શાસ્ત્ર</a></li>
+                <li class="category-item"><a href="#" class="category-link">રત્ન ઉપચાર</a></li>
+                <li class="category-item"><a href="#" class="category-link">મંત્ર અને પૂજા</a></li>
+                <li class="category-item"><a href="#" class="category-link">ગ્રહ દોષ નિવારણ</a></li>
+                <li class="category-item"><a href="#" class="category-link">કુંડળી વિશ્લેષણ</a></li>
+            </ul>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <article class="blog-card">
+                <img src="/images/blog1.jpg" alt="શનિ દોષ અને તેના નિવારણ" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">15 જૂન, 2023</div>
+                    <h3 class="blog-title">શનિ દોષ અને તેના નિવારણ માટે ઉપાયો</h3>
+                    <p class="blog-excerpt">શનિ દોષ એ જીવનમાં અનેક સમસ્યાઓ ઊભી કરે છે. આ લેખમાં જાણો શનિ દોષના લક્ષણો
+                        અને તેના નિવારણ માટે સરળ પણ પ્રભાવી ઉપાયો...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-card">
+                <img src="/images/blog2.jpg" alt="વાસ્તુ ટિપ્સ" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">2 જૂન, 2023</div>
+                    <h3 class="blog-title">ઘરમાં સુખ-શાંતિ માટે આવશ્યક વાસ્તુ ટિપ્સ</h3>
+                    <p class="blog-excerpt">વાસ્તુ શાસ્ત્ર અનુસાર ઘરની રચના અને દિશાઓનું ખૂબ જ મહત્વ છે. જાણો તમારા
+                        ઘરમાં સુખ-શાંતિ અને સમૃદ્ધિ લાવવા માટેના સરળ વાસ્તુ ટિપ્સ...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="blog-card">
+                <img src="/images/blog3.jpg" alt="મંગળ દોષ" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">20 મે, 2023</div>
+                    <h3 class="blog-title">મંગળ દોષ: લક્ષણો અને લગ્ન પર પડતા પ્રભાવો</h3>
+                    <p class="blog-excerpt">મંગળ દોષ લગ્ન જીવનમાં અનેક સમસ્યાઓ ઊભી કરે છે. આ લેખમાં જાણો મંગળ દોષ શું
+                        છે, તેના લક્ષણો અને નિવારણ માટેના ઉપાયો...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 4 -->
+            <article class="blog-card">
+                <img src="/images/blog4.jpg" alt="રત્ન ઉપચાર" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">5 મે, 2023</div>
+                    <h3 class="blog-title">રત્ન ઉપચાર: સાચું રત્ન કેવી રીતે પહેરવું?</h3>
+                    <p class="blog-excerpt">રત્નોમાં ગ્રહોની શક્તિ સમાયેલી છે. પરંતુ ખોટું રત્ન અથવા ખોટી રીતે પહેરેલું
+                        રત્ન નુકસાન કરી શકે છે. જાણો કેવી રીતે પસંદ કરો અને પહેરો સાચું રત્ન...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 5 -->
+            <article class="blog-card">
+                <img src="/images/blog5.jpg" alt="કેતુ શાંતિ" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">22 એપ્રિલ, 2023</div>
+                    <h3 class="blog-title">કેતુ શાંતિ: આધ્યાત્મિક પ્રગતિ માટે આવશ્યક</h3>
+                    <p class="blog-excerpt">કેતુ એ આધ્યાત્મિકતા અને મોક્ષનો કારક ગ્રહ છે. જાણો કેવી રીતે કેતુ શાંતિ
+                        માટેના ઉપાયો તમારી આધ્યાત્મિક યાત્રામાં મદદરૂપ થઈ શકે છે...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+
+            <!-- Blog Post 6 -->
+            <article class="blog-card">
+                <img src="/images/blog6.jpg" alt="ગુરુ પૂજા" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">10 એપ્રિલ, 2023</div>
+                    <h3 class="blog-title">ગુરુ પૂજા: શુક્રવારે કેવી રીતે કરવી?</h3>
+                    <p class="blog-excerpt">ગુરુ (બૃહસ્પતિ) જ્ઞાન, સમૃદ્ધિ અને સદ્ભાગ્યનો કારક ગ્રહ છે. શુક્રવારે ગુરુ
+                        પૂજા કરવાથી ઘણા લાભ મળે છે. જાણો સાચી પદ્ધતિ...</p>
+                    <a href="#" class="read-more">વધુ વાંચો →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">4</a>
+            <a href="#" class="page-link">→</a>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Toggle for Mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+
+        // Blog card click handler
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function (e) {
+                // Don't navigate if clicking on read more link
+                if (!e.target.classList.contains('read-more')) {
+                    // In a real implementation, this would open the blog post
+                    alert('બ્લોગ પોસ્ટ ખુલશે. આ એક ડેમો સંદેશ છે.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
