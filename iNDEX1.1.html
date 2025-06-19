@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>અક્ષત જ્યોતિષ દર્પણ - વૈદિક જ્યોતિષ સેવાઓ</title>
+    <meta name="description"
+        content="અક્ષત જ્યોતિષ દર્પણ - રાજેશભાઈ  સારસ્વત દ્વારા પ્રીમિયમ વૈદિક જ્યોતિષ સેવાઓ. વ્યક્તિગત કુંડળી વાંચન, દોષ નિવારણ, પૂજા અને જ્યોતિષીય માર્ગદર્શન મેળવો.">
+    <meta name="keywords"
+        content="વૈદિક જ્યોતિષ, જ્યોતિષ, કુંડળી, રાજેશભાઈ  સારસ્વત, અક્ષત જ્યોતિષ, ગ્રહ દોષ, વાસ્તુ શાંતિ, પૂજન, ચંડી યજ્ઞ, રુદ્રાભિષેક">
+    <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
+    <meta property="og:title" content="અક્ષત જ્યોતિષ દર્પણ - વૈદિક જ્યોતિષ સેવાઓ">
+    <meta property="og:description"
+        content="રાજેશભાઈ  સારસ્વત દ્વારા પ્રીમિયમ વૈદિક જ્યોતિષ સેવાઓ. વ્યક્તિગત કુંડળી વાંચન, દોષ નિવારણ, પૂજા અને જ્યોતિષીય માર્ગદર્શન.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Planet sizes and orbit distances */
+        .sun {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #f59e0b, #b45309);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 50px #f59e0b;
+            z-index: 1;
+        }
+
+        .mercury {
+            width: 8px;
+            height: 8px;
+            background: #a9a9a9;
+        }
+
+        .venus {
+            width: 12px;
+            height: 12px;
+            background: #e6c229;
+        }
+
+        .earth {
+            width: 13px;
+            height: 13px;
+            background: #6b93d6;
+        }
+
+        .mars {
+            width: 10px;
+            height: 10px;
+            background: #e27b58;
+        }
+
+        .jupiter {
+            width: 28px;
+            height: 28px;
+            background: #c88b3a;
+        }
+
+        .saturn {
+            width: 24px;
+            height: 24px;
+            background: #e4d191;
+        }
+
+        .uranus {
+            width: 18px;
+            height: 18px;
+            background: #d1e7e7;
+        }
+
+        .neptune {
+            width: 17px;
+            height: 17px;
+            background: #5b5ddf;
+        }
+
+        .pluto {
+            width: 6px;
+            height: 6px;
+            background: #d6c7b7;
+        }
+
+        /* Orbit sizes */
+        .mercury-orbit {
+            width: 120px;
+            height: 120px;
+        }
+
+        .venus-orbit {
+            width: 180px;
+            height: 180px;
+        }
+
+        .earth-orbit {
+            width: 250px;
+            height: 250px;
+        }
+
+        .mars-orbit {
+            width: 320px;
+            height: 320px;
+        }
+
+        .jupiter-orbit {
+            width: 450px;
+            height: 450px;
+        }
+
+        .saturn-orbit {
+            width: 600px;
+            height: 600px;
+        }
+
+        .uranus-orbit {
+            width: 750px;
+            height: 750px;
+        }
+
+        .neptune-orbit {
+            width: 850px;
+            height: 850px;
+        }
+
+        .pluto-orbit {
+            width: 950px;
+            height: 950px;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            margin-bottom: 1rem;
+            background-color: #fff;
+        }
+
+        .astrologer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .astrologer-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
+        }
+
+        .astrologer-name {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-top: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .tagline {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.5rem;
+            color: #f8f8f8;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .services-title {
+            font-size: 2.5rem;
+            font-family: 'Noto Serif Gujarati', serif;
+            margin: 2rem 0;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .services-title::before,
+        .services-title::after {
+            content: '✷';
+            position: absolute;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .services-title::before {
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .services-title::after {
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .description {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(109, 40, 217, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Social Media Section */
+        .social-media-section {
+            margin: 3rem auto;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .social-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .social-title::before,
+        .social-title::after {
+            content: '✦';
+            position: absolute;
+            color: var(--accent);
+            font-size: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .social-title::before {
+            left: -30px;
+        }
+
+        .social-title::after {
+            right: -30px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .youtube {
+            background: #FF0000;
+        }
+
+        /* WhatsApp Channel Link */
+        .whatsapp-channel {
+            margin-top: 2rem;
+        }
+
+        .channel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(37, 211, 102, 0.1);
+            color: #25D366;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            transition: all 0.3s;
+        }
+
+        .channel-link:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        /* Contact Info */
+        .contact-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .contact-title {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .contact-details a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .contact-details a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .services-title {
+                font-size: 2rem;
+            }
+
+            .services-title::before,
+            .services-title::after {
+                display: none;
+            }
+
+            .logo-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .astrologer-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .social-icons {
+                gap: 1rem;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .social-title {
+                font-size: 1.1rem;
+            }
+            
+            .social-title::before,
+            .social-title::after {
+                font-size: 0.8rem;
+            }
+            
+            .social-title::before {
+                left: -25px;
+            }
+            
+            .social-title::after {
+                right: -25px;
+            }
+            
+            .channel-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Adjust solar system for mobile */
+            .mercury-orbit {
+                width: 80px;
+                height: 80px;
+            }
+
+            .venus-orbit {
+                width: 120px;
+                height: 120px;
+            }
+
+            .earth-orbit {
+                width: 160px;
+                height: 160px;
+            }
+
+            .mars-orbit {
+                width: 200px;
+                height: 200px;
+            }
+
+            .jupiter-orbit {
+                width: 300px;
+                height: 300px;
+            }
+
+            .saturn-orbit {
+                width: 400px;
+                height: 400px;
+            }
+
+            .uranus-orbit {
+                width: 500px;
+                height: 500px;
+            }
+
+            .neptune-orbit {
+                width: 580px;
+                height: 580px;
+            }
+
+            .pluto-orbit {
+                width: 650px;
+                height: 650px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+
+        <!-- Mercury -->
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+
+        <!-- Venus -->
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+
+        <!-- Earth -->
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+
+        <!-- Mars -->
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+
+        <!-- Jupiter -->
+        <div class="orbit jupiter-orbit">
+            <div class="planet jupiter"></div>
+        </div>
+
+        <!-- Saturn -->
+        <div class="orbit saturn-orbit">
+            <div class="planet saturn"></div>
+        </div>
+
+        <!-- Uranus -->
+        <div class="orbit uranus-orbit">
+            <div class="planet uranus"></div>
+        </div>
+
+        <!-- Neptune -->
+        <div class="orbit neptune-orbit">
+            <div class="planet neptune"></div>
+        </div>
+
+        <!-- Pluto -->
+        <div class="orbit pluto-orbit">
+            <div class="planet pluto"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header-content">
+                <div class="logo-container">
+                    <!-- Replace with your actual logo image -->
+                    <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ લોગો" class="logo-img">
+                    <h1 class="logo">અક્ષત જ્યોતિષ દર્પણ</h1>
+                    <div class="tagline">જ્યોતિષશાસ્ત્ર એટલે વિજ્ઞાન અને શ્રદ્ધાનો અદભૂત સમન્વય</div>
+                </div>
+            </div>
+
+            <p class="description">
+                અમે તમારા માટે કંઈક રહસ્યમય અને જ્ઞાનસભર તૈયાર કરી રહ્યા છીએ. અમારી ખગોળશાસ્ત્રીય માર્ગદર્શન અને
+                બ્રહ્માંડની જ્ઞાને પ્રાપ્ત થશે તમારાં આંગળીનાં ઇશારાએ. થોડા સમયમાં, આ અલૌકિક અનુભવ તમારા સ્નેહ માટે
+                ખુલ્લો રહેશે.
+            </p>
+
+            <h2 class="services-title" id="services">અમારી સેવાઓ</h2>
+
+            <div class="services-grid">
+                <!-- Kundali Analysis -->
+                <div class="service-card" onclick="window.open('/services/kundali-analysis.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">કુંડળી વિશ્લેષણ</h3>
+                    <p class="service-desc">
+                        જન્મકુંડળીનું સંપૂર્ણ વિશ્લેષણ, ગ્રહોની સ્થિતિ, દશા અને અનુદશાનું અધ્યયન, ભવિષ્યવાણી અને ઉપાયો.
+                    </p>
+                </div>
+
+                <!-- Grah Dosh Nivaran -->
+                <div class="service-card" onclick="window.open('/services/grah-dosh-nivaran.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <h3 class="service-title">ગ્રહ દોષ નિવારણ</h3>
+                    <p class="service-desc">
+                        મંગળ દોષ, શનિ દોષ, રાહુ-કેતુ દોષ સહિતના તમામ પ્રકારના ગ્રહ દોષો માટે વૈદિક ઉપાયો અને પૂજા.
+                    </p>
+                </div>
+
+                <!-- Kaal Sarp Dosh Shanti -->
+                <div class="service-card" onclick="window.open('/services/kaal-sarp-dosh.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3 class="service-title">કાલ સર્પ દોષ શાંતિ</h3>
+                    <p class="service-desc">
+                        કાલ સર્પ દોષના પ્રભાવોને દૂર કરવા માટે વિશિષ્ટ પૂજા, મંત્ર અને ઉપાયો.
+                    </p>
+                </div>
+
+                <!-- Vastu Shanti Poojan -->
+                <div class="service-card" onclick="window.open('/services/vastu-shanti.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="service-title">વાસ્તુ શાંતિ પૂજન</h3>
+                    <p class="service-desc">
+                        ઘર, ઑફિસ અને વ્યવસાયિક પ્રદેશો માટે કોઈ પણ જાત ના તોડ ફોડ વગર..વાસ્તુદોષ નું નિવારણ અને શાંતિ પૂજન.
+                    </p>
+                </div>
+
+                <!-- Vedic Poojan -->
+                <div class="service-card" onclick="window.open('/services/vedic-poojan.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-om"></i>
+                    </div>
+                    <h3 class="service-title">વૈદિક પૂજન</h3>
+                    <p class="service-desc">
+                        ગણેશ પૂજા, લક્ષ્મી પૂજા, નવગ્રહ પૂજા સહિતના તમામ પ્રકારના વૈદિક પૂજન.
+                    </p>
+                </div>
+
+                <!-- Chandi Yagya -->
+                <div class="service-card" onclick="window.open('/services/chandi-yagya.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="service-title">ચંડી યજ્ઞ</h3>
+                    <p class="service-desc">
+                        દુષ્ટ શક્તિઓના નાશ, સુખ-સમૃદ્ધિ અને સર્વ મનોકામના પૂર્તિ માટે ચંડી યજ્ઞ.
+                    </p>
+                </div>
+
+                <!-- Rudrabhishek -->
+                <div class="service-card" onclick="window.open('/services/rudrabhishek.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="service-title">રુદ્રાભિષેક</h3>
+                    <p class="service-desc">
+                        ભગવાન શિવની કૃપા મેળવવા માટે રુદ્રાભિષેક, જેમાં રુદ્રાધ્યાયનું પાઠ અને શિવલિંગનું અભિષેક.
+                    </p>
+                </div>
+
+                <!-- Muhurta Nirdharan -->
+                <div class="service-card" onclick="window.open('/services/muhurta.html', '_blank')">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="service-title">મુહૂર્ત નિર્ધારણ</h3>
+                    <p class="service-desc">
+                        લગ્ન, ગૃહપ્રવેશ, વ્યવસાયારંભ જેવા મહત્વપૂર્ણ કાર્યો માટે શુભ મુહૂર્ત નિર્ધારણ.
+                    </p>
+                </div>
+            </div>
+            <div class="contact-card" id="contact">
+                <h3 class="contact-title">અમારો સંપર્ક</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-phone-alt"></i> ફોન: <a href="tel:9925312156">+91 99253 12156</a></p>
+                    <p><i class="fas fa-user"></i> જ્યોતિષી: રાજેશભાઈ સારસ્વત</p>
+                    <p><i class="fas fa-map-marker-alt"></i> સરનામું: અક્ષત જ્યોતિષ દર્પણ, ભુજ, કચ્છગુજરાત</p>
+                </div>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="social-media-section">
+                <h3 class="social-title">અમને સોશિયલ મીડિયા પર ફોલો કરો</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/919925312156" target="_blank" class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <!-- <a href="https://www.facebook.com/yourpage" target="_blank" class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a> -->
+                    <a href="https://www.instagram.com/akshat_jyotish_darpan/" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a> -->
+                </div>
+                
+                <!-- WhatsApp Channel Link -->
+                <div class="whatsapp-channel">
+                    <a href="https://whatsapp.com/channel/0029VavPk3K6LwHpMbE2no1H" target="_blank" class="channel-link">
+                        <i class="fab fa-whatsapp"></i> દૈનિક પંચાંગ મેળવવા અમારા WhatsApp ચેનલમાં જોડાઓ
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            // Jupiter (12 years)
+            document.querySelector('.jupiter').style.transform = `rotate(${(now / 5000) % 360}deg) translateX(225px) rotate(${-((now / 5000) % 360)}deg)`;
+
+            // Saturn (29 years)
+            document.querySelector('.saturn').style.transform = `rotate(${(now / 12000) % 360}deg) translateX(300px) rotate(${-((now / 12000) % 360)}deg)`;
+
+            // Uranus (84 years)
+            document.querySelector('.uranus').style.transform = `rotate(${(now / 34000) % 360}deg) translateX(375px) rotate(${-((now / 34000) % 360)}deg)`;
+
+            // Neptune (165 years)
+            document.querySelector('.neptune').style.transform = `rotate(${(now / 67000) % 360}deg) translateX(425px) rotate(${-((now / 67000) % 360)}deg)`;
+
+            // Pluto (248 years)
+            document.querySelector('.pluto').style.transform = `rotate(${(now / 100000) % 360}deg) translateX(475px) rotate(${-((now / 100000) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
