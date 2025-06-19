@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="gu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>જ્યોતિષ સેવાઓ - અક્ષત જ્યોતિષ દર્પણ</title>
-    <meta name="description" content="અક્ષત જ્યોતિષ દર્પણ દ્વારા પ્રદાન કરવામાં આવતી વૈદિક જ્યોતિષ સેવાઓ: કુંડળી વિશ્લેષણ, ગ્રહ દોષ નિવારણ, વાસ્તુ શાંતિ, યજ્ઞ અને પૂજન સેવાઓ">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="અક્ષત જ્યોતિષ દર્પણ દ્વારા પ્રદાન કરવામાં આવતી વૈદિક જ્યોતિષ સેવાઓ: કુંડળી વિશ્લેષણ, ગ્રહ દોષ નિવારણ, વાસ્તુ શાંતિ, યજ્ઞ અને પૂજન સેવાઓ">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -29,7 +32,8 @@
             color: var(--text);
             font-family: 'Noto Serif Gujarati', serif;
             line-height: 1.6;
-            padding-top: var(--nav-height); /* Space for fixed navbar */
+            padding-top: var(--nav-height);
+            /* Space for fixed navbar */
         }
 
         /* Navbar Styles */
@@ -349,11 +353,11 @@
             .page-title {
                 font-size: 2.5rem;
             }
-            
+
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .modal-content {
                 width: 95%;
                 padding: 1.5rem;
@@ -397,6 +401,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -409,6 +414,7 @@
             <li><a href="/pages/about-us.html">અમારા વિશે</a></li>
             <li><a href="/pages/services.html">સેવાઓ</a></li>
             <li><a href="/pages/gallery.html">ગેલેરી</a></li>
+            <li><a href="/pages/blog.html">બ્લોગ</a></li>
             <li><a href="/pages/testimonal.html">અનુભવો</a></li>
             <li><a href="/pages/contact.html">સંપર્ક</a></li>
         </ul>
@@ -695,9 +701,9 @@
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 // Add active class to clicked button
                 btn.classList.add('active');
-                
+
                 const category = btn.dataset.category;
-                
+
                 // Filter services
                 serviceCards.forEach(card => {
                     if (category === 'all' || card.dataset.category === category) {
@@ -730,4 +736,5 @@
         });
     </script>
 </body>
+
 </html>
