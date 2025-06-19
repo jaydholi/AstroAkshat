@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>જ્યોતિષ સેવાઓ - અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description" content="અક્ષત જ્યોતિષ દર્પણ દ્વારા પ્રદાન કરવામાં આવતી વૈદિક જ્યોતિષ સેવાઓ: કુંડળી વિશ્લેષણ, ગ્રહ દોષ નિવારણ, વાસ્તુ શાંતિ, યજ્ઞ અને પૂજન સેવાઓ">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Services Header */
+        .services-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Service Categories */
+        .service-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Noto Serif Gujarati', serif;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .service-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .service-desc {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .service-cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Serif Gujarati', serif;
+        }
+
+        .service-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        /* Service Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid var(--accent);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="services-header">
+            <h1 class="page-title">અમારી જ્યોતિષ સેવાઓ</h1>
+            <p class="page-subtitle">વૈદિક પરંપરા અને શાસ્ત્રોના નિયમો પ્રમાણે સંપૂર્ણ જ્યોતિષીય સેવાઓ</p>
+        </div>
+
+        <!-- Service Categories -->
+        <div class="service-categories">
+            <button class="category-btn active" data-category="all">બધી સેવાઓ</button>
+            <button class="category-btn" data-category="kundali">કુંડળી સેવાઓ</button>
+            <button class="category-btn" data-category="dosh">દોષ નિવારણ</button>
+            <button class="category-btn" data-category="puja">પૂજા-પાઠ</button>
+            <button class="category-btn" data-category="yagya">યજ્ઞ સેવાઓ</button>
+            <button class="category-btn" data-category="other">અન્ય સેવાઓ</button>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+            <!-- Kundali Analysis -->
+            <div class="service-card" data-category="kundali">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="service-title">કુંડળી વિશ્લેષણ</h3>
+                <p class="service-desc">
+                    જન્મકુંડળીનું સંપૂર્ણ વિશ્લેષણ, ગ્રહોની સ્થિતિ, દશા અને અનુદશાનું અધ્યયન, ભવિષ્યવાણી અને ઉપાયો.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>જન્મકુંડળી તૈયારી</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>ગ્રહ ફળાદેશ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>ભવિષ્યવાણી</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('kundali-modal')">વધુ જાણો</button>
+            </div>
+
+            <!-- Grah Dosh Nivaran -->
+            <div class="service-card" data-category="dosh">
+                <div class="service-icon">
+                    <i class="fas fa-fire-alt"></i>
+                </div>
+                <h3 class="service-title">ગ્રહ દોષ નિવારણ</h3>
+                <p class="service-desc">
+                    મંગળ દોષ, શનિ દોષ, રાહુ-કેતુ દોષ સહિતના તમામ પ્રકારના ગ્રહ દોષો માટે વૈદિક ઉપાયો અને પૂજા.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>મંગળ દોષ શાંતિ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>કાલ સર્પ દોષ શાંતિ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>રાહુ-કેતુ શાંતિ</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('grah-dosh-modal')">વધુ જાણો</button>
+            </div>
+
+            <!-- Vastu Shanti -->
+            <div class="service-card" data-category="other">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="service-title">વાસ્તુ શાંતિ પૂજન</h3>
+                <p class="service-desc">
+                    ઘર, ઑફિસ અને વ્યવસાયિક પ્રદેશો માટે કોઈ પણ જાતના તોડ-ફોડ વગર વાસ્તુદોષનું નિવારણ અને શાંતિ પૂજન.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>વાસ્તુ નિરીક્ષણ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>દોષ નિવારણ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>શાંતિ પૂજન</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('vastu-modal')">વધુ જાણો</button>
+            </div>
+
+            <!-- Vedic Poojan -->
+            <div class="service-card" data-category="puja">
+                <div class="service-icon">
+                    <i class="fas fa-om"></i>
+                </div>
+                <h3 class="service-title">વૈદિક પૂજન</h3>
+                <p class="service-desc">
+                    ગણેશ પૂજા, લક્ષ્મી પૂજા, નવગ્રહ પૂજા સહિતના તમામ પ્રકારના વૈદિક પૂજન.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>નવગ્રહ પૂજા</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>લક્ષ્મી પૂજા</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>સત્સંગ પૂજા</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('poojan-modal')">વધુ જાણો</button>
+            </div>
+
+            <!-- Chandi Yagya -->
+            <div class="service-card" data-category="yagya">
+                <div class="service-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 class="service-title">ચંડી યજ્ઞ</h3>
+                <p class="service-desc">
+                    દુષ્ટ શક્તિઓના નાશ, સુખ-સમૃદ્ધિ અને સર્વ મનોકામના પૂર્તિ માટે ચંડી યજ્ઞ.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>1 દિવસીય યજ્ઞ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>3 દિવસીય મહાયજ્ઞ</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>નવચંડી યજ્ઞ</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('chandi-modal')">વધુ જાણો</button>
+            </div>
+
+            <!-- Rudrabhishek -->
+            <div class="service-card" data-category="puja">
+                <div class="service-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <h3 class="service-title">રુદ્રાભિષેક</h3>
+                <p class="service-desc">
+                    ભગવાન શિવની કૃપા મેળવવા માટે રુદ્રાભિષેક, જેમાં રુદ્રાધ્યાયનું પાઠ અને શિવલિંગનું અભિષેક.
+                </p>
+                <div class="service-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>સામાન્ય અભિષેક</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>મહા રુદ્રાભિષેક</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check feature-icon"></i>
+                        <span>લગ્ન રુદ્રાભિષેક</span>
+                    </div>
+                </div>
+                <button class="service-cta" onclick="openModal('rudra-modal')">વધુ જાણો</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Modals -->
+    <div id="kundali-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>કુંડળી વિશ્લેષણ સેવા</h2>
+            <p>અમે તમારી જન્મકુંડળીનું સંપૂર્ણ વિશ્લેષણ કરીએ છીએ જેમાં નીચેની બાબતોનો સમાવેશ થાય છે:</p>
+            <ul>
+                <li>જન્મકુંડળી તૈયારી (જન્મ તારીખ, સમય અને સ્થળના આધારે)</li>
+                <li>લગ્નકુંડળી અને દામ્પત્ય જીવન વિશ્લેષણ</li>
+                <li>કારકિર્દી અને વ્યવસાય સંબંધિત માર્ગદર્શન</li>
+                <li>આરોગ્ય સમસ્યાઓ અને ઉપાયો</li>
+                <li>ગ્રહ દશા અને અનુદશાનું અધ્યયન</li>
+            </ul>
+            <p>સેવા માટે સંપર્ક કરો: <a href="tel:+919925312156">+91 99253 12156</a></p>
+        </div>
+    </div>
+
+    <div id="grah-dosh-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>ગ્રહ દોષ નિવારણ સેવાઓ</h2>
+            <p>અમે નીચેના ગ્રહ દોષો માટે વૈદિક પદ્ધતિથી શાંતિ કરીએ છીએ:</p>
+            <ul>
+                <li>મંગળ દોષ (કુજા દોષ) શાંતિ</li>
+                <li>કાલ સર્પ દોષ નિવારણ</li>
+                <li>રાહુ-કેતુ દોષ શાંતિ</li>
+                <li>પિતૃ દોષ નિવારણ</li>
+                <li>નવગ્રહ શાંતિ પૂજા</li>
+            </ul>
+            <p>સેવા માટે સંપર્ક કરો: <a href="tel:+919925312156">+91 99253 12156</a></p>
+        </div>
+    </div>
+
+    <!-- Add similar modals for other services -->
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+
+        // Service Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                
+                // Filter services
+                serviceCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

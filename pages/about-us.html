@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>અમારા વિશે - અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description" content="અક્ષત જ્યોતિષ દર્પણ અને જ્યોતિષી રાજેશભાઈ સારસ્વત વિશે જાણકારી. 25+ વર્ષનો અનુભવ સાથે વૈદિક જ્યોતિષ સેવાઓ.">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* About Header */
+        .about-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Astrologer Profile */
+        .astrologer-profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .profile-image {
+            flex: 1;
+            max-width: 400px;
+            border-radius: 20px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-name::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-bio {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .experience-item {
+            margin-bottom: 1rem;
+        }
+
+        .experience-year {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .mission-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .mission-text {
+            flex: 1;
+        }
+
+        .mission-image {
+            flex: 1;
+            max-width: 400px;
+            border-radius: 15px;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin: 4rem 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .astrologer-profile,
+            .mission-content {
+                flex-direction: column;
+            }
+            
+            .profile-image,
+            .mission-image {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="about-header">
+            <h1 class="page-title">અમારા વિશે</h1>
+            <p class="page-subtitle">25+ વર્ષના અનુભવ સાથે વૈદિક જ્યોતિષ પરંપરાનું સંરક્ષણ અને પ્રચાર</p>
+        </div>
+
+        <!-- Astrologer Profile -->
+        <div class="astrologer-profile">
+            <img src="/images/rajeshbhai-profile.jpg" alt="રાજેશભાઈ સારસ્વત" class="profile-image">
+            <div class="profile-content">
+                <h2 class="profile-name">જ્યોતિષી રાજેશભાઈ સારસ્વત</h2>
+                <p class="profile-title">સ્થાપક, અક્ષત જ્યોતિષ દર્પણ</p>
+                <p class="profile-bio">
+                    રાજેશભાઈ સારસ્વત એ 25 વર્ષથી વધુ સમયથી વૈદિક જ્યોતિષ ક્ષેત્રે સેવા આપી રહ્યા છે. તેમણે બાળપણથી જ જ્યોતિષ શાસ્ત્રમાં ઊંડી રુચિ દાખવી અને પારંપારિક ગુરુ-શિષ્ય પરંપરા હેઠળ શિક્ષણ મેળવ્યું. તેમણે સંસ્કૃત અને જ્યોતિષ શાસ્ત્રમાં ઉચ્ચ શિક્ષણ પ્રાપ્ત કર્યું છે.
+                </p>
+                <div class="experience">
+                    <div class="experience-item">
+                        <span class="experience-year">1998:</span> જ્યોતિષ શિક્ષણની શરૂઆત
+                    </div>
+                    <div class="experience-item">
+                        <span class="experience-year">2005:</span> અક્ષત જ્યોતિષ દર્પણની સ્થાપના
+                    </div>
+                    <div class="experience-item">
+                        <span class="experience-year">2012:</span> વૈદિક જ્યોતિષ પર આંતરરાષ્ટ્રીય સત્કાર
+                    </div>
+                    <div class="experience-item">
+                        <span class="experience-year">2020:</span> 10,000+ કુંડળી વિશ્લેષણની ઉપલબ્ધિ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <h2 class="section-title">અમારું ધ્યેય અને ધર્મ</h2>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <p>
+                        અક્ષત જ્યોતિષ દર્પણનો મુખ્ય ધ્યેય વૈદિક જ્યોતિષ શાસ્ત્રની શુદ્ધ અને મૂળ પદ્ધતિઓને જાળવી રાખવાનો છે. અમે માનીએ છીએ કે જ્યોતિષ એ માત્ર ભવિષ્યવાણી નથી, પરંતુ એક વિજ્ઞાન છે જે માનવ જીવનને સુખી અને સંતુલિત બનાવવામાં મદદરૂપ થાય છે.
+                    </p>
+                    <p>
+                        અમારું ધ્યેય લોકોને તેમના જીવનમાં આવતી સમસ્યાઓનું મૂળ કારણ સમજાવવાનું અને શાસ્ત્રોમાં વર્ણવેલ ઉપાયો દ્વારા તેનું નિવારણ કરવાનું છે. અમે કોઈ પણ પ્રકારના અંધશ્રદ્ધા અથવા ગેરવાજબી રીતિઓથી દૂર રહીએ છીએ.
+                    </p>
+                </div>
+                <img src="/images/mission-image.jpg" alt="અમારું ધ્યેય" class="mission-image">
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h2 class="section-title">અમારા મૂલ્યો</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="value-title">શુદ્ધતા</h3>
+                    <p>
+                        અમે માત્ર શાસ્ત્રોમાં વર્ણવેલ શુદ્ધ વૈદિક પદ્ધતિઓનો જ ઉપયોગ કરીએ છીએ. કોઈ પણ પ્રકારના ટોનાટોનિક અથવા અંધશ્રદ્ધાળુ પદ્ધતિઓથી દૂર રહીએ છીએ.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="value-title">સેવાભાવ</h3>
+                    <p>
+                        અમારો મુખ્ય ઉદ્દેશ્ય લોકોની સેવા કરવાનો છે. અમે દરેક ગ્રાહક સાથે સખાવત અને સહાનુભૂતિથી વર્તીએ છીએ, તેમની સમસ્યાઓને ગંભીરતાથી સાંભળીએ છીએ.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="value-title">જ્ઞાન</h3>
+                    <p>
+                        અમે સતત જ્યોતિષ શાસ્ત્રના નવા ગ્રંથો અને સંશોધનોનો અભ્યાસ કરીએ છીએ. રાજેશભાઈ નિયમિત રીતે જ્યોતિષ પરિષદોમાં ભાગ લે છે અને નવા જ્ઞાનની શોધમાં રહે છે.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="value-title">પારદર્શિતા</h3>
+                    <p>
+                        અમે ગ્રાહકોને સ્પષ્ટ અને સમજણા પ્રમાણે જવાબો આપીએ છીએ. કોઈ પણ પ્રકારના ગૂંચવણ અથવા અસ્પષ્ટતા વગર સીધી અને સાચી માહિતી પ્રદાન કરીએ છીએ.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="value-title">પરંપરા</h3>
+                    <p>
+                        અમે વૈદિક પરંપરાનું સંરક્ષણ કરીએ છીએ. અમારી તમામ પૂજા-પાઠ અને યજ્ઞ વિધિઓ સંપૂર્ણ વૈદિક રીતે કરવામાં આવે છે, જેમાં કોઈ પણ પ્રકારની ટૂંકાણ નથી રાખવામાં આવતી.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="value-title">સમાજ સેવા</h3>
+                    <p>
+                        અમે નિયમિત રીતે મફત જ્યોતિષ શિબિરો અને સત્સંગોનું આયોજન કરીએ છીએ. ગરીબ અને જરૂરમંદ લોકોને મફતમાં જ્યોતિષીય સેવાઓ પ્રદાન કરીએ છીએ.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+    </script>
+</body>
+</html>

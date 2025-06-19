@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ગ્રાહક અનુભવો - અક્ષત જ્યોતિષ દર્પણ</title>
+    <meta name="description" content="અક્ષત જ્યોતિષ દર્પણના સંતુષ્ટ ગ્રાહકોના અનુભવો અને પ્રશંસાપત્રો">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #c026d3;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --dark: #1e1b4b;
+            --card-bg: rgba(30, 27, 75, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text);
+            font-family: 'Noto Serif Gujarati', serif;
+            line-height: 1.6;
+        }
+
+        /* Solar System Animation */
+        .solar-system {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(109, 40, 217, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+            top: 0;
+            left: 50%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Testimonials Header */
+        .testimonials-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 5rem;
+            color: rgba(245, 158, 11, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            margin-right: 1rem;
+        }
+
+        .author-info h4 {
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .rating {
+            color: var(--accent);
+            margin-top: 0.5rem;
+        }
+
+        /* Video Testimonials */
+        .video-testimonials {
+            margin: 4rem 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 1rem;
+            background: var(--card-bg);
+        }
+
+        .video-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .testimonials-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Solar System Animation -->
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+        <div class="orbit earth-orbit">
+            <div class="planet earth"></div>
+        </div>
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="testimonials-header">
+            <h1 class="page-title">ગ્રાહક અનુભવો</h1>
+            <p class="page-subtitle">અક્ષત જ્યોતિષ દર્પણના સંતુષ્ટ ગ્રાહકોના અનુભવો અને પ્રશંસાપત્રો</p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "રાજેશભાઈએ મારી કુંડળીનું ખૂબ જ સચોટ વિશ્લેષણ કર્યું અને મારી કારકિર્દી સંબંધિત સમસ્યાઓનો ઉકેલ આપ્યો. તેમના સૂચવેલા ઉપાયો અને પૂજાથી મારી સમસ્યાઓ દૂર થઈ અને મને નોકરીમાં પ્રમોશન મળ્યું."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client1.jpg" alt="મનોજ પટેલ" class="author-img">
+                    <div class="author-info">
+                        <h4>મનોજ પટેલ</h4>
+                        <p>અમદાવાદ, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "મારા લગ્નમાં 5 વર્ષથી સંતાન ન થતા હતા. રાજેશભાઈએ કુંડળીમાં ગ્રહ દોષ શોધી કાઢ્યા અને યોગ્ય પૂજા કરાવી. તેના પરિણામે અમને એક સુંદર બાળકની પ્રાપ્તિ થઈ. અમે તેમના ખૂબ જ આભારી છીએ."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client2.jpg" alt="પ્રિયંકા અને હર્ષદ શાહ" class="author-img">
+                    <div class="author-info">
+                        <h4>પ્રિયંકા અને હર્ષદ શાહ</h4>
+                        <p>સુરત, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "મારા વ્યવસાયમાં ઘણાં વર્ષોથી નુકસાન થતું હતું. અક્ષત જ્યોતિષ દર્પણે મારા વાસ્તુ દોષ અને ગ્રહ દોષનું નિવારણ કર્યું. તેમના માર્ગદર્શન અને પૂજાથી મારો વ્યવસાય હવે ફરી ઉભો થયો છે અને લાભ થાય છે."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client3.jpg" alt="રાજેશ મહેતા" class="author-img">
+                    <div class="author-info">
+                        <h4>રાજેશ મહેતા</h4>
+                        <p>ભુજ, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "મારી દીકરીના લગ્નમાં ઘણી અડચણો આવતી હતી. રાજેશભાઈએ કુંડળી વિશ્લેષણ કરી ગ્રહ દોષ શોધી કાઢ્યા અને યોગ્ય ઉપાયો કરાવ્યા. તેના પરિણામે 6 મહિનામાં જ દીકરીનું લગ્ન યોગ્ય સ્થળે થઈ ગયું."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client4.jpg" alt="ગીતાબેન દેસાઈ" class="author-img">
+                    <div class="author-info">
+                        <h4>ગીતાબેન દેસાઈ</h4>
+                        <p>રાજકોટ, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "મને લાંબા સમયથી ગંભીર આરોગ્ય સમસ્યાઓ હતી. રાજેશભાઈએ મારી કુંડળીમાં શનિ અને રાહુની ખરાબ સ્થિતિ શોધી કાઢી અને રુદ્રાભિષેક કરાવ્યું. 3 મહિનામાં જ મારી તબિયતમાં સુધારો થવા લાગ્યો."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client5.jpg" alt="અમિત પારેખ" class="author-img">
+                    <div class="author-info">
+                        <h4>અમિત પારેખ</h4>
+                        <p>વડોદરા, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 6 -->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "અમારા ઘરમાં સતત કલહ અને અશાંતિ હતી. રાજેશભાઈએ વાસ્તુ દોષ શોધી કાઢ્યો અને શાંતિ પૂજન કરાવ્યું. તેના પછી ઘરમાં શાંતિ પાછી આવી અને પારિવારિક સંબંધોમાં સુધારો થયો."
+                </div>
+                <div class="testimonial-author">
+                    <img src="/images/client6.jpg" alt="સુરેશભાઈ અને મીનાબેન" class="author-img">
+                    <div class="author-info">
+                        <h4>સુરેશભાઈ અને મીનાબેન</h4>
+                        <p>ગાંધીનગર, ગુજરાત</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Testimonials
+        <div class="video-testimonials">
+            <h2 class="section-title">વિડિઓ પ્રશંસાપત્રો</h2>
+            <p class="section-subtitle">અમારા ગ્રાહકોના સીધા અનુભવો જુઓ અને સાંભળો</p>
+            
+            <div class="video-grid">
+                Video 1
+                <div class="video-card">
+                    <img src="/images/video-thumb1.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>કુંડળી વિશ્લેષણ અનુભવ</h3>
+                        <p>મનોજ પટેલ, અમદાવાદ</p>
+                    </div>
+                </div>
+
+                Video 2
+                <div class="video-card">
+                    <img src="/images/video-thumb2.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>લગ્ન સમસ્યા ઉકેલ</h3>
+                        <p>પ્રિયંકા અને હર્ષદ શાહ, સુરત</p>
+                    </div>
+                </div>
+
+                Video 3 -->
+                <!-- <div class="video-card">
+                    <img src="/images/video-thumb3.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>વ્યવસાયિક સફળતા</h3>
+                        <p>રાજેશ મહેતા, ભુજ</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">તમારો અનુભવ શેર કરો</h2>
+            <p>જો તમે અક્ષત જ્યોતિષ દર્પણની સેવાઓથી લાભાન્વિત થયા છો, તો તમારો અનુભવ અમારી સાથે શેર કરો</p>
+            <a href="#share-testimonial" class="cta-button">મારો અનુભવ શેર કરો</a>
+        </div>
+    </div>
+
+    <script>
+        // Create planet animations
+        function animatePlanets() {
+            const now = Date.now();
+
+            // Mercury - fastest orbit (88 Earth days)
+            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+
+            // Venus (225 days)
+            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+
+            // Earth (365 days)
+            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+
+            // Mars (687 days)
+            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+
+            requestAnimationFrame(animatePlanets);
+        }
+
+        animatePlanets();
+
+        // Video testimonial click handler
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // In a real implementation, this would open a modal with the video
+                alert('વિડિઓ પ્રશંસાપત્ર દર્શાવવામાં આવશે. આ એક ડેમો સંદેશ છે.');
+            });
+        });
+    </script>
+</body>
+</html>
