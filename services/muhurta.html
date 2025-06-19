@@ -5,17 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>મુહૂર્ત | અક્ષત જ્યોતિષ દર્પણ</title>
-    <meta name="description"
-        content="મુહૂર્ત સેવાઓ - લગ્ન, ગૃહપ્રવેશ, વ્યવસાય આરંભ જેવા મહત્વપૂર્ણ કાર્યો માટે શુભ મુહૂર્ત નિર્ધારણ">
-    <meta name="keywords"
-        content="મુહૂર્ત, શુભ મુહૂર્ત, લગ્ન મુહૂર્ત, ગૃહપ્રવેશ મુહૂર્ત, જ્યોતિષ, અક્ષત જ્યોતિષ">
+    <meta name="description" content="મુહૂર્ત સેવાઓ - લગ્ન, ગૃહપ્રવેશ, વ્યવસાય આરંભ જેવા મહત્વપૂર્ણ કાર્યો માટે શુભ મુહૂર્ત નિર્ધારણ">
+    <meta name="keywords" content="મુહૂર્ત, શુભ મુહૂર્ત, લગ્ન મુહૂર્ત, ગૃહપ્રવેશ મુહૂર્ત, જ્યોતિષ, અક્ષત જ્યોતિષ">
     <meta name="author" content="અક્ષત જ્યોતિષ દર્પણ">
     <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&family=Noto+Serif+Gujarati:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -42,7 +38,7 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
-            padding-top: var(--nav-height); /* Space for fixed navbar */
+            padding-top: var(--nav-height);
         }
 
         /* Navbar Styles */
@@ -158,7 +154,6 @@
                 right: 0;
             }
 
-            /* Hamburger animation */
             .hamburger.active div:nth-child(1) {
                 transform: rotate(-45deg) translate(-5px, 6px);
             }
@@ -309,6 +304,12 @@
             border-radius: 8px;
             padding: 1.5rem;
             border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .muhurta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.2);
         }
 
         .muhurta-card h3 {
@@ -353,6 +354,11 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
         }
 
         .step-icon {
@@ -472,7 +478,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="#" class="logo">
-            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img">
+            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img" loading="lazy">
             <span>અક્ષત જ્યોતિષ દર્પણ</span>
         </a>
         <ul class="nav-links">
@@ -492,7 +498,6 @@
 
     <!-- Solar System Animation -->
     <div class="solar-system">
-        <div class="sun"></div>
         <div class="orbit mercury-orbit">
             <div class="planet mercury"></div>
         </div>
@@ -511,7 +516,7 @@
     <div class="container">
         <div class="content-wrapper">
             <div class="header-content">
-                <img src="/images/logo.png" alt="મુહૂર્ત" class="page-logo-img">
+                <img src="/images/logo.png" alt="મુહૂર્ત" class="page-logo-img" loading="lazy">
             </div>
             
             <h1 class="page-title">મુહૂર્ત સેવાઓ</h1>
@@ -679,8 +684,34 @@
             requestAnimationFrame(animatePlanets);
         }
 
-        animatePlanets();
+        // Start animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set up orbits
+            document.querySelector('.mercury-orbit').style.width = '120px';
+            document.querySelector('.mercury-orbit').style.height = '120px';
+            document.querySelector('.venus-orbit').style.width = '180px';
+            document.querySelector('.venus-orbit').style.height = '180px';
+            document.querySelector('.earth-orbit').style.width = '250px';
+            document.querySelector('.earth-orbit').style.height = '250px';
+            document.querySelector('.mars-orbit').style.width = '320px';
+            document.querySelector('.mars-orbit').style.height = '320px';
+
+            // Set up planets
+            document.querySelector('.mercury').style.width = '8px';
+            document.querySelector('.mercury').style.height = '8px';
+            document.querySelector('.mercury').style.background = '#a9a9a9';
+            document.querySelector('.venus').style.width = '12px';
+            document.querySelector('.venus').style.height = '12px';
+            document.querySelector('.venus').style.background = '#e6c229';
+            document.querySelector('.earth').style.width = '12px';
+            document.querySelector('.earth').style.height = '12px';
+            document.querySelector('.earth').style.background = '#6b93d6';
+            document.querySelector('.mars').style.width = '10px';
+            document.querySelector('.mars').style.height = '10px';
+            document.querySelector('.mars').style.background = '#e27b58';
+
+            animatePlanets();
+        });
     </script>
 </body>
-
 </html>
