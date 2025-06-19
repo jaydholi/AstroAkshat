@@ -15,6 +15,7 @@
             --text: #f3f4f6;
             --dark: #1e1b4b;
             --card-bg: rgba(30, 27, 75, 0.7);
+            --nav-height: 80px;
         }
 
         * {
@@ -28,6 +29,95 @@
             color: var(--text);
             font-family: 'Noto Serif Gujarati', serif;
             line-height: 1.6;
+            padding-top: var(--nav-height);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
         }
 
         /* Solar System Animation */
@@ -136,6 +226,7 @@
         .testimonial-author {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .author-img {
@@ -145,6 +236,12 @@
             object-fit: cover;
             border: 2px solid var(--accent);
             margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-info {
+            flex: 1;
+            min-width: 200px;
         }
 
         .author-info h4 {
@@ -178,6 +275,7 @@
             position: relative;
             border-radius: 10px;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .video-thumbnail {
@@ -222,6 +320,7 @@
         .cta-section {
             text-align: center;
             margin: 4rem 0;
+            padding: 0 1rem;
         }
 
         .cta-title {
@@ -240,6 +339,8 @@
             font-weight: bold;
             transition: all 0.3s;
             font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -249,22 +350,114 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - var(--nav-height));
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.5s ease;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
             .page-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
             }
             
             .testimonials-grid,
             .video-grid {
                 grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
             }
             
             .cta-title {
                 font-size: 1.8rem;
             }
+            
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .author-img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img">
+            <span>અક્ષત જ્યોતિષ દર્પણ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/INDEX.html">હોમ</a></li>
+            <li><a href="/pages/about-us.html">અમારા વિશે</a></li>
+            <li><a href="/pages/services.html">સેવાઓ</a></li>
+            <li><a href="/pages/gallery.html">ગેલેરી</a></li>
+            <li><a href="/pages/testimonal.html">અનુભવો</a></li>
+            <li><a href="/pages/contact.html">સંપર્ક</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
     <!-- Solar System Animation -->
     <div class="solar-system">
         <div class="sun"></div>
@@ -284,7 +477,6 @@
 
     <!-- Main Content -->
     <div class="container">
-        
         <div class="testimonials-header">
             <h1 class="page-title">ગ્રાહક અનુભવો</h1>
             <p class="page-subtitle">અક્ષત જ્યોતિષ દર્પણના સંતુષ્ટ ગ્રાહકોના અનુભવો અને પ્રશંસાપત્રો</p>
@@ -419,59 +611,32 @@
             </div>
         </div>
 
-        <!-- Video Testimonials
-        <div class="video-testimonials">
-            <h2 class="section-title">વિડિઓ પ્રશંસાપત્રો</h2>
-            <p class="section-subtitle">અમારા ગ્રાહકોના સીધા અનુભવો જુઓ અને સાંભળો</p>
-            
-            <div class="video-grid">
-                Video 1
-                <div class="video-card">
-                    <img src="/images/video-thumb1.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3>કુંડળી વિશ્લેષણ અનુભવ</h3>
-                        <p>મનોજ પટેલ, અમદાવાદ</p>
-                    </div>
-                </div>
-
-                Video 2
-                <div class="video-card">
-                    <img src="/images/video-thumb2.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3>લગ્ન સમસ્યા ઉકેલ</h3>
-                        <p>પ્રિયંકા અને હર્ષદ શાહ, સુરત</p>
-                    </div>
-                </div>
-
-                Video 3 -->
-                <!-- <div class="video-card">
-                    <img src="/images/video-thumb3.jpg" alt="વિડિઓ પ્રશંસાપત્ર" class="video-thumbnail">
-                    <div class="play-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3>વ્યવસાયિક સફળતા</h3>
-                        <p>રાજેશ મહેતા, ભુજ</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <!-- CTA Section -->
         <div class="cta-section">
             <h2 class="cta-title">તમારો અનુભવ શેર કરો</h2>
             <p>જો તમે અક્ષત જ્યોતિષ દર્પણની સેવાઓથી લાભાન્વિત થયા છો, તો તમારો અનુભવ અમારી સાથે શેર કરો</p>
-            <a href="#share-testimonial" class="cta-button">મારો અનુભવ શેર કરો</a>
+            <button class="cta-button">મારો અનુભવ શેર કરો</button>
         </div>
     </div>
 
     <script>
+        // Navbar Toggle for Mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
         // Create planet animations
         function animatePlanets() {
             const now = Date.now();
@@ -499,6 +664,12 @@
                 // In a real implementation, this would open a modal with the video
                 alert('વિડિઓ પ્રશંસાપત્ર દર્શાવવામાં આવશે. આ એક ડેમો સંદેશ છે.');
             });
+        });
+
+        // CTA button click handler
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            // Scroll to contact form or open testimonial submission form
+            alert('તમારો અનુભવ શેર કરવા માટે આભાર! અમે ટૂંક સમયમાં તમારો સંપર્ક કરીશું.');
         });
     </script>
 </body>
