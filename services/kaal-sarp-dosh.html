@@ -25,6 +25,7 @@
             --text: #f3f4f6;
             --dark: #1e1b4b;
             --card-bg: rgba(30, 27, 75, 0.7);
+            --nav-height: 70px;
         }
 
         * {
@@ -41,6 +42,134 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+            padding-top: var(--nav-height); /* Space for fixed navbar */
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - var(--nav-height));
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.5s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Hamburger animation */
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
         }
 
         /* Solar System Animation */
@@ -101,7 +230,7 @@
             position: relative;
         }
 
-        .logo-img {
+        .page-logo-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -231,20 +360,108 @@
             box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
         }
 
-        /* Responsive */
-        @media (min-width: 768px) {
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
             .page-title {
-                font-size: 3rem;
+                font-size: 2.2rem;
             }
             
             .page-subtitle {
-                font-size: 1.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .content-wrapper {
+                padding: 1.5rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .page-logo-img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .types-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-wrapper {
+                padding: 1rem;
+            }
+            
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .type-card {
+                padding: 1.2rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img">
+            <span>અક્ષત જ્યોતિષ દર્પણ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/INDEX.html">હોમ</a></li>
+            <li><a href="/pages/about-us.html">અમારા વિશે</a></li>
+            <li><a href="/pages/services.html">સેવાઓ</a></li>
+            <li><a href="/pages/gallery.html">ગેલેરી</a></li>
+            <li><a href="/pages/testimonal.html">અનુભવો</a></li>
+            <li><a href="/pages/contact.html">સંપર્ક</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
     <!-- Solar System Animation -->
     <div class="solar-system">
         <div class="sun"></div>
@@ -266,7 +483,7 @@
     <div class="container">
         <div class="content-wrapper">
             <div class="header-content">
-                <img src="/images/logo.png" alt="કાલ સર્પ દોષ" class="logo-img">
+                <img src="/images/logo.png" alt="કાલ સર્પ દોષ" class="page-logo-img">
             </div>
             
             <h1 class="page-title">કાલ સર્પ દોષ</h1>
@@ -371,6 +588,23 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
         // Create planet animations
         function animatePlanets() {
             const now = Date.now();
