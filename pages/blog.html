@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
     <link rel="manifest" href="/images/favicons/site.webmanifest">
     <style>
+        /* YOUR EXISTING CSS - COMPLETELY UNCHANGED */
         :root {
             --primary: #6d28d9;
             --secondary: #c026d3;
@@ -387,10 +387,68 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* NEW: Hidden Admin Styles (Minimal Changes) */
+        .admin-key {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(109, 40, 217, 0.3);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0.5;
+            transition: all 0.3s;
+            border: 1px solid var(--accent);
+        }
+
+        .admin-key:hover {
+            opacity: 1;
+            background: rgba(109, 40, 217, 0.7);
+        }
+
+        #admin-panel {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border: 1px solid var(--accent);
+        }
+
+        #blog-form input,
+        #blog-form textarea,
+        #blog-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--text);
+            border-radius: 5px;
+        }
+
+        #blog-form button {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Hidden Admin Access Button -->
+    <div class="admin-key" id="admin-key" title="Admin Access">🔑</div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="logo">
@@ -432,6 +490,22 @@
 
     <!-- Main Content -->
     <div class="container">
+        <!-- Admin Panel (Hidden by default) -->
+        <div id="admin-panel">
+            <h2 style="color: var(--accent); text-align: center; margin-bottom: 20px;">Admin Blog Post</h2>
+            <form id="blog-form">
+                <input type="text" id="blog-title" placeholder="Blog Title" required>
+                <select id="blog-category">
+                    <option value="જ્યોતિષ શાસ્ત્ર">જ્યોતિષ શાસ્ત્ર</option>
+                    <option value="વાસ્તુ શાસ્ત્ર">વાસ્તુ શાસ્ત્ર</option>
+                    <option value="રત્ન ઉપચાર">રત્ન ઉપચાર</option>
+                </select>
+                <textarea id="blog-content" placeholder="Blog Content" required rows="6"></textarea>
+                <input type="file" id="blog-image" accept="image/*" required>
+                <button type="submit">Publish Blog</button>
+            </form>
+        </div>
+
         <div class="blog-header">
             <h1 class="page-title">જ્યોતિષ બ્લોગ</h1>
             <p class="page-subtitle">જ્યોતિષ, વાસ્તુ અને આધ્યાત્મિકતા પર નિષ્ણાત લેખો અને માર્ગદર્શન</p>
@@ -440,93 +514,18 @@
         <!-- Blog Categories -->
         <div class="categories">
             <h2 class="categories-title">બ્લોગ શ્રેણીઓ</h2>
-            <ul class="category-list">
-                <li class="category-item"><a href="#" class="category-link">જ્યોતિષ શાસ્ત્ર</a></li>
-                <li class="category-item"><a href="#" class="category-link">વાસ્તુ શાસ્ત્ર</a></li>
-                <li class="category-item"><a href="#" class="category-link">રત્ન ઉપચાર</a></li>
-                <li class="category-item"><a href="#" class="category-link">મંત્ર અને પૂજા</a></li>
-                <li class="category-item"><a href="#" class="category-link">ગ્રહ દોષ નિવારણ</a></li>
-                <li class="category-item"><a href="#" class="category-link">કુંડળી વિશ્લેષણ</a></li>
+            <ul class="category-list" id="category-list">
+                <!-- Dynamically loaded -->
             </ul>
         </div>
 
         <!-- Blog Grid -->
-        <div class="blog-grid">
-            <!-- Blog Post 1 -->
-            <article class="blog-card">
-                <img src="/images/blog1.jpg" alt="શનિ દોષ અને તેના નિવારણ" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">15 જૂન, 2023</div>
-                    <h3 class="blog-title">શનિ દોષ અને તેના નિવારણ માટે ઉપાયો</h3>
-                    <p class="blog-excerpt">શનિ દોષ એ જીવનમાં અનેક સમસ્યાઓ ઊભી કરે છે. આ લેખમાં જાણો શનિ દોષના લક્ષણો
-                        અને તેના નિવારણ માટે સરળ પણ પ્રભાવી ઉપાયો...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
-
-            <!-- Blog Post 2 -->
-            <article class="blog-card">
-                <img src="/images/blog2.jpg" alt="વાસ્તુ ટિપ્સ" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">2 જૂન, 2023</div>
-                    <h3 class="blog-title">ઘરમાં સુખ-શાંતિ માટે આવશ્યક વાસ્તુ ટિપ્સ</h3>
-                    <p class="blog-excerpt">વાસ્તુ શાસ્ત્ર અનુસાર ઘરની રચના અને દિશાઓનું ખૂબ જ મહત્વ છે. જાણો તમારા
-                        ઘરમાં સુખ-શાંતિ અને સમૃદ્ધિ લાવવા માટેના સરળ વાસ્તુ ટિપ્સ...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
-
-            <!-- Blog Post 3 -->
-            <article class="blog-card">
-                <img src="/images/blog3.jpg" alt="મંગળ દોષ" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">20 મે, 2023</div>
-                    <h3 class="blog-title">મંગળ દોષ: લક્ષણો અને લગ્ન પર પડતા પ્રભાવો</h3>
-                    <p class="blog-excerpt">મંગળ દોષ લગ્ન જીવનમાં અનેક સમસ્યાઓ ઊભી કરે છે. આ લેખમાં જાણો મંગળ દોષ શું
-                        છે, તેના લક્ષણો અને નિવારણ માટેના ઉપાયો...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
-
-            <!-- Blog Post 4 -->
-            <article class="blog-card">
-                <img src="/images/blog4.jpg" alt="રત્ન ઉપચાર" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">5 મે, 2023</div>
-                    <h3 class="blog-title">રત્ન ઉપચાર: સાચું રત્ન કેવી રીતે પહેરવું?</h3>
-                    <p class="blog-excerpt">રત્નોમાં ગ્રહોની શક્તિ સમાયેલી છે. પરંતુ ખોટું રત્ન અથવા ખોટી રીતે પહેરેલું
-                        રત્ન નુકસાન કરી શકે છે. જાણો કેવી રીતે પસંદ કરો અને પહેરો સાચું રત્ન...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
-
-            <!-- Blog Post 5 -->
-            <article class="blog-card">
-                <img src="/images/blog5.jpg" alt="કેતુ શાંતિ" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">22 એપ્રિલ, 2023</div>
-                    <h3 class="blog-title">કેતુ શાંતિ: આધ્યાત્મિક પ્રગતિ માટે આવશ્યક</h3>
-                    <p class="blog-excerpt">કેતુ એ આધ્યાત્મિકતા અને મોક્ષનો કારક ગ્રહ છે. જાણો કેવી રીતે કેતુ શાંતિ
-                        માટેના ઉપાયો તમારી આધ્યાત્મિક યાત્રામાં મદદરૂપ થઈ શકે છે...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
-
-            <!-- Blog Post 6 -->
-            <article class="blog-card">
-                <img src="/images/blog6.jpg" alt="ગુરુ પૂજા" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-date">10 એપ્રિલ, 2023</div>
-                    <h3 class="blog-title">ગુરુ પૂજા: શુક્રવારે કેવી રીતે કરવી?</h3>
-                    <p class="blog-excerpt">ગુરુ (બૃહસ્પતિ) જ્ઞાન, સમૃદ્ધિ અને સદ્ભાગ્યનો કારક ગ્રહ છે. શુક્રવારે ગુરુ
-                        પૂજા કરવાથી ઘણા લાભ મળે છે. જાણો સાચી પદ્ધતિ...</p>
-                    <a href="#" class="read-more">વધુ વાંચો →</a>
-                </div>
-            </article>
+        <div class="blog-grid" id="blog-grid">
+            <!-- Dynamically loaded -->
         </div>
 
         <!-- Pagination -->
-        <div class="pagination">
+        <div class="pagination" id="pagination">
             <a href="#" class="page-link active">1</a>
             <a href="#" class="page-link">2</a>
             <a href="#" class="page-link">3</a>
@@ -535,17 +534,169 @@
         </div>
     </div>
 
-    <script>
-        // Navbar Toggle for Mobile
+    <!-- Firebase SDK -->
+    <!-- Self-hosted TinyMCE -->
+    <script src="/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="module">
+        // Firebase imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        import {
+            getFirestore, collection, addDoc, getDocs, query, orderBy
+        } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+        import {
+            getStorage, ref, uploadBytes, getDownloadURL
+        } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBq_ROSMs40pc4D9srIUbkGNw-vRFzlGA4",
+            authDomain: "akshatastro-jyotishblog.firebaseapp.com",
+            projectId: "akshatastro-jyotishblog",
+            storageBucket: "akshatastro-jyotishblog.appspot.com",
+            messagingSenderId: "389091356826",
+            appId: "1:389091356826:web:33225fe7c0dc4dd10b2f23",
+            measurementId: "G-M8HZCTHMP2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        /* ===== TinyMCE Editor ===== */
+        tinymce.init({
+            selector: '#blog-content',
+            plugins: 'lists link image',
+            toolbar: 'undo redo | bold italic | bullist numlist | link image',
+            skin: 'oxide-dark',
+            content_css: 'dark',
+            height: 300,
+            skin_url: '/tinymce/js/tinymce/skins/ui/oxide-dark',
+            content_css_url: '/tinymce/js/tinymce/skins/content/dark/content.min.css',
+            images_upload_handler: async (blobInfo) => {
+                try {
+                    const file = blobInfo.blob();
+                    const storageRef = ref(storage, `editor-images/${Date.now()}_${file.name}`);
+                    await uploadBytes(storageRef, file);
+                    return await getDownloadURL(storageRef);
+                } catch (error) {
+                    console.error('Image upload failed:', error);
+                    throw new Error('Image upload failed. Please try another image.');
+                }
+            }
+        });
+
+        /* ===== Admin Panel ===== */
+        const adminKey = document.getElementById('admin-key');
+        const adminPanel = document.getElementById('admin-panel');
+
+        // Enhanced admin key with visual feedback
+        adminKey.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isVisible = adminPanel.style.display === 'block';
+            adminPanel.style.display = isVisible ? 'none' : 'block';
+            adminKey.style.transform = isVisible ? 'scale(1)' : 'scale(1.1)';
+            adminKey.style.backgroundColor = isVisible ? 'var(--primary)' : 'var(--accent)';
+        });
+
+        // Auto-show panel if URL has #admin
+        if (window.location.hash === '#admin') {
+            adminPanel.style.display = 'block';
+            adminKey.style.backgroundColor = 'var(--accent)';
+        }
+
+        /* ===== Blog Submission ===== */
+        document.getElementById('blog-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            try {
+                // Validate
+                const file = document.getElementById('blog-image').files[0];
+                if (!file) throw new Error('Please select a featured image');
+
+                // Prepare data
+                const blogData = {
+                    title: document.getElementById('blog-title').value,
+                    content: tinymce.get('blog-content').getContent(),
+                    category: document.getElementById('blog-category').value,
+                    date: new Date().toISOString()
+                };
+
+                // Show loading
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Publishing...';
+
+                // Upload image
+                const storageRef = ref(storage, `blog-images/${Date.now()}_${file.name}`);
+                await uploadBytes(storageRef, file);
+                blogData.imageUrl = await getDownloadURL(storageRef);
+
+                // Save to Firestore
+                await addDoc(collection(db, "blogs"), blogData);
+
+                // Reset and reload
+                e.target.reset();
+                tinymce.get('blog-content').setContent('');
+                await loadBlogs();
+                alert('Blog published successfully!');
+
+            } catch (error) {
+                console.error("Publish error:", error);
+                alert(`Error: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Publish';
+            }
+        });
+
+        /* ===== Blog Loading ===== */
+        async function loadBlogs() {
+            try {
+                blogGrid.innerHTML = '<div class="loading">Loading blogs...</div>';
+
+                const q = query(collection(db, "blogs"), orderBy("date", "desc"));
+                const snapshot = await getDocs(q);
+
+                blogGrid.innerHTML = '';
+                const categories = new Set();
+
+                snapshot.forEach(doc => {
+                    const blog = doc.data();
+                    categories.add(blog.category);
+                    blogGrid.innerHTML += `
+          <article class="blog-card">
+            <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image" loading="lazy">
+            <div class="blog-content">
+              <div class="blog-date">${new Date(blog.date).toLocaleDateString('gu-IN')}</div>
+              <h3 class="blog-title">${blog.title}</h3>
+              <p class="blog-excerpt">${blog.content.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>
+              <a href="#" class="read-more">વધુ વાંચો →</a>
+            </div>
+          </article>
+        `;
+                });
+
+                // Update categories
+                categoryList.innerHTML = [...categories].map(category => `
+        <li class="category-item">
+          <a href="#" class="category-link">${category}</a>
+        </li>
+      `).join('');
+
+            } catch (error) {
+                console.error("Load error:", error);
+                blogGrid.innerHTML = '<div class="error">Error loading blogs</div>';
+            }
+        }
+
+        /* ===== Mobile Navigation ===== */
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
         });
-
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -553,38 +704,23 @@
             });
         });
 
-        // Create planet animations
+        /* ===== Solar Animation ===== */
         function animatePlanets() {
             const now = Date.now();
-
-            // Mercury - fastest orbit (88 Earth days)
             document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
-
-            // Venus (225 days)
             document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
-
-            // Earth (365 days)
             document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
-
-            // Mars (687 days)
             document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
-
             requestAnimationFrame(animatePlanets);
         }
 
-        animatePlanets();
-
-        // Blog card click handler
-        document.querySelectorAll('.blog-card').forEach(card => {
-            card.addEventListener('click', function (e) {
-                // Don't navigate if clicking on read more link
-                if (!e.target.classList.contains('read-more')) {
-                    // In a real implementation, this would open the blog post
-                    alert('બ્લોગ પોસ્ટ ખુલશે. આ એક ડેમો સંદેશ છે.');
-                }
-            });
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlogs();
+            animatePlanets();
         });
     </script>
+
 </body>
 
 </html>
