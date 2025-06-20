@@ -536,18 +536,19 @@
 
     <!-- Firebase SDK -->
     <!-- Self-hosted TinyMCE -->
+    <!-- Self-hosted TinyMCE -->
     <script src="/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="module">
         // Firebase imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
         import {
-            getFirestore, collection, addDoc, getDocs, query, orderBy
+            getFirestore, collection, addDoc, query, orderBy, onSnapshot
         } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
         import {
             getStorage, ref, uploadBytes, getDownloadURL
         } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js";
 
-        // Firebase configuration
+        // Firebase config (replace with yours)
         const firebaseConfig = {
             apiKey: "AIzaSyBq_ROSMs40pc4D9srIUbkGNw-vRFzlGA4",
             authDomain: "akshatastro-jyotishblog.firebaseapp.com",
@@ -563,7 +564,14 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        /* ===== TinyMCE Editor ===== */
+        // DOM Elements
+        const adminKey = document.getElementById('admin-key');
+        const adminPanel = document.getElementById('admin-panel');
+        const blogForm = document.getElementById('blog-form');
+        const blogGrid = document.getElementById('blog-grid');
+        const categoryList = document.getElementById('category-list');
+
+        /* ===== TINYMCE EDITOR ===== */
         tinymce.init({
             selector: '#blog-content',
             plugins: 'lists link image',
@@ -586,84 +594,18 @@
             }
         });
 
-        /* ===== Admin Panel ===== */
-        const adminKey = document.getElementById('admin-key');
-        const adminPanel = document.getElementById('admin-panel');
+        /* ===== REAL-TIME BLOG UPDATES ===== */
+        function setupRealtimeBlogs() {
+            const q = query(collection(db, "blogs"), orderBy("date", "desc"));
 
-        // Enhanced admin key with visual feedback
-        adminKey.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isVisible = adminPanel.style.display === 'block';
-            adminPanel.style.display = isVisible ? 'none' : 'block';
-            adminKey.style.transform = isVisible ? 'scale(1)' : 'scale(1.1)';
-            adminKey.style.backgroundColor = isVisible ? 'var(--primary)' : 'var(--accent)';
-        });
-
-        // Auto-show panel if URL has #admin
-        if (window.location.hash === '#admin') {
-            adminPanel.style.display = 'block';
-            adminKey.style.backgroundColor = 'var(--accent)';
-        }
-
-        /* ===== Blog Submission ===== */
-        document.getElementById('blog-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            try {
-                // Validate
-                const file = document.getElementById('blog-image').files[0];
-                if (!file) throw new Error('Please select a featured image');
-
-                // Prepare data
-                const blogData = {
-                    title: document.getElementById('blog-title').value,
-                    content: tinymce.get('blog-content').getContent(),
-                    category: document.getElementById('blog-category').value,
-                    date: new Date().toISOString()
-                };
-
-                // Show loading
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Publishing...';
-
-                // Upload image
-                const storageRef = ref(storage, `blog-images/${Date.now()}_${file.name}`);
-                await uploadBytes(storageRef, file);
-                blogData.imageUrl = await getDownloadURL(storageRef);
-
-                // Save to Firestore
-                await addDoc(collection(db, "blogs"), blogData);
-
-                // Reset and reload
-                e.target.reset();
-                tinymce.get('blog-content').setContent('');
-                await loadBlogs();
-                alert('Blog published successfully!');
-
-            } catch (error) {
-                console.error("Publish error:", error);
-                alert(`Error: ${error.message}`);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Publish';
-            }
-        });
-
-        /* ===== Blog Loading ===== */
-        async function loadBlogs() {
-            try {
-                blogGrid.innerHTML = '<div class="loading">Loading blogs...</div>';
-
-                const q = query(collection(db, "blogs"), orderBy("date", "desc"));
-                const snapshot = await getDocs(q);
-
+            onSnapshot(q, (snapshot) => {
                 blogGrid.innerHTML = '';
                 const categories = new Set();
 
                 snapshot.forEach(doc => {
                     const blog = doc.data();
                     categories.add(blog.category);
+
                     blogGrid.innerHTML += `
           <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image" loading="lazy">
@@ -678,45 +620,110 @@
                 });
 
                 // Update categories
-                categoryList.innerHTML = [...categories].map(category => `
+                categoryList.innerHTML = Array.from(categories).map(category => `
         <li class="category-item">
           <a href="#" class="category-link">${category}</a>
         </li>
       `).join('');
+            });
+        }
+
+        /* ===== BLOG SUBMISSION ===== */
+        blogForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = blogForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Publishing...';
+
+            try {
+                // Get form values
+                const title = document.getElementById('blog-title').value.trim();
+                const category = document.getElementById('blog-category').value;
+                const content = tinymce.get('blog-content').getContent();
+                const file = document.getElementById('blog-image').files[0];
+
+                // Validate
+                if (!title || !content || !file) {
+                    throw new Error('Please fill all fields and select an image');
+                }
+
+                // Upload image
+                const storageRef = ref(storage, `blog-images/${Date.now()}_${file.name}`);
+                await uploadBytes(storageRef, file);
+                const imageUrl = await getDownloadURL(storageRef);
+
+                // Save to Firestore (this will trigger the real-time update)
+                await addDoc(collection(db, "blogs"), {
+                    title,
+                    content,
+                    category,
+                    imageUrl,
+                    date: new Date().toISOString()
+                });
+
+                // Reset form
+                blogForm.reset();
+                tinymce.get('blog-content').setContent('');
+
+                // Show temporary success message
+                const successMsg = document.createElement('div');
+                successMsg.textContent = '✓ Blog published successfully!';
+                successMsg.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+      `;
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
 
             } catch (error) {
-                console.error("Load error:", error);
-                blogGrid.innerHTML = '<div class="error">Error loading blogs</div>';
+                alert(`Error: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Publish Blog';
             }
-        }
-
-        /* ===== Mobile Navigation ===== */
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
         });
 
-        /* ===== Solar Animation ===== */
-        function animatePlanets() {
-            const now = Date.now();
-            document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
-            document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
-            document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
-            document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
-            requestAnimationFrame(animatePlanets);
+        /* ===== ADMIN PANEL ===== */
+        adminKey.addEventListener('click', () => {
+            adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+            adminKey.style.transform = adminPanel.style.display === 'block' ? 'scale(1.1)' : 'scale(1)';
+        });
+
+        // Auto-show panel if URL has #admin
+        if (window.location.hash === '#admin') {
+            adminPanel.style.display = 'block';
+            adminKey.style.transform = 'scale(1.1)';
         }
 
-        // Initialize
+        /* ===== INITIALIZE ===== */
         document.addEventListener('DOMContentLoaded', () => {
-            loadBlogs();
+            setupRealtimeBlogs(); // Start real-time updates
+
+            // Mobile menu toggle (keep your existing code)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Solar system animation (keep your existing code)
+            function animatePlanets() {
+                const now = Date.now();
+                document.querySelector('.mercury').style.transform = `rotate(${(now / 500) % 360}deg) translateX(60px) rotate(${-((now / 500) % 360)}deg)`;
+                document.querySelector('.venus').style.transform = `rotate(${(now / 900) % 360}deg) translateX(90px) rotate(${-((now / 900) % 360)}deg)`;
+                document.querySelector('.earth').style.transform = `rotate(${(now / 1500) % 360}deg) translateX(125px) rotate(${-((now / 1500) % 360)}deg)`;
+                document.querySelector('.mars').style.transform = `rotate(${(now / 2800) % 360}deg) translateX(160px) rotate(${-((now / 2800) % 360)}deg)`;
+                requestAnimationFrame(animatePlanets);
+            }
             animatePlanets();
         });
     </script>
