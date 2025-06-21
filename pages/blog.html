@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>બ્લોગ - અક્ષત જ્યોતિષ દર્પણ</title>
+    <title>અક્ષત જ્યોતિષ દર્પણ - Firebase Powered</title>
     <style>
         * {
             margin: 0;
@@ -20,10 +19,53 @@
             min-height: 100vh;
         }
 
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: 'Shree Gujarati', 'Arial Unicode MS', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 2rem auto;
+            padding: 0 20px;
         }
 
         .header {
@@ -44,6 +86,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: 'Shree Gujarati', 'Arial Unicode MS', sans-serif;
         }
 
         .status-indicator {
@@ -100,7 +143,6 @@
             transform: none;
         }
 
-        /* Authentication Modal */
         .auth-modal {
             position: fixed;
             top: 0;
@@ -136,7 +178,6 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -152,8 +193,7 @@
             background-clip: text;
         }
 
-        .admin-panel,
-        .blog-view {
+        .admin-panel, .blog-view {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 15px;
@@ -425,8 +465,7 @@
             flex-wrap: wrap;
         }
 
-        .no-posts,
-        .loading {
+        .no-posts, .loading {
             text-align: center;
             color: #718096;
             font-style: italic;
@@ -490,21 +529,12 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .error-message {
@@ -527,10 +557,47 @@
             text-align: center;
         }
 
-        /* Theme Enhancement */
+        /* Image Upload Styles */
+        .image-upload-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .upload-btn {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .blog-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             right: 20px;
             background: rgba(255, 255, 255, 0.9);
             border: none;
@@ -542,6 +609,9 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .theme-toggle:hover {
@@ -557,7 +627,8 @@
 
         body.dark-theme .header,
         body.dark-theme .admin-panel,
-        body.dark-theme .blog-view {
+        body.dark-theme .blog-view,
+        body.dark-theme .navbar {
             background: rgba(45, 55, 72, 0.95);
             color: #e2e8f0;
         }
@@ -572,15 +643,31 @@
             background: rgba(26, 32, 44, 0.6);
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
+        body.dark-theme .nav-link {
+            color: #e2e8f0;
+        }
 
+        body.dark-theme .nav-link:hover {
+            color: #a0aec0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .header h1 {
                 font-size: 2rem;
             }
-
+            
             .blog-meta {
                 flex-direction: column;
                 align-items: flex-start;
@@ -596,93 +683,112 @@
             }
         }
     </style>
+    <!-- Add Gujarati font support -->
+    <link href="https://fonts.googleapis.com/css2?family=Shree+Gujarati&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">અક્ષત જ્યોતિષ દર્પણ</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link">🏠 ઘર</a>
+            <a href="#" class="nav-link">📜 જન્મકુંડલી</a>
+            <a href="#" class="nav-link">✨ ગ્રહફળ</a>
+            <a href="#" class="nav-link">📅 મુહૂર્ત</a>
+            <a href="#" class="nav-link">🏡 વાસ્તુ</a>
+            <a href="#" class="nav-link">💎 રત્ન</a>
+        </div>
+    </nav>
 
     <!-- Authentication Modal -->
     <div id="authModal" class="auth-modal hidden">
         <div class="auth-form">
-            <h2>🔐 Admin Access</h2>
+            <h2>🔐 એડમિન એક્સેસ</h2>
             <div id="authError"></div>
             <form id="authForm">
                 <div class="form-group">
-                    <label for="adminPassword">Admin Password:</label>
-                    <input type="password" id="adminPassword" placeholder="Enter admin password..." required>
+                    <label for="adminPassword">એડમિન પાસવર્ડ:</label>
+                    <input type="password" id="adminPassword" placeholder="તમારો પાસવર્ડ દાખલ કરો..." required>
                 </div>
-                <button type="submit" class="btn">🚀 Login</button>
-                <button type="button" class="btn btn-danger" onclick="closeAuthModal()">❌ Cancel</button>
+                <button type="submit" class="btn">🚀 લોગિન</button>
+                <button type="button" class="btn btn-danger" onclick="closeAuthModal()">❌ રદ્દ કરો</button>
             </form>
         </div>
     </div>
 
     <div class="container">
         <div class="header">
-            <h1>🔥 Firebase Blog</h1>
-            <p>Real-time blog powered by Firebase</p>
+            <h1>અક્ષત જ્યોતિષ દર્પણ</h1>
+            <p>રીઅલ-ટાઇમ જ્યોતિષી બ્લોગ Firebase દ્વારા સંચાલિત</p>
             <div id="connectionStatus" class="status-indicator status-loading">
                 <div class="spinner"></div>
-                Connecting to Firebase...
+                Firebase સાથે જોડાઈ રહ્યું છે...
             </div>
             <div id="authStatus" class="auth-status hidden">
-                🔓 Authenticated as Admin
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                🔓 એડમિન તરીકે પ્રમાણિત
+                <button class="logout-btn" onclick="logout()">લોગઆઉટ</button>
             </div>
-            <button class="toggle-btn" onclick="requestAdminAccess()" id="toggleBtn" disabled>🔄 Switch to
-                Admin</button>
+            <button class="toggle-btn" onclick="requestAdminAccess()" id="toggleBtn" disabled>🔄 એડમિન મોડ</button>
         </div>
 
         <!-- Admin Panel -->
         <div id="adminPanel" class="admin-panel hidden">
             <!-- Post Management Section -->
             <div class="admin-section">
-                <h2>📋 Manage Blog Posts</h2>
+                <h2>📋 બ્લોગ પોસ્ટ્સ મેનેજ કરો</h2>
                 <div id="adminPostsContainer">
                     <div class="loading">
                         <div class="spinner"></div>
-                        Loading posts...
+                        પોસ્ટ્સ લોડ કરી રહ્યું છે...
                     </div>
                 </div>
             </div>
 
             <!-- Create New Post Section -->
             <div class="admin-section">
-                <h2>📝 Create New Blog Post</h2>
+                <h2>📝 નવી બ્લોગ પોસ્ટ બનાવો</h2>
                 <div id="errorMessage"></div>
                 <form id="blogForm">
                     <div class="form-group">
-                        <label for="title">Post Title:</label>
-                        <input type="text" id="title" name="title" required placeholder="Enter your blog title...">
+                        <label for="title">પોસ્ટ શીર્ષક:</label>
+                        <input type="text" id="title" name="title" required placeholder="તમારા બ્લોગનું શીર્ષક લખો...">
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="author">Author:</label>
-                        <input type="text" id="author" name="author" required placeholder="Your name...">
+                        <label for="author">લેખક:</label>
+                        <input type="text" id="author" name="author" required placeholder="તમારું નામ...">
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="category">Category:</label>
+                        <label for="category">શ્રેણી:</label>
                         <select id="category" name="category" required>
-                            <option value="">Select a category...</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Lifestyle">Lifestyle</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Food">Food</option>
-                            <option value="Business">Business</option>
-                            <option value="Health">Health</option>
-                            <option value="Other">Other</option>
+                            <option value="">કૃપા કરીને શ્રેણી પસંદ કરો...</option>
+                            <option value="જન્મકુંડલી">જન્મકુંડલી</option>
+                            <option value="ગ્રહફળ">ગ્રહફળ</option>
+                            <option value="મુહૂર્ત">મુહૂર્ત</option>
+                            <option value="વાસ્તુ">વાસ્તુ</option>
+                            <option value="રત્ન">રત્ન</option>
+                            <option value="ઉપાય">ઉપાય</option>
+                            <option value="અન્ય">અન્ય</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="content">Content:</label>
-                        <textarea id="content" name="content" required
-                            placeholder="Write your blog content here..."></textarea>
+                    
+                    <!-- Image Upload Section -->
+                    <div class="form-group image-upload-container">
+                        <label for="imageUpload">છબી અપલોડ કરો (વૈકલ્પિક):</label>
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <button type="button" class="upload-btn" onclick="uploadImage()">📤 છબી અપલોડ કરો</button>
+                        <img id="imagePreview" class="image-preview" src="#" alt="Preview">
+                        <input type="hidden" id="imageUrl">
                     </div>
-
-                    <button type="submit" class="btn" id="publishBtn">🚀 Publish Post</button>
-                    <button type="button" class="btn btn-danger" onclick="clearForm()">🗑️ Clear Form</button>
+                    
+                    <div class="form-group">
+                        <label for="content">સામગ્રી:</label>
+                        <textarea id="content" name="content" required placeholder="તમારી બ્લોગ સામગ્રી અહીં લખો..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="publishBtn">🚀 પોસ્ટ પ્રકાશિત કરો</button>
+                    <button type="button" class="btn btn-danger" onclick="clearForm()">🗑️ ફોર્મ સાફ કરો</button>
                 </form>
             </div>
         </div>
@@ -690,55 +796,50 @@
         <!-- Blog View -->
         <div id="blogView" class="blog-view">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="🔍 Search blog posts..." onkeyup="searchPosts()">
+                <input type="text" id="searchInput" placeholder="🔍 બ્લોગ પોસ્ટ્સ શોધો..." onkeyup="searchPosts()">
             </div>
-
+            
             <div class="category-filter">
-                <label><strong>Filter by Category:</strong></label>
+                <label><strong>શ્રેણી દ્વારા ફિલ્ટર કરો:</strong></label>
                 <div class="category-tags" id="categoryTags">
-                    <span class="category-tag active" onclick="filterByCategory('all')">All Posts</span>
+                    <span class="category-tag active" onclick="filterByCategory('all')">બધી પોસ્ટ્સ</span>
                 </div>
             </div>
-
+            
             <div id="blogPosts">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Loading posts from Firebase...
+                    Firebase થી પોસ્ટ્સ લોડ કરી રહ્યું છે...
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import {
-            getDatabase,
-            ref,
-            push,
-            onValue,
-            remove,
-            update,
-            serverTimestamp,
-            off
-        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    
+    <script>
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
             authDomain: "astroakshat-3151a.firebaseapp.com",
             databaseURL: "https://astroakshat-3151a-default-rtdb.firebaseio.com/",
             projectId: "astroakshat-3151a",
-            storageBucket: "astroakshat-3151a.firebasestorage.app",
+            storageBucket: "astroakshat-3151a.appspot.com",
             messagingSenderId: "902505541622",
             appId: "1:902505541622:web:f5364ab72fb11ece6e61d7",
             measurementId: "G-6GLS1CS0RF"
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const storage = firebase.storage();
 
         // Global variables
         let isAdminMode = false;
@@ -748,24 +849,32 @@
         let isConnected = false;
         let editingPost = null;
 
-        // Admin password (in production, use proper authentication)
+        // Admin password
         const ADMIN_PASSWORD = "admin123";
 
-        // Theme handling
-        window.toggleTheme = function () {
-            document.body.classList.toggle('dark-theme');
-            const themeBtn = document.querySelector('.theme-toggle');
-            themeBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        // Jyotish categories
+        const categories = [
+            "જન્મકુંડલી",
+            "ગ્રહફળ",
+            "મુહૂર્ત",
+            "વાસ્તુ",
+            "રત્ન",
+            "ઉપાય",
+            "અન્ય"
+        ];
 
-            // Save theme preference
-            const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-            console.log('Theme changed to:', theme);
+        // Theme toggle function
+        window.toggleTheme = function() {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
         };
 
         // Authentication functions
-        window.requestAdminAccess = function () {
+        window.requestAdminAccess = function() {
             if (!isConnected) return;
-
+            
             if (!isAuthenticated) {
                 document.getElementById('authModal').classList.remove('hidden');
                 document.getElementById('adminPassword').focus();
@@ -774,42 +883,42 @@
             }
         };
 
-        window.closeAuthModal = function () {
+        window.closeAuthModal = function() {
             document.getElementById('authModal').classList.add('hidden');
             document.getElementById('authForm').reset();
             hideAuthError();
         };
 
         // Handle authentication form
-        document.getElementById('authForm').addEventListener('submit', function (e) {
+        document.getElementById('authForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const password = document.getElementById('adminPassword').value;
-
+            
             if (password === ADMIN_PASSWORD) {
                 isAuthenticated = true;
                 document.getElementById('authStatus').classList.remove('hidden');
-                document.getElementById('toggleBtn').textContent = '✏️ Switch to Admin';
+                document.getElementById('toggleBtn').textContent = '✏️ એડમિન મોડ';
                 closeAuthModal();
                 toggleView();
             } else {
-                showAuthError('Incorrect password. Please try again.');
+                showAuthError('ખોટો પાસવર્ડ. કૃપા કરીને ફરી પ્રયાસ કરો.');
                 document.getElementById('adminPassword').value = '';
             }
         });
 
-        window.logout = function () {
+        window.logout = function() {
             isAuthenticated = false;
             isAdminMode = false;
             document.getElementById('authStatus').classList.add('hidden');
             document.getElementById('adminPanel').classList.add('hidden');
             document.getElementById('blogView').classList.remove('hidden');
-            document.getElementById('toggleBtn').textContent = '🔐 Admin Access';
-
+            document.getElementById('toggleBtn').textContent = '🔐 એડમિન એક્સેસ';
+            
             // Cancel any active edits
             if (editingPost) {
                 cancelEdit(editingPost);
             }
-
+            
             displayPosts();
         };
 
@@ -827,21 +936,21 @@
         function updateConnectionStatus(connected, error = null) {
             const statusEl = document.getElementById('connectionStatus');
             const toggleBtn = document.getElementById('toggleBtn');
-
+            
             if (error) {
                 statusEl.className = 'status-indicator status-disconnected';
-                statusEl.innerHTML = '❌ Connection Error';
+                statusEl.innerHTML = '❌ કનેક્શન ભૂલ';
                 toggleBtn.disabled = true;
-                showError(`Firebase connection error: ${error.message}`);
+                showError(`Firebase કનેક્શન ભૂલ: ${error.message}`);
             } else if (connected) {
                 statusEl.className = 'status-indicator status-connected';
-                statusEl.innerHTML = '✅ Connected to Firebase';
+                statusEl.innerHTML = '✅ Firebase સાથે જોડાયેલ છે';
                 toggleBtn.disabled = false;
                 isConnected = true;
                 hideError();
             } else {
                 statusEl.className = 'status-indicator status-loading';
-                statusEl.innerHTML = '<div class="spinner"></div>Connecting...';
+                statusEl.innerHTML = '<div class="spinner"></div> જોડાઈ રહ્યું છે...';
                 toggleBtn.disabled = true;
             }
         }
@@ -859,14 +968,14 @@
 
         // Initialize Firebase connection and load posts
         function initializeBlog() {
-            const postsRef = ref(database, 'blogPosts');
-
-            onValue(postsRef, (snapshot) => {
+            const postsRef = database.ref('blogPosts');
+            
+            postsRef.on('value', (snapshot) => {
                 updateConnectionStatus(true);
-
+                
                 const data = snapshot.val();
                 posts = [];
-
+                
                 if (data) {
                     Object.keys(data).forEach(key => {
                         posts.push({
@@ -874,11 +983,11 @@
                             ...data[key]
                         });
                     });
-
+                    
                     // Sort posts by timestamp (newest first)
                     posts.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 }
-
+                
                 updateCategoryTags();
                 displayPosts();
                 displayAdminPosts();
@@ -891,42 +1000,42 @@
         // Toggle between admin and blog view
         function toggleView() {
             if (!isConnected || !isAuthenticated) return;
-
+            
             // Cancel any active edits when switching views
             if (editingPost) {
                 cancelEdit(editingPost);
             }
-
+            
             const adminPanel = document.getElementById('adminPanel');
             const blogView = document.getElementById('blogView');
             const toggleBtn = document.getElementById('toggleBtn');
-
+            
             isAdminMode = !isAdminMode;
-
+            
             if (isAdminMode) {
                 adminPanel.classList.remove('hidden');
                 blogView.classList.add('hidden');
-                toggleBtn.textContent = '👁️ Switch to Blog View';
+                toggleBtn.textContent = '👁️ બ્લોગ જુઓ';
             } else {
                 adminPanel.classList.add('hidden');
                 blogView.classList.remove('hidden');
-                toggleBtn.textContent = '✏️ Switch to Admin';
+                toggleBtn.textContent = '✏️ એડમિન મોડ';
             }
-
+            
             displayPosts();
         }
 
         // Display admin posts in management section
         function displayAdminPosts() {
             if (!isAdminMode) return;
-
+            
             const container = document.getElementById('adminPostsContainer');
-
+            
             if (posts.length === 0) {
                 container.innerHTML = `
                     <div class="no-posts">
-                        <h3>📝 No blog posts yet!</h3>
-                        <p>Create your first post using the form below.</p>
+                        <h3>📝 હજુ સુધી કોઈ બ્લોગ પોસ્ટ્સ નથી!</h3>
+                        <p>નીચેના ફોર્મનો ઉપયોગ કરીને તમારી પ્રથમ પોસ્ટ બનાવો.</p>
                     </div>
                 `;
                 return;
@@ -934,61 +1043,62 @@
 
             container.innerHTML = `
                 <div class="posts-grid">
-                    ${posts.map(post => {
-                const isEditing = editingPost === post.id;
-                const editForm = isEditing ? `
+                    ${posts.map(post => { 
+                        const isEditing = editingPost === post.id;
+                        const editForm = isEditing ? `
                             <div class="edit-form">
-                                <h3>✏️ Edit Post</h3>
+                                <h3>✏️ પોસ્ટ એડિટ કરો</h3>
                                 <form id="editForm-${post.id}">
                                     <div class="form-group">
-                                        <label for="editTitle-${post.id}">Title:</label>
+                                        <label for="editTitle-${post.id}">શીર્ષક:</label>
                                         <input type="text" id="editTitle-${post.id}" value="${post.title || ''}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editAuthor-${post.id}">Author:</label>
+                                        <label for="editAuthor-${post.id}">લેખક:</label>
                                         <input type="text" id="editAuthor-${post.id}" value="${post.author || ''}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editCategory-${post.id}">Category:</label>
+                                        <label for="editCategory-${post.id}">શ્રેણી:</label>
                                         <select id="editCategory-${post.id}" required>
-                                            ${['Technology', 'Lifestyle', 'Travel', 'Food', 'Business', 'Health', 'Other']
-                        .map(cat => `<option value="${cat}" ${post.category === cat ? 'selected' : ''}>${cat}</option>`)
-                        .join('')}
+                                            ${categories.map(cat => 
+                                                `<option value="${cat}" ${post.category === cat ? 'selected' : ''}>${cat}</option>`
+                                            ).join('')}
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editContent-${post.id}">Content:</label>
+                                        <label for="editContent-${post.id}">સામગ્રી:</label>
                                         <textarea id="editContent-${post.id}" required>${post.content || ''}</textarea>
                                     </div>
                                     <div class="edit-controls">
-                                        <button type="submit" class="btn btn-small">💾 Save Changes</button>
-                                        <button type="button" class="btn btn-small btn-danger" onclick="cancelEdit('${post.id}')">❌ Cancel</button>
+                                        <button type="submit" class="btn btn-small">💾 ફેરફારો સાચવો</button>
+                                        <button type="button" class="btn btn-small btn-danger" onclick="cancelEdit('${post.id}')">❌ રદ્દ કરો</button>
                                     </div>
                                 </form>
                             </div>
                         ` : '';
 
-                return `
+                        return `
                             <div class="admin-post-card" id="post-${post.id}">
-                                <h3 class="admin-post-title">${post.title || 'Untitled Post'}</h3>
+                                <h3 class="admin-post-title">${post.title || 'શીર્ષક વગરની પોસ્ટ'}</h3>
                                 <div class="admin-post-meta">
-                                    <span>👤 ${post.author || 'Unknown'}</span>
+                                    <span>👤 ${post.author || 'અજ્ઞાત'}</span>
                                     <span>📅 ${formatDate(post.timestamp)}</span>
-                                    <span class="blog-category">${post.category || 'Uncategorized'}</span>
+                                    <span class="blog-category">${post.category || 'અન્ય'}</span>
                                 </div>
+                                ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}" style="max-width: 100%; max-height: 100px;">` : ''}
                                 <div class="admin-post-preview">
-                                    ${post.content ? post.content.substring(0, 200) : 'No content'}
+                                    ${post.content ? post.content.substring(0, 200) : 'કોઈ સામગ્રી નથી'}
                                 </div>
                                 <div class="admin-controls">
                                     ${!isEditing ? `
-                                        <button class="btn btn-small btn-edit" onclick="startEdit('${post.id}')">✏️ Edit</button>
-                                        <button class="btn btn-small btn-danger" onclick="deletePost('${post.id}')">🗑️ Delete</button>
+                                        <button class="btn btn-small btn-edit" onclick="startEdit('${post.id}')">✏️ એડિટ</button>
+                                        <button class="btn btn-small btn-danger" onclick="deletePost('${post.id}')">🗑️ ડિલીટ</button>
                                     ` : ''}
                                 </div>
                                 ${editForm}
                             </div>
                         `;
-            }).join('')}
+                    }).join('')}
                 </div>
             `;
 
@@ -997,7 +1107,7 @@
                 if (editingPost === post.id) {
                     const form = document.getElementById(`editForm-${post.id}`);
                     if (form) {
-                        form.addEventListener('submit', function (e) {
+                        form.addEventListener('submit', function(e) {
                             e.preventDefault();
                             saveEdit(post.id);
                         });
@@ -1009,31 +1119,32 @@
         // Display posts in blog view
         function displayPosts() {
             const container = document.getElementById('blogPosts');
-
+            
             if (posts.length === 0) {
                 container.innerHTML = `
                     <div class="no-posts">
-                        <h3>📭 No blog posts found</h3>
-                        <p>Check back later for new content!</p>
+                        <h3>📭 કોઈ બ્લોગ પોસ્ટ્સ મળી નથી</h3>
+                        <p>નવી સામગ્રી માટે પછી તપાસો!</p>
                     </div>
                 `;
                 return;
             }
 
-            const filteredPosts = currentFilter === 'all'
-                ? posts
+            const filteredPosts = currentFilter === 'all' 
+                ? posts 
                 : posts.filter(post => post.category === currentFilter);
 
             container.innerHTML = filteredPosts.map(post => `
                 <div class="blog-post fade-in" id="blog-post-${post.id}">
-                    <h2>${post.title || 'Untitled Post'}</h2>
+                    <h2>${post.title || 'શીર્ષક વગરની પોસ્ટ'}</h2>
                     <div class="blog-meta">
-                        <span>👤 ${post.author || 'Unknown'}</span>
+                        <span>👤 ${post.author || 'અજ્ઞાત'}</span>
                         <span>📅 ${formatDate(post.timestamp)}</span>
-                        <span class="blog-category">${post.category || 'Uncategorized'}</span>
+                        <span class="blog-category">${post.category || 'અન્ય'}</span>
                     </div>
+                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
                     <div class="blog-content">
-                        ${post.content || 'No content available'}
+                        ${post.content || 'કોઈ સામગ્રી ઉપલબ્ધ નથી'}
                     </div>
                 </div>
             `).join('');
@@ -1041,11 +1152,11 @@
 
         // Format timestamp to readable date
         function formatDate(timestamp) {
-            if (!timestamp) return 'Unknown date';
+            if (!timestamp) return 'અજ્ઞાત તારીખ';
             const date = new Date(timestamp);
-            return date.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
                 day: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit'
@@ -1054,34 +1165,27 @@
 
         // Update category tags based on available posts
         function updateCategoryTags() {
-            const categories = ['all'];
+            const allCategories = ['all', ...categories];
             const categoryTags = document.getElementById('categoryTags');
-
-            // Get unique categories from posts
-            posts.forEach(post => {
-                if (post.category && !categories.includes(post.category)) {
-                    categories.push(post.category);
-                }
-            });
-
-            // Update category tags UI
-            categoryTags.innerHTML = categories.map(cat => {
+            
+            categoryTags.innerHTML = allCategories.map(cat => {
                 const isActive = currentFilter === cat;
+                const displayText = cat === 'all' ? 'બધી પોસ્ટ્સ' : cat;
                 return `
                     <span class="category-tag ${isActive ? 'active' : ''}" 
                           onclick="filterByCategory('${cat}')">
-                        ${cat === 'all' ? 'All Posts' : cat}
+                        ${displayText}
                     </span>
                 `;
             }).join('');
         }
 
         // Filter posts by category
-        window.filterByCategory = function (category) {
+        window.filterByCategory = function(category) {
             currentFilter = category;
             const tags = document.querySelectorAll('.category-tag');
             tags.forEach(tag => {
-                const tagCategory = tag.textContent === 'All Posts' ? 'all' : tag.textContent;
+                const tagCategory = tag.textContent === 'બધી પોસ્ટ્સ' ? 'all' : tag.textContent;
                 if (tagCategory === category) {
                     tag.classList.add('active');
                 } else {
@@ -1092,104 +1196,164 @@
         };
 
         // Search posts
-        window.searchPosts = function () {
+        window.searchPosts = function() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredPosts = posts.filter(post =>
+            const filteredPosts = posts.filter(post => 
                 (post.title && post.title.toLowerCase().includes(searchTerm)) ||
                 (post.content && post.content.toLowerCase().includes(searchTerm)) ||
                 (post.author && post.author.toLowerCase().includes(searchTerm))
             );
-
+            
             const container = document.getElementById('blogPosts');
-
+            
             if (filteredPosts.length === 0) {
                 container.innerHTML = `
                     <div class="no-posts">
-                        <h3>🔍 No matching posts found</h3>
-                        <p>Try a different search term.</p>
+                        <h3>🔍 કોઈ મેચિંગ પોસ્ટ્સ મળી નથી</h3>
+                        <p>અલગ શોધ શબ્દ પ્રયાસ કરો.</p>
                     </div>
                 `;
                 return;
             }
-
+            
             container.innerHTML = filteredPosts.map(post => `
                 <div class="blog-post fade-in">
-                    <h2>${post.title || 'Untitled Post'}</h2>
+                    <h2>${post.title || 'શીર્ષક વગરની પોસ્ટ'}</h2>
                     <div class="blog-meta">
-                        <span>👤 ${post.author || 'Unknown'}</span>
+                        <span>👤 ${post.author || 'અજ્ઞાત'}</span>
                         <span>📅 ${formatDate(post.timestamp)}</span>
-                        <span class="blog-category">${post.category || 'Uncategorized'}</span>
+                        <span class="blog-category">${post.category || 'અન્ય'}</span>
                     </div>
+                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
                     <div class="blog-content">
-                        ${post.content || 'No content available'}
+                        ${post.content || 'કોઈ સામગ્રી ઉપલબ્ધ નથી'}
                     </div>
                 </div>
             `).join('');
         };
 
-        // Handle new post creation
-        document.getElementById('blogForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        // Image upload function
+        window.uploadImage = function() {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('કૃપા કરીને પહેલા છબી પસંદ કરો');
+                return;
+            }
+            
+            const uploadBtn = document.querySelector('.upload-btn');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<div class="spinner"></div> અપલોડ કરી રહ્યું છે...';
+            
+            const storageRef = storage.ref('blog-images/' + Date.now() + '-' + file.name);
+            const uploadTask = storageRef.put(file);
+            
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Progress monitoring can be added here
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    showError(`છબી અપલોડ કરવામાં ભૂલ: ${error.message}`);
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = '📤 છબી અપલોડ કરો';
+                },
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        document.getElementById('imageUrl').value = downloadURL;
+                        document.getElementById('imagePreview').src = downloadURL;
+                        document.getElementById('imagePreview').style.display = 'block';
+                        uploadBtn.disabled = false;
+                        uploadBtn.textContent = '✅ છબી અપલોડ થઈ ગઈ';
+                        
+                        // Show success message
+                        const errorEl = document.getElementById('errorMessage');
+                        errorEl.innerHTML = `
+                            <div class="success-message">
+                                ✅ છબી સફળતાપૂર્વક અપલોડ થઈ ગઈ!
+                            </div>
+                        `;
+                        setTimeout(() => hideError(), 3000);
+                    });
+                }
+            );
+        };
 
+        // Handle new post creation
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const title = document.getElementById('title').value;
             const author = document.getElementById('author').value;
             const category = document.getElementById('category').value;
             const content = document.getElementById('content').value;
-
+            const imageUrl = document.getElementById('imageUrl').value;
+            
             if (!title || !author || !category || !content) {
-                showError('Please fill in all fields');
+                showError('કૃપા કરીને બધા ફીલ્ડ્સ ભરો');
                 return;
             }
-
+            
             const publishBtn = document.getElementById('publishBtn');
             publishBtn.disabled = true;
-            publishBtn.innerHTML = '<div class="spinner"></div> Publishing...';
-
+            publishBtn.innerHTML = '<div class="spinner"></div> પ્રકાશિત કરી રહ્યું છે...';
+            
             const newPost = {
                 title,
                 author,
                 category,
                 content,
-                timestamp: serverTimestamp()
+                timestamp: firebase.database.ServerValue.TIMESTAMP
             };
-
-            push(ref(database, 'blogPosts'), newPost)
+            
+            // Add image URL if available
+            if (imageUrl) {
+                newPost.imageUrl = imageUrl;
+            }
+            
+            database.ref('blogPosts').push(newPost)
                 .then(() => {
                     document.getElementById('blogForm').reset();
+                    document.getElementById('imagePreview').style.display = 'none';
+                    document.getElementById('imageUrl').value = '';
                     hideError();
                     publishBtn.disabled = false;
-                    publishBtn.textContent = '🚀 Publish Post';
-
+                    publishBtn.textContent = '🚀 પોસ્ટ પ્રકાશિત કરો';
+                    
                     // Show success message
                     const errorEl = document.getElementById('errorMessage');
                     errorEl.innerHTML = `
                         <div class="success-message">
-                            ✅ Post published successfully!
+                            ✅ પોસ્ટ સફળતાપૂર્વક પ્રકાશિત થઈ ગઈ!
                         </div>
                     `;
                     setTimeout(() => hideError(), 3000);
                 })
                 .catch(error => {
-                    showError(`Error publishing post: ${error.message}`);
+                    showError(`પોસ્ટ પ્રકાશિત કરવામાં ભૂલ: ${error.message}`);
                     publishBtn.disabled = false;
-                    publishBtn.textContent = '🚀 Publish Post';
+                    publishBtn.textContent = '🚀 પોસ્ટ પ્રકાશિત કરો';
                 });
         });
 
         // Clear form
-        window.clearForm = function () {
+        window.clearForm = function() {
             document.getElementById('blogForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('imageUrl').value = '';
             hideError();
         };
 
         // Start editing a post
-        window.startEdit = function (postId) {
+        window.startEdit = function(postId) {
             if (editingPost) {
                 cancelEdit(editingPost);
             }
             editingPost = postId;
             displayAdminPosts();
-
+            
             // Scroll to the post being edited
             const postElement = document.getElementById(`post-${postId}`);
             if (postElement) {
@@ -1198,7 +1362,7 @@
         };
 
         // Cancel editing
-        window.cancelEdit = function (postId) {
+        window.cancelEdit = function(postId) {
             if (editingPost === postId) {
                 editingPost = null;
                 displayAdminPosts();
@@ -1211,82 +1375,75 @@
             const author = document.getElementById(`editAuthor-${postId}`).value;
             const category = document.getElementById(`editCategory-${postId}`).value;
             const content = document.getElementById(`editContent-${postId}`).value;
-
+            
             if (!title || !author || !category || !content) {
-                showError('Please fill in all fields');
+                showError('કૃપા કરીને બધા ફીલ્ડ્સ ભરો');
                 return;
             }
-
+            
             const updates = {
                 title,
                 author,
                 category,
                 content,
-                timestamp: serverTimestamp()
+                timestamp: firebase.database.ServerValue.TIMESTAMP
             };
-
-            update(ref(database, `blogPosts/${postId}`), updates)
+            
+            database.ref(`blogPosts/${postId}`).update(updates)
                 .then(() => {
                     editingPost = null;
                     displayAdminPosts();
-
+                    
                     // Show success message
                     const errorEl = document.getElementById('errorMessage');
                     errorEl.innerHTML = `
                         <div class="success-message">
-                            ✅ Post updated successfully!
+                            ✅ પોસ્ટ સફળતાપૂર્વક અપડેટ થઈ ગઈ!
                         </div>
                     `;
                     setTimeout(() => hideError(), 3000);
                 })
                 .catch(error => {
-                    showError(`Error updating post: ${error.message}`);
+                    showError(`પોસ્ટ અપડેટ કરવામાં ભૂલ: ${error.message}`);
                 });
         }
 
         // Delete a post
-        window.deletePost = function (postId) {
-            if (confirm('Are you sure you want to delete this post? This cannot be undone.')) {
-                remove(ref(database, `blogPosts/${postId}`))
+        window.deletePost = function(postId) {
+            if (confirm('શું તમે ખરેખર આ પોસ્ટ ડિલીટ કરવા માંગો છો? આ ક્રિયા પાછી લઈ શકાશે નહીં.')) {
+                database.ref(`blogPosts/${postId}`).remove()
                     .then(() => {
                         // Show success message
                         const errorEl = document.getElementById('errorMessage');
                         errorEl.innerHTML = `
                             <div class="success-message">
-                                ✅ Post deleted successfully!
+                                ✅ પોસ્ટ સફળતાપૂર્વક ડિલીટ થઈ ગઈ!
                             </div>
                         `;
                         setTimeout(() => hideError(), 3000);
                     })
                     .catch(error => {
-                        showError(`Error deleting post: ${error.message}`);
+                        showError(`પોસ્ટ ડિલીટ કરવામાં ભૂલ: ${error.message}`);
                     });
             }
         };
 
         // Initialize the blog when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference
-            if (localStorage.getItem('theme') === 'dark' ||
+            if (localStorage.getItem('theme') === 'dark' || 
                 (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.body.classList.add('dark-theme');
                 document.querySelector('.theme-toggle').textContent = '☀️';
             }
-
+            
             // Initialize Firebase connection
             updateConnectionStatus(false);
             initializeBlog();
-
-            // Theme toggle handler
-            document.querySelector('.theme-toggle').addEventListener('click', function () {
-                const isDark = document.body.classList.toggle('dark-theme');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                this.textContent = isDark ? '☀️' : '🌙';
-            });
         });
 
         // Handle window resize for responsive design
-        window.addEventListener('resize', function () {
+        window.addEventListener('resize', function() {
             // Refresh display if we're in admin mode
             if (isAdminMode) {
                 displayAdminPosts();
@@ -1294,5 +1451,4 @@
         });
     </script>
 </body>
-
 </html>
