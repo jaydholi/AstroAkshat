@@ -486,7 +486,7 @@
         }
 
         .blog-content {
-            color: #4a5568;
+            color: #02b4fa;
             line-height: 1.7;
             margin-bottom: 1rem;
         }
@@ -518,7 +518,7 @@
         .no-posts,
         .loading {
             text-align: center;
-            color: #718096;
+            color: #006eff;
             font-style: italic;
             padding: 3rem;
         }
@@ -549,7 +549,7 @@
         }
 
         .category-tag {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(2, 204, 255, 0.8);
             border: 2px solid #e2e8f0;
             padding: 8px 16px;
             border-radius: 20px;
@@ -572,7 +572,7 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(176, 238, 7, 0.932);
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
@@ -615,6 +615,86 @@
             border-radius: 8px;
             margin-bottom: 1rem;
             text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+
+            .astrologer-profile,
+            .mission-content {
+                flex-direction: column;
+            }
+
+            .profile-image,
+            .mission-image {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - var(--nav-height));
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.5s ease;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .mission-section,
+            .astrologer-profile {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+
+            .value-card {
+                padding: 1.5rem;
+            }
         }
 
         /* Image Upload Styles */
@@ -708,7 +788,7 @@
         }
 
         body.dark-theme .nav-link:hover {
-            color: #a0aec0;
+            color: #056ef7;
         }
 
         /* Responsive Styles */
@@ -896,6 +976,22 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
     <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
