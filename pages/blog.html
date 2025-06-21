@@ -486,7 +486,7 @@
         }
 
         .blog-content {
-            color: #e1fa02;
+            color: #023cfa96;
             line-height: 1.7;
             margin-bottom: 1rem;
         }
@@ -518,7 +518,7 @@
         .no-posts,
         .loading {
             text-align: center;
-            color: #d9ff00;
+            color: #0084ff;
             font-style: italic;
             padding: 3rem;
         }
@@ -549,7 +549,7 @@
         }
 
         .category-tag {
-            background: rgba(238, 255, 2, 0.8);
+            background: rgba(2, 82, 255, 0.8);
             border: 2px solid #e2e8f0;
             padding: 8px 16px;
             border-radius: 20px;
@@ -572,7 +572,7 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(176, 238, 7, 0.932);
+            border: 3px solid rgba(238, 223, 7, 0.932);
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
@@ -881,7 +881,7 @@
             <div id="blogPosts">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Firebase થી પોસ્ટ્સ લોડ કરી રહ્યું છે...
+                    અક્ષત થી પોસ્ટ્સ લોડ કરી રહ્યું છે...
                 </div>
             </div>
         </div>
@@ -1032,7 +1032,7 @@
                 showError(`Firebase કનેક્શન ભૂલ: ${error.message}`);
             } else if (connected) {
                 statusEl.className = 'status-indicator status-connected';
-                statusEl.innerHTML = '✅ Firebase સાથે જોડાયેલ છે';
+                statusEl.innerHTML = '✅ અક્ષત સાથે જોડાયેલ છે';
                 toggleBtn.disabled = false;
                 isConnected = true;
                 hideError();
