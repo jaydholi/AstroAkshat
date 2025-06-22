@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>અક્ષત જ્યોતિષ દર્પણ - ઉદ્દભવતી ઘટનાઓ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(109, 40, 217, 0.3);
+        }
+
+        .logo {
+            font-family: 'Noto Serif Gujarati', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Shree Gujarati', 'Arial Unicode MS', sans-serif;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 10px;
+            font-weight: 500;
+        }
+
+        .status-connected {
+            background: rgba(72, 187, 120, 0.2);
+            color: #38a169;
+            border: 2px solid rgba(72, 187, 120, 0.3);
+        }
+
+        .status-disconnected {
+            background: rgba(245, 101, 101, 0.2);
+            color: #e53e3e;
+            border: 2px solid rgba(245, 101, 101, 0.3);
+        }
+
+        .status-loading {
+            background: rgba(237, 137, 54, 0.2);
+            color: #dd6b20;
+            border: 2px solid rgba(237, 137, 54, 0.3);
+        }
+
+        .toggle-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .auth-modal.hidden {
+            display: none;
+        }
+
+        .auth-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-form h2 {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admin-panel,
+        .schedule-view {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-section {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .admin-section h2 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .admin-event-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .admin-event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-event-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-event-meta {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-event-preview {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            max-height: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .admin-event-preview::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: white;
+            padding-left: 20px;
+        }
+
+        .admin-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .auth-status {
+            background: rgba(72, 187, 120, 0.1);
+            color: #38a169;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="datetime-local"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus,
+        .form-group input[type="datetime-local"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+        }
+
+        .btn-danger:hover {
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+        }
+
+        .btn-edit {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+        }
+
+        .btn-edit:hover {
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .schedule-event {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .schedule-event:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .schedule-event h2 {
+            color: #015eff;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .event-meta {
+            color: #0066ff;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .event-category {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .event-content {
+            color: #2d3748;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .event-date {
+            font-weight: bold;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edit-form {
+            background: rgba(249, 250, 251, 0.8);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .edit-form h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .edit-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .no-events,
+        .loading {
+            text-align: center;
+            color: #0084ff;
+            font-style: italic;
+            padding: 3rem;
+        }
+
+        .search-bar {
+            margin-bottom: 2rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .category-filter {
+            margin-bottom: 2rem;
+        }
+
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-tag {
+            background: rgba(2, 82, 255, 0.8);
+            border: 2px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(238, 223, 7, 0.932);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            background: rgba(245, 101, 101, 0.1);
+            border: 2px solid rgba(245, 101, 101, 0.3);
+            color: #e53e3e;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message {
+            background: rgba(72, 187, 120, 0.1);
+            border: 2px solid rgba(72, 187, 120, 0.3);
+            color: #38a169;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Image Upload Styles */
+        .image-upload-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .upload-btn {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .event-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .header,
+        body.dark-theme .admin-panel,
+        body.dark-theme .schedule-view,
+        body.dark-theme .navbar {
+            background: rgba(45, 55, 72, 0.95);
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .schedule-event,
+        body.dark-theme .admin-event-card {
+            background: rgba(26, 32, 44, 0.8);
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .admin-section {
+            background: rgba(26, 32, 44, 0.6);
+        }
+
+        body.dark-theme .nav-link {
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .nav-link:hover {
+            color: #056ef7;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- Add Gujarati font support -->
+    <link href="https://fonts.googleapis.com/css2?family=Shree+Gujarati&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="/images/logo.png" alt="અક્ષત જ્યોતિષ દર્પણ" class="logo-img">
+            <span>અક્ષત જ્યોતિષ દર્પણ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/INDEX.html">હોમ</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal hidden">
+        <div class="auth-form">
+            <h2>🔐 એડમિન એક્સેસ</h2>
+            <div id="authError"></div>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="adminPassword">એડમિન પાસવર્ડ:</label>
+                    <input type="password" id="adminPassword" placeholder="તમારો પાસવર્ડ દાખલ કરો..." required>
+                </div>
+                <button type="submit" class="btn">🚀 લોગિન</button>
+                <button type="button" class="btn btn-danger" onclick="closeAuthModal()">❌ રદ્દ કરો</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>અક્ષત જ્યોતિષ દર્પણ - ઉદ્દભવતી ઘટનાઓ</h1>
+            <p>અક્ષત જ્યોતિષ દ્વારા આગામી ઘટનાઓ અને સત્સંગનું શેડ્યુલ</p>
+            <div id="connectionStatus" class="status-indicator status-loading">
+                <div class="spinner"></div>
+                અક્ષત જ્યોતિષ દર્પણ સાથે જોડાઈ રહ્યું છે...
+            </div>
+            <div id="authStatus" class="auth-status hidden">
+                🔓 એડમિન તરીકે પ્રમાણિત
+                <button class="logout-btn" onclick="logout()">લોગઆઉટ</button>
+            </div>
+            <button class="toggle-btn" onclick="requestAdminAccess()" id="toggleBtn" disabled>🔄 એડમિન મોડ</button>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel hidden">
+            <!-- Event Management Section -->
+            <div class="admin-section">
+                <h2>📋 શેડ્યુલ મેનેજ કરો</h2>
+                <div id="adminEventsContainer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        ઘટનાઓ લોડ કરી રહ્યું છે...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create New Event Section -->
+            <div class="admin-section">
+                <h2>📝 નવી ઘટના ઉમેરો</h2>
+                <div id="errorMessage"></div>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="title">ઘટનાનું નામ:</label>
+                        <input type="text" id="title" name="title" required placeholder="ઘટનાનું નામ લખો...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDate">તારીખ અને સમય:</label>
+                        <input type="datetime-local" id="eventDate" name="eventDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">સ્થળ:</label>
+                        <input type="text" id="location" name="location" required placeholder="ઘટનાનું સ્થળ...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">શ્રેણી:</label>
+                        <select id="category" name="category" required>
+                            <option value="">કૃપા કરીને શ્રેણી પસંદ કરો...</option>
+                            <option value="સત્સંગ">સત્સંગ</option>
+                            <option value="યજ્ઞ">યજ્ઞ</option>
+                            <option value="પૂજા">પૂજા</option>
+                            <option value="જન્મજયંતિ">જન્મજયંતિ</option>
+                            <option value="ઉત્સવ">ઉત્સવ</option>
+                            <option value="અન્ય">અન્ય</option>
+                        </select>
+                    </div>
+
+                    <!-- Image Upload Section -->
+                    <div class="form-group image-upload-container">
+                        <label for="imageUpload">છબી અપલોડ કરો (વૈકલ્પિક):</label>
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <button type="button" class="upload-btn" onclick="uploadImage()">📤 છબી અપલોડ કરો</button>
+                        <img id="imagePreview" class="image-preview" src="#" alt="Preview">
+                        <input type="hidden" id="imageUrl">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">વિગતો:</label>
+                        <textarea id="content" name="content" required
+                            placeholder="ઘટના વિશેની વિગતો અહીં લખો..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" id="publishBtn">🚀 ઘટના પ્રકાશિત કરો</button>
+                    <button type="button" class="btn btn-danger" onclick="clearForm()">🗑️ ફોર્મ સાફ કરો</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Schedule View -->
+        <div id="scheduleView" class="schedule-view">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 ઘટનાઓ શોધો..." onkeyup="searchEvents()">
+            </div>
+
+            <div class="category-filter">
+                <label><strong>શ્રેણી દ્વારા ફિલ્ટર કરો:</strong></label>
+                <div class="category-tags" id="categoryTags">
+                    <span class="category-tag active" onclick="filterByCategory('all')">બધી ઘટનાઓ</span>
+                </div>
+            </div>
+
+            <div id="scheduleEvents">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    અક્ષત થી ઘટનાઓ લોડ કરી રહ્યું છે...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
+            authDomain: "astroakshat-3151a.firebaseapp.com",
+            databaseURL: "https://astroakshat-3151a-default-rtdb.firebaseio.com/",
+            projectId: "astroakshat-3151a",
+            storageBucket: "astroakshat-3151a.appspot.com",
+            messagingSenderId: "902505541622",
+            appId: "1:902505541622:web:f5364ab72fb11ece6e61d7",
+            measurementId: "G-6GLS1CS0RF"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const storage = firebase.storage();
+
+        // Global variables
+        let isAdminMode = false;
+        let isAuthenticated = false;
+        let events = [];
+        let currentFilter = 'all';
+        let isConnected = false;
+        let editingEvent = null;
+
+        // Admin password
+        const ADMIN_PASSWORD = "akshatastro@123";
+
+        // Event categories
+        const categories = [
+            "સત્સંગ",
+            "યજ્ઞ",
+            "પૂજા",
+            "જન્મજયંતિ",
+            "ઉત્સવ",
+            "અન્ય"
+        ];
+
+        // Theme toggle function
+        window.toggleTheme = function () {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        };
+
+        // Authentication functions
+        window.requestAdminAccess = function () {
+            if (!isConnected) return;
+
+            if (!isAuthenticated) {
+                document.getElementById('authModal').classList.remove('hidden');
+                document.getElementById('adminPassword').focus();
+            } else {
+                toggleView();
+            }
+        };
+
+        window.closeAuthModal = function () {
+            document.getElementById('authModal').classList.add('hidden');
+            document.getElementById('authForm').reset();
+            hideAuthError();
+        };
+
+        // Handle authentication form
+        document.getElementById('authForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+
+            if (password === ADMIN_PASSWORD) {
+                isAuthenticated = true;
+                document.getElementById('authStatus').classList.remove('hidden');
+                document.getElementById('toggleBtn').textContent = '✏️ એડમિન મોડ';
+                closeAuthModal();
+                toggleView();
+            } else {
+                showAuthError('ખોટો પાસવર્ડ. કૃપા કરીને ફરી પ્રયાસ કરો.');
+                document.getElementById('adminPassword').value = '';
+            }
+        });
+
+        window.logout = function () {
+            isAuthenticated = false;
+            isAdminMode = false;
+            document.getElementById('authStatus').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('scheduleView').classList.remove('hidden');
+            document.getElementById('toggleBtn').textContent = '🔐 એડમિન એક્સેસ';
+
+            // Cancel any active edits
+            if (editingEvent) {
+                cancelEdit(editingEvent);
+            }
+
+            displayEvents();
+        };
+
+        function showAuthError(message) {
+            const errorEl = document.getElementById('authError');
+            errorEl.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+
+        function hideAuthError() {
+            const errorEl = document.getElementById('authError');
+            errorEl.innerHTML = '';
+        }
+
+        // Update connection status
+        function updateConnectionStatus(connected, error = null) {
+            const statusEl = document.getElementById('connectionStatus');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            if (error) {
+                statusEl.className = 'status-indicator status-disconnected';
+                statusEl.innerHTML = '❌ કનેક્શન ભૂલ';
+                toggleBtn.disabled = true;
+                showError(`Firebase કનેક્શન ભૂલ: ${error.message}`);
+            } else if (connected) {
+                statusEl.className = 'status-indicator status-connected';
+                statusEl.innerHTML = '✅ અક્ષત સાથે જોડાયેલ છે';
+                toggleBtn.disabled = false;
+                isConnected = true;
+                hideError();
+            } else {
+                statusEl.className = 'status-indicator status-loading';
+                statusEl.innerHTML = '<div class="spinner"></div> જોડાઈ રહ્યું છે...';
+                toggleBtn.disabled = true;
+            }
+        }
+
+        // Error handling
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+
+        function hideError() {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.innerHTML = '';
+        }
+
+        // Initialize Firebase connection and load events
+        function initializeSchedule() {
+            const eventsRef = database.ref('scheduleEvents');
+
+            eventsRef.on('value', (snapshot) => {
+                updateConnectionStatus(true);
+
+                const data = snapshot.val();
+                events = [];
+
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        events.push({
+                            id: key,
+                            ...data[key]
+                        });
+                    });
+
+                    // Sort events by date (soonest first)
+                    events.sort((a, b) => (a.eventTimestamp || 0) - (b.eventTimestamp || 0));
+                }
+
+                updateCategoryTags();
+                displayEvents();
+                displayAdminEvents();
+            }, (error) => {
+                updateConnectionStatus(false, error);
+                console.error('Firebase connection error:', error);
+            });
+        }
+
+        // Toggle between admin and schedule view
+        function toggleView() {
+            if (!isConnected || !isAuthenticated) return;
+
+            // Cancel any active edits when switching views
+            if (editingEvent) {
+                cancelEdit(editingEvent);
+            }
+
+            const adminPanel = document.getElementById('adminPanel');
+            const scheduleView = document.getElementById('scheduleView');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            isAdminMode = !isAdminMode;
+
+            if (isAdminMode) {
+                adminPanel.classList.remove('hidden');
+                scheduleView.classList.add('hidden');
+                toggleBtn.textContent = '👁️ શેડ્યુલ જુઓ';
+            } else {
+                adminPanel.classList.add('hidden');
+                scheduleView.classList.remove('hidden');
+                toggleBtn.textContent = '✏️ એડમિન મોડ';
+            }
+
+            displayEvents();
+        }
+
+        // Display admin events in management section
+        function displayAdminEvents() {
+            if (!isAdminMode) return;
+
+            const container = document.getElementById('adminEventsContainer');
+
+            if (events.length === 0) {
+                container.innerHTML = `
+                    <div class="no-events">
+                        <h3>📝 હજુ સુધી કોઈ ઘટનાઓ નથી!</h3>
+                        <p>નીચેના ફોર્મનો ઉપયોગ કરીને તમારી પ્રથમ ઘટના ઉમેરો.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="events-grid">
+                    ${events.map(event => {
+                        const isEditing = editingEvent === event.id;
+                        const editForm = isEditing ? `
+                            <div class="edit-form">
+                                <h3>✏️ ઘટના એડિટ કરો</h3>
+                                <form id="editForm-${event.id}">
+                                    <div class="form-group">
+                                        <label for="editTitle-${event.id}">નામ:</label>
+                                        <input type="text" id="editTitle-${event.id}" value="${event.title || ''}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editEventDate-${event.id}">તારીખ અને સમય:</label>
+                                        <input type="datetime-local" id="editEventDate-${event.id}" 
+                                               value="${formatDateTimeForInput(event.eventTimestamp)}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editLocation-${event.id}">સ્થળ:</label>
+                                        <input type="text" id="editLocation-${event.id}" value="${event.location || ''}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCategory-${event.id}">શ્રેણી:</label>
+                                        <select id="editCategory-${event.id}" required>
+                                            ${categories.map(cat =>
+                                                `<option value="${cat}" ${event.category === cat ? 'selected' : ''}>${cat}</option>`
+                                            ).join('')}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editContent-${event.id}">વિગતો:</label>
+                                        <textarea id="editContent-${event.id}" required>${event.content || ''}</textarea>
+                                    </div>
+                                    <div class="edit-controls">
+                                        <button type="submit" class="btn btn-small">💾 ફેરફારો સાચવો</button>
+                                        <button type="button" class="btn btn-small btn-danger" onclick="cancelEdit('${event.id}')">❌ રદ્દ કરો</button>
+                                    </div>
+                                </form>
+                            </div>
+                        ` : '';
+
+                        return `
+                            <div class="admin-event-card" id="event-${event.id}">
+                                <h3 class="admin-event-title">${event.title || 'નામ વગરની ઘટના'}</h3>
+                                <div class="admin-event-meta">
+                                    <span>📅 ${formatDate(event.eventTimestamp)}</span>
+                                    <span>📍 ${event.location || 'સ્થળ નથી'}</span>
+                                    <span class="event-category">${event.category || 'અન્ય'}</span>
+                                </div>
+                                ${event.imageUrl ? `<img src="${event.imageUrl}" class="event-image" alt="${event.title}" style="max-width: 100%; max-height: 100px;">` : ''}
+                                <div class="admin-event-preview">
+                                    ${event.content ? event.content.substring(0, 200) : 'કોઈ વિગતો નથી'}
+                                </div>
+                                <div class="admin-controls">
+                                    ${!isEditing ? `
+                                        <button class="btn btn-small btn-edit" onclick="startEdit('${event.id}')">✏️ એડિટ</button>
+                                        <button class="btn btn-small btn-danger" onclick="deleteEvent('${event.id}')">🗑️ ડિલીટ</button>
+                                    ` : ''}
+                                </div>
+                                ${editForm}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            // Add event listeners for edit forms
+            events.forEach(event => {
+                if (editingEvent === event.id) {
+                    const form = document.getElementById(`editForm-${event.id}`);
+                    if (form) {
+                        form.addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            saveEdit(event.id);
+                        });
+                    }
+                }
+            });
+        }
+
+        // Display events in schedule view
+        function displayEvents() {
+            const container = document.getElementById('scheduleEvents');
+
+            if (events.length === 0) {
+                container.innerHTML = `
+                    <div class="no-events">
+                        <h3>📭 કોઈ ઘટનાઓ મળી નથી</h3>
+                        <p>નવી ઘટનાઓ માટે પછી તપાસો!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const filteredEvents = currentFilter === 'all'
+                ? events
+                : events.filter(event => event.category === currentFilter);
+
+            container.innerHTML = filteredEvents.map(event => `
+                <div class="schedule-event fade-in" id="schedule-event-${event.id}">
+                    <h2>${event.title || 'નામ વગરની ઘટના'}</h2>
+                    <div class="event-meta">
+                        <span class="event-date">📅 ${formatDate(event.eventTimestamp)}</span>
+                        <span>📍 ${event.location || 'સ્થળ નથી'}</span>
+                        <span class="event-category">${event.category || 'અન્ય'}</span>
+                    </div>
+                    ${event.imageUrl ? `<img src="${event.imageUrl}" class="event-image" alt="${event.title}">` : ''}
+                    <div class="event-content">
+                        ${event.content || 'કોઈ વિગતો ઉપલબ્ધ નથી'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Format timestamp to readable date
+        function formatDate(timestamp) {
+            if (!timestamp) return 'અજ્ઞાત તારીખ';
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Format date for datetime-local input
+        function formatDateTimeForInput(timestamp) {
+            if (!timestamp) return '';
+            const date = new Date(timestamp);
+            const pad = num => num.toString().padStart(2, '0');
+            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        }
+
+        // Update category tags based on available events
+        function updateCategoryTags() {
+            const allCategories = ['all', ...categories];
+            const categoryTags = document.getElementById('categoryTags');
+
+            categoryTags.innerHTML = allCategories.map(cat => {
+                const isActive = currentFilter === cat;
+                const displayText = cat === 'all' ? 'બધી ઘટનાઓ' : cat;
+                return `
+                    <span class="category-tag ${isActive ? 'active' : ''}" 
+                          onclick="filterByCategory('${cat}')">
+                        ${displayText}
+                    </span>
+                `;
+            }).join('');
+        }
+
+        // Filter events by category
+        window.filterByCategory = function (category) {
+            currentFilter = category;
+            const tags = document.querySelectorAll('.category-tag');
+            tags.forEach(tag => {
+                const tagCategory = tag.textContent === 'બધી ઘટનાઓ' ? 'all' : tag.textContent;
+                if (tagCategory === category) {
+                    tag.classList.add('active');
+                } else {
+                    tag.classList.remove('active');
+                }
+            });
+            displayEvents();
+        };
+
+        // Search events
+        window.searchEvents = function () {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredEvents = events.filter(event =>
+                (event.title && event.title.toLowerCase().includes(searchTerm)) ||
+                (event.content && event.content.toLowerCase().includes(searchTerm)) ||
+                (event.location && event.location.toLowerCase().includes(searchTerm))
+            );
+
+            const container = document.getElementById('scheduleEvents');
+
+            if (filteredEvents.length === 0) {
+                container.innerHTML = `
+                    <div class="no-events">
+                        <h3>🔍 કોઈ મેચિંગ ઘટનાઓ મળી નથી</h3>
+                        <p>અલગ શોધ શબ્દ પ્રયાસ કરો.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredEvents.map(event => `
+                <div class="schedule-event fade-in">
+                    <h2>${event.title || 'નામ વગરની ઘટના'}</h2>
+                    <div class="event-meta">
+                        <span class="event-date">📅 ${formatDate(event.eventTimestamp)}</span>
+                        <span>📍 ${event.location || 'સ્થળ નથી'}</span>
+                        <span class="event-category">${event.category || 'અન્ય'}</span>
+                    </div>
+                    ${event.imageUrl ? `<img src="${event.imageUrl}" class="event-image" alt="${event.title}">` : ''}
+                    <div class="event-content">
+                        ${event.content || 'કોઈ વિગતો ઉપલબ્ધ નથી'}
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        // Image upload function
+        window.uploadImage = function () {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('કૃપા કરીને પહેલા છબી પસંદ કરો');
+                return;
+            }
+
+            const uploadBtn = document.querySelector('.upload-btn');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<div class="spinner"></div> અપલોડ કરી રહ્યું છે...';
+
+            const storageRef = storage.ref('event-images/' + Date.now() + '-' + file.name);
+            const uploadTask = storageRef.put(file);
+
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Progress monitoring can be added here
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    showError(`છબી અપલોડ કરવામાં ભૂલ: ${error.message}`);
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = '📤 છબી અપલોડ કરો';
+                },
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        document.getElementById('imageUrl').value = downloadURL;
+                        document.getElementById('imagePreview').src = downloadURL;
+                        document.getElementById('imagePreview').style.display = 'block';
+                        uploadBtn.disabled = false;
+                        uploadBtn.textContent = '✅ છબી અપલોડ થઈ ગઈ';
+
+                        // Show success message
+                        const errorEl = document.getElementById('errorMessage');
+                        errorEl.innerHTML = `
+                            <div class="success-message">
+                                ✅ છબી સફળતાપૂર્વક અપલોડ થઈ ગઈ!
+                            </div>
+                        `;
+                        setTimeout(() => hideError(), 3000);
+                    });
+                }
+            );
+        };
+
+        // Handle new event creation
+        document.getElementById('eventForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const location = document.getElementById('location').value;
+            const category = document.getElementById('category').value;
+            const content = document.getElementById('content').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+
+            if (!title || !eventDate || !location || !category || !content) {
+                showError('કૃપા કરીને બધા ફીલ્ડ્સ ભરો');
+                return;
+            }
+
+            const publishBtn = document.getElementById('publishBtn');
+            publishBtn.disabled = true;
+            publishBtn.innerHTML = '<div class="spinner"></div> પ્રકાશિત કરી રહ્યું છે...';
+
+            const eventTimestamp = new Date(eventDate).getTime();
+
+            const newEvent = {
+                title,
+                eventTimestamp,
+                location,
+                category,
+                content,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+
+            // Add image URL if available
+            if (imageUrl) {
+                newEvent.imageUrl = imageUrl;
+            }
+
+            database.ref('scheduleEvents').push(newEvent)
+                .then(() => {
+                    document.getElementById('eventForm').reset();
+                    document.getElementById('imagePreview').style.display = 'none';
+                    document.getElementById('imageUrl').value = '';
+                    hideError();
+                    publishBtn.disabled = false;
+                    publishBtn.textContent = '🚀 ઘટના પ્રકાશિત કરો';
+
+                    // Show success message
+                    const errorEl = document.getElementById('errorMessage');
+                    errorEl.innerHTML = `
+                        <div class="success-message">
+                            ✅ ઘટના સફળતાપૂર્વક પ્રકાશિત થઈ ગઈ!
+                        </div>
+                    `;
+                    setTimeout(() => hideError(), 3000);
+                })
+                .catch(error => {
+                    showError(`ઘટના પ્રકાશિત કરવામાં ભૂલ: ${error.message}`);
+                    publishBtn.disabled = false;
+                    publishBtn.textContent = '🚀 ઘટના પ્રકાશિત કરો';
+                });
+        });
+
+        // Clear form
+        window.clearForm = function () {
+            document.getElementById('eventForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('imageUrl').value = '';
+            hideError();
+        };
+
+        // Start editing an event
+        window.startEdit = function (eventId) {
+            if (editingEvent) {
+                cancelEdit(editingEvent);
+            }
+            editingEvent = eventId;
+            displayAdminEvents();
+
+            // Scroll to the event being edited
+            const eventElement = document.getElementById(`event-${eventId}`);
+            if (eventElement) {
+                eventElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        };
+
+        // Cancel editing
+        window.cancelEdit = function (eventId) {
+            if (editingEvent === eventId) {
+                editingEvent = null;
+                displayAdminEvents();
+            }
+        };
+
+        // Save edited event
+        function saveEdit(eventId) {
+            const title = document.getElementById(`editTitle-${eventId}`).value;
+            const eventDate = document.getElementById(`editEventDate-${eventId}`).value;
+            const location = document.getElementById(`editLocation-${eventId}`).value;
+            const category = document.getElementById(`editCategory-${eventId}`).value;
+            const content = document.getElementById(`editContent-${eventId}`).value;
+
+            if (!title || !eventDate || !location || !category || !content) {
+                showError('કૃપા કરીને બધા ફીલ્ડ્સ ભરો');
+                return;
+            }
+
+            const eventTimestamp = new Date(eventDate).getTime();
+
+            const updates = {
+                title,
+                eventTimestamp,
+                location,
+                category,
+                content,
+                updatedAt: firebase.database.ServerValue.TIMESTAMP
+            };
+
+            database.ref(`scheduleEvents/${eventId}`).update(updates)
+                .then(() => {
+                    editingEvent = null;
+                    displayAdminEvents();
+
+                    // Show success message
+                    const errorEl = document.getElementById('errorMessage');
+                    errorEl.innerHTML = `
+                        <div class="success-message">
+                            ✅ ઘટના સફળતાપૂર્વક અપડેટ થઈ ગઈ!
+                        </div>
+                    `;
+                    setTimeout(() => hideError(), 3000);
+                })
+                .catch(error => {
+                    showError(`ઘટના અપડેટ કરવામાં ભૂલ: ${error.message}`);
+                });
+        }
+
+        // Delete an event
+        window.deleteEvent = function (eventId) {
+            if (confirm('શું તમે ખરેખર આ ઘટના ડિલીટ કરવા માંગો છો? આ ક્રિયા પાછી લઈ શકાશે નહીં.')) {
+                database.ref(`scheduleEvents/${eventId}`).remove()
+                    .then(() => {
+                        // Show success message
+                        const errorEl = document.getElementById('errorMessage');
+                        errorEl.innerHTML = `
+                            <div class="success-message">
+                                ✅ ઘટના સફળતાપૂર્વક ડિલીટ થઈ ગઈ!
+                            </div>
+                        `;
+                        setTimeout(() => hideError(), 3000);
+                    })
+                    .catch(error => {
+                        showError(`ઘટના ડિલીટ કરવામાં ભૂલ: ${error.message}`);
+                    });
+            }
+        };
+
+        // Initialize the schedule when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' ||
+                (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // Initialize Firebase connection
+            updateConnectionStatus(false);
+            initializeSchedule();
+        });
+
+        // Handle window resize for responsive design
+        window.addEventListener('resize', function () {
+            // Refresh display if we're in admin mode
+            if (isAdminMode) {
+                displayAdminEvents();
+            }
+        });
+    </script>
+</body>
+
+</html>
