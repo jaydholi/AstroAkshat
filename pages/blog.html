@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>બ્લોગ - અક્ષત જ્યોતિષ દર્પણ </title>
+    <title>બ્લોગ - અક્ષત જ્યોતિષ દર્પણ</title>
     <style>
         * {
             margin: 0;
@@ -18,22 +18,21 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding-top: 70px;
         }
 
-        /* Navbar Styles */
         /* Navbar Styles */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: var(--nav-height);
             background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(109, 40, 217, 0.3);
@@ -41,9 +40,9 @@
 
         .logo {
             font-family: 'Noto Serif Gujarati', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
+            background: linear-gradient(to right, #667eea, #764ba2);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -58,19 +57,19 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent);
+            border: 2px solid #667eea;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text);
+            color: white;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             position: relative;
             transition: all 0.3s;
             padding: 0.5rem 0;
@@ -83,12 +82,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: #667eea;
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: #667eea;
         }
 
         .nav-links a:hover::after {
@@ -104,11 +103,10 @@
         .hamburger div {
             width: 25px;
             height: 3px;
-            background-color: var(--text);
+            background-color: white;
             margin: 5px;
             transition: all 0.3s ease;
         }
-
 
         .container {
             max-width: 1200px;
@@ -128,7 +126,7 @@
 
         .header h1 {
             color: #4a5568;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -177,7 +175,6 @@
             margin: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
         }
 
         .toggle-btn:hover {
@@ -213,7 +210,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 3rem;
+            padding: 2rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             width: 90%;
             max-width: 400px;
@@ -226,7 +223,6 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -235,7 +231,7 @@
 
         .auth-form h2 {
             color: #2d3748;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -255,23 +251,23 @@
         .admin-section {
             background: rgba(248, 250, 252, 0.8);
             border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
             border: 2px solid rgba(102, 126, 234, 0.1);
         }
 
         .admin-section h2 {
             color: #2d3748;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-top: 1rem;
         }
@@ -291,24 +287,24 @@
         }
 
         .admin-post-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #2d3748;
             margin-bottom: 0.5rem;
         }
 
         .admin-post-meta {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #718096;
             margin-bottom: 1rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .admin-post-preview {
             color: #4a5568;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             margin-bottom: 1rem;
             max-height: 60px;
@@ -336,7 +332,7 @@
             color: #38a169;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin: 10px;
             display: inline-flex;
             align-items: center;
@@ -347,11 +343,10 @@
             background: linear-gradient(45deg, #f56565, #e53e3e);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 15px;
             cursor: pointer;
-            font-size: 0.9rem;
-            margin: 10px;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
 
@@ -365,7 +360,7 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
@@ -373,16 +368,17 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: #4a5568;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -395,7 +391,7 @@
         }
 
         .form-group textarea {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
 
@@ -403,14 +399,13 @@
             background: linear-gradient(45deg, #48bb78, #38a169);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            margin-right: 10px;
+            margin-right: 8px;
             margin-bottom: 8px;
-            position: relative;
         }
 
         .btn:hover {
@@ -425,8 +420,8 @@
         }
 
         .btn-small {
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            padding: 6px 12px;
+            font-size: 0.85rem;
         }
 
         .btn-danger {
@@ -448,8 +443,8 @@
         .blog-post {
             background: white;
             border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             border-left: 4px solid #667eea;
@@ -463,12 +458,12 @@
         .blog-post h2 {
             color: #015eff;
             margin-bottom: 1rem;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
 
         .blog-meta {
             color: #0066ff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -479,14 +474,14 @@
         .blog-category {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 15px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
         }
 
         .blog-content {
-            color: rgb(251, 255, 0);
+            color: #2d3748;
             line-height: 1.7;
             margin-bottom: 1rem;
         }
@@ -495,7 +490,7 @@
             background: rgba(249, 250, 251, 0.8);
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1rem;
             margin-top: 1rem;
             animation: fadeIn 0.3s ease-in;
         }
@@ -506,11 +501,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1.1rem;
         }
 
         .edit-controls {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-top: 1rem;
             flex-wrap: wrap;
         }
@@ -520,17 +516,17 @@
             text-align: center;
             color: #0084ff;
             font-style: italic;
-            padding: 3rem;
+            padding: 2rem;
         }
 
         .search-bar {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
+            padding: 12px;
+            font-size: 1rem;
             border: 2px solid #e2e8f0;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.9);
@@ -538,23 +534,24 @@
         }
 
         .category-filter {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .category-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
         }
 
         .category-tag {
             background: rgba(2, 82, 255, 0.8);
             border: 2px solid #e2e8f0;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
 
         .category-tag:hover,
@@ -568,13 +565,24 @@
             animation: fadeIn 0.5s ease-in;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(238, 223, 7, 0.932);
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
             border-radius: 50%;
-            border-top-color: #fff;
+            border-top-color: #667eea;
             animation: spin 1s ease-in-out infinite;
             margin-right: 8px;
         }
@@ -585,46 +593,36 @@
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .error-message {
             background: rgba(245, 101, 101, 0.1);
             border: 2px solid rgba(245, 101, 101, 0.3);
             color: #e53e3e;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             margin-bottom: 1rem;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .success-message {
             background: rgba(72, 187, 120, 0.1);
             border: 2px solid rgba(72, 187, 120, 0.3);
             color: #38a169;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             margin-bottom: 1rem;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         /* Image Upload Styles */
         .image-upload-container {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .image-preview {
             max-width: 100%;
-            max-height: 200px;
+            max-height: 180px;
             margin-top: 10px;
             border-radius: 8px;
             display: none;
@@ -637,7 +635,7 @@
             padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             margin-top: 8px;
         }
@@ -652,6 +650,29 @@
             border-radius: 8px;
             margin: 1rem 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Share Button Styles */
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .share-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
         }
 
         /* Theme Toggle Button */
@@ -703,43 +724,86 @@
             background: rgba(26, 32, 44, 0.6);
         }
 
-        body.dark-theme .nav-link {
+        body.dark-theme .blog-content {
             color: #e2e8f0;
         }
 
-        body.dark-theme .nav-link:hover {
-            color: #056ef7;
+        body.dark-theme .nav-links a {
+            color: #e2e8f0;
+        }
+
+        body.dark-theme .nav-links a:hover {
+            color: #667eea;
         }
 
         /* Responsive Styles */
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
             .navbar {
-                flex-direction: column;
-                padding: 1rem;
+                padding: 0.8rem;
             }
-
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .logo-img {
+                width: 30px;
+                height: 30px;
+            }
+            
             .nav-links {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .blog-meta {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(15, 23, 42, 0.95);
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                justify-content: center;
+                align-items: center;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+                pointer-events: none;
             }
-
+            
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
             .posts-grid {
                 grid-template-columns: 1fr;
             }
-
-            .admin-controls {
-                justify-content: center;
+            
+            .share-buttons {
+                margin-left: 0;
+                margin-top: 8px;
+                justify-content: flex-start;
+                width: 100%;
             }
         }
     </style>
@@ -763,7 +827,6 @@
             <div></div>
         </div>
     </nav>
-
 
     <!-- Authentication Modal -->
     <div id="authModal" class="auth-modal hidden">
@@ -906,6 +969,7 @@
                 hamburger.classList.remove('active');
             });
         });
+
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
@@ -1073,10 +1137,38 @@
                 updateCategoryTags();
                 displayPosts();
                 displayAdminPosts();
+                
+                // Handle routing after posts are loaded
+                handleRouting();
             }, (error) => {
                 updateConnectionStatus(false, error);
                 console.error('Firebase connection error:', error);
             });
+        }
+
+        // Handle routing for direct post links
+        function handleRouting() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('post');
+            
+            if (postId) {
+                // Find the post
+                const post = posts.find(p => p.id === postId);
+                if (post) {
+                    // Filter to just this post
+                    currentFilter = 'all';
+                    posts = [post];
+                    displayPosts();
+                    
+                    // Scroll to the post
+                    setTimeout(() => {
+                        const element = document.getElementById(`blog-post-${postId}`);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 500);
+                }
+            }
         }
 
         // Toggle between admin and blog view
@@ -1223,6 +1315,10 @@
                         <span>👤 ${post.author || 'અજ્ઞાત'}</span>
                         <span>📅 ${formatDate(post.timestamp)}</span>
                         <span class="blog-category">${post.category || 'અન્ય'}</span>
+                        <div class="share-buttons">
+                            <button onclick="sharePost('${post.id}')" class="share-btn">🔗 શેર કરો</button>
+                            <button onclick="copyPostLink('${post.id}')" class="share-btn">📋 લિંક કોપી કરો</button>
+                        </div>
                     </div>
                     ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
                     <div class="blog-content">
@@ -1305,6 +1401,10 @@
                         <span>👤 ${post.author || 'અજ્ઞાત'}</span>
                         <span>📅 ${formatDate(post.timestamp)}</span>
                         <span class="blog-category">${post.category || 'અન્ય'}</span>
+                        <div class="share-buttons">
+                            <button onclick="sharePost('${post.id}')" class="share-btn">🔗 શેર કરો</button>
+                            <button onclick="copyPostLink('${post.id}')" class="share-btn">📋 લિંક કોપી કરો</button>
+                        </div>
                     </div>
                     ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
                     <div class="blog-content">
@@ -1312,6 +1412,41 @@
                     </div>
                 </div>
             `).join('');
+        };
+
+        // Generate a shareable URL for a specific post
+        function getPostUrl(postId) {
+            return `${window.location.origin}${window.location.pathname}?post=${postId}`;
+        }
+
+        // Share post function
+        window.sharePost = function(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: post.title || 'અક્ષત જ્યોતિષ દર્પણ',
+                    text: post.content ? post.content.substring(0, 100) + '...' : 'જ્યોતિષી બ્લોગ પોસ્ટ',
+                    url: getPostUrl(postId)
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                copyPostLink(postId);
+                alert('લિંક ક્લિપબોર્ડ પર કોપી થઈ ગઈ છે! તમે હવે તેને શેર કરી શકો છો.');
+            }
+        };
+
+        // Copy post link to clipboard
+        window.copyPostLink = function(postId) {
+            const url = getPostUrl(postId);
+            navigator.clipboard.writeText(url).then(() => {
+                alert('લિંક ક્લિપબોર્ડ પર કોપી થઈ ગઈ છે!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
         };
 
         // Image upload function
