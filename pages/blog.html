@@ -957,11 +957,7 @@
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
-
+    <!-- Firebase SDKs - Loaded after page content -->
     <script>
         // Performance optimizations
         const debounce = (func, wait) => {
@@ -975,6 +971,53 @@
                 timeout = setTimeout(later, wait);
             };
         };
+
+        // Load Firebase SDKs dynamically after page loads
+        function loadFirebaseSDKs() {
+            const scripts = [
+                'https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js',
+                'https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js',
+                'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js'
+            ];
+
+            let loaded = 0;
+            
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                script.onload = () => {
+                    loaded++;
+                    if (loaded === scripts.length) {
+                        initializeFirebase();
+                    }
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        // Initialize Firebase after SDKs are loaded
+        function initializeFirebase() {
+            // Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
+                authDomain: "astroakshat-3151a.firebaseapp.com",
+                databaseURL: "https://astroakshat-3151a-default-rtdb.firebaseio.com/",
+                projectId: "astroakshat-3151a",
+                storageBucket: "astroakshat-3151a.appspot.com",
+                messagingSenderId: "902505541622",
+                appId: "1:902505541622:web:f5364ab72fb11ece6e61d7",
+                measurementId: "G-6GLS1CS0RF"
+            };
+
+            // Initialize Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+            window.database = firebase.database();
+            window.storage = firebase.storage();
+
+            // Initialize the blog
+            initializeBlog();
+        }
 
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
@@ -992,23 +1035,6 @@
                 hamburger.classList.remove('active');
             });
         });
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBTw1w1OGpGch6gnRaSs7wslq5blxQvd_g",
-            authDomain: "astroakshat-3151a.firebaseapp.com",
-            databaseURL: "https://astroakshat-3151a-default-rtdb.firebaseio.com/",
-            projectId: "astroakshat-3151a",
-            storageBucket: "astroakshat-3151a.appspot.com",
-            messagingSenderId: "902505541622",
-            appId: "1:902505541622:web:f5364ab72fb11ece6e61d7",
-            measurementId: "G-6GLS1CS0RF"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        const storage = firebase.storage();
 
         // Global variables
         let isAdminMode = false;
@@ -1142,7 +1168,8 @@
         function initializeBlog() {
             const postsRef = database.ref('blogPosts');
 
-            postsRef.on('value', (snapshot) => {
+            // Load only first 10 posts initially for faster loading
+            postsRef.limitToLast(10).on('value', (snapshot) => {
                 updateConnectionStatus(true);
 
                 const data = snapshot.val();
@@ -1166,9 +1193,39 @@
                 
                 // Handle routing after posts are loaded
                 handleRouting();
+
+                // Load remaining posts in background
+                loadAllPosts();
             }, (error) => {
                 updateConnectionStatus(false, error);
                 console.error('Firebase connection error:', error);
+            });
+        }
+
+        // Load all posts in background
+        function loadAllPosts() {
+            const postsRef = database.ref('blogPosts');
+            postsRef.once('value').then((snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    const allPosts = [];
+                    Object.keys(data).forEach(key => {
+                        allPosts.push({
+                            id: key,
+                            ...data[key]
+                        });
+                    });
+
+                    // Sort posts by timestamp (newest first)
+                    allPosts.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    
+                    // Update posts array if we have more posts
+                    if (allPosts.length > posts.length) {
+                        posts = allPosts;
+                        displayPosts();
+                        displayAdminPosts();
+                    }
+                }
             });
         }
 
@@ -1346,12 +1403,37 @@
                             <button onclick="copyPostLink('${post.id}')" class="share-btn">📋 લિંક કોપી કરો</button>
                         </div>
                     </div>
-                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
+                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image lazy-image" alt="${post.title}" loading="lazy">` : ''}
                     <div class="blog-content">
                         ${post.content || 'કોઈ સામગ્રી ઉપલબ્ધ નથી'}
                     </div>
                 </div>
             `).join('');
+
+            // Initialize lazy loading for images
+            initLazyLoading();
+        }
+
+        // Initialize lazy loading for images
+        function initLazyLoading() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => {
+                if (img.src && !img.classList.contains('loaded')) {
+                    imageObserver.observe(img);
+                }
+            });
         }
 
         // Format timestamp to readable date
@@ -1432,12 +1514,15 @@
                             <button onclick="copyPostLink('${post.id}')" class="share-btn">📋 લિંક કોપી કરો</button>
                         </div>
                     </div>
-                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image" alt="${post.title}">` : ''}
+                    ${post.imageUrl ? `<img src="${post.imageUrl}" class="blog-image lazy-image" alt="${post.title}" loading="lazy">` : ''}
                     <div class="blog-content">
                         ${post.content || 'કોઈ સામગ્રી ઉપલબ્ધ નથી'}
                     </div>
                 </div>
             `).join('');
+
+            // Re-initialize lazy loading for filtered images
+            initLazyLoading();
         };
 
         // Generate a shareable URL for a specific post
@@ -1707,9 +1792,8 @@
                 document.querySelector('.theme-toggle').textContent = '☀️';
             }
 
-            // Initialize Firebase connection
-            updateConnectionStatus(false);
-            initializeBlog();
+            // Load Firebase SDKs after page content is rendered
+            setTimeout(loadFirebaseSDKs, 100);
         });
 
         // Handle window resize for responsive design
