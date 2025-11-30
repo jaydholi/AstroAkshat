@@ -736,6 +736,16 @@
             color: #667eea;
         }
 
+        /* Performance Optimizations */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             body {
@@ -925,7 +935,7 @@
         <!-- Blog View -->
         <div id="blogView" class="blog-view">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="🔍 બ્લોગ પોસ્ટ્સ શોધો..." onkeyup="searchPosts()">
+                <input type="text" id="searchInput" placeholder="🔍 બ્લોગ પોસ્ટ્સ શોધો..." onkeyup="debouncedSearchPosts()">
             </div>
 
             <div class="category-filter">
@@ -953,6 +963,19 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
     <script>
+        // Performance optimizations
+        const debounce = (func, wait) => {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        };
+
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1008,6 +1031,9 @@
             "ઉપાય",
             "અન્ય"
         ];
+
+        // Debounced search function
+        const debouncedSearchPosts = debounce(searchPosts, 300);
 
         // Theme toggle function
         window.toggleTheme = function () {
@@ -1449,7 +1475,7 @@
             });
         };
 
-        // Image upload function
+        // Image upload function - FIXED VERSION
         window.uploadImage = function () {
             const fileInput = document.getElementById('imageUpload');
             const file = fileInput.files[0];
@@ -1459,26 +1485,45 @@
                 return;
             }
 
+            // Validate file type
+            if (!file.type.match('image.*')) {
+                alert('કૃપા કરીને માત્ર છબી ફાઈલો અપલોડ કરો');
+                return;
+            }
+
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('છબીનું કદ 5MB કરતા ઓછું હોવું જોઈએ');
+                return;
+            }
+
             const uploadBtn = document.querySelector('.upload-btn');
             uploadBtn.disabled = true;
             uploadBtn.innerHTML = '<div class="spinner"></div> અપલોડ કરી રહ્યું છે...';
 
-            const storageRef = storage.ref('blog-images/' + Date.now() + '-' + file.name);
+            // Create a unique filename
+            const timestamp = Date.now();
+            const filename = `blog-${timestamp}-${file.name}`;
+            const storageRef = storage.ref('blog-images/' + filename);
+            
             const uploadTask = storageRef.put(file);
 
             uploadTask.on('state_changed',
                 (snapshot) => {
-                    // Progress monitoring can be added here
+                    // Progress monitoring
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log('Upload is ' + progress + '% done');
                 },
                 (error) => {
+                    console.error('Upload error:', error);
                     showError(`છબી અપલોડ કરવામાં ભૂલ: ${error.message}`);
                     uploadBtn.disabled = false;
                     uploadBtn.textContent = '📤 છબી અપલોડ કરો';
                 },
                 () => {
+                    // Upload completed successfully
                     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        console.log('File available at', downloadURL);
                         document.getElementById('imageUrl').value = downloadURL;
                         document.getElementById('imagePreview').src = downloadURL;
                         document.getElementById('imagePreview').style.display = 'block';
@@ -1493,6 +1538,11 @@
                             </div>
                         `;
                         setTimeout(() => hideError(), 3000);
+                    }).catch((error) => {
+                        console.error('Error getting download URL:', error);
+                        showError(`છબી URL મેળવવામાં ભૂલ: ${error.message}`);
+                        uploadBtn.disabled = false;
+                        uploadBtn.textContent = '📤 છબી અપલોડ કરો';
                     });
                 }
             );
@@ -1535,6 +1585,7 @@
                     document.getElementById('blogForm').reset();
                     document.getElementById('imagePreview').style.display = 'none';
                     document.getElementById('imageUrl').value = '';
+                    document.getElementById('imageUpload').value = '';
                     hideError();
                     publishBtn.disabled = false;
                     publishBtn.textContent = '🚀 પોસ્ટ પ્રકાશિત કરો';
@@ -1549,6 +1600,7 @@
                     setTimeout(() => hideError(), 3000);
                 })
                 .catch(error => {
+                    console.error('Error publishing post:', error);
                     showError(`પોસ્ટ પ્રકાશિત કરવામાં ભૂલ: ${error.message}`);
                     publishBtn.disabled = false;
                     publishBtn.textContent = '🚀 પોસ્ટ પ્રકાશિત કરો';
@@ -1560,6 +1612,7 @@
             document.getElementById('blogForm').reset();
             document.getElementById('imagePreview').style.display = 'none';
             document.getElementById('imageUrl').value = '';
+            document.getElementById('imageUpload').value = '';
             hideError();
         };
 
