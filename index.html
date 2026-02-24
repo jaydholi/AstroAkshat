@@ -17,7 +17,7 @@
     <meta name="google-adsense-account" content="ca-pub-1450296621165513">
     <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1450296621165513"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
         rel="stylesheet">
@@ -1372,9 +1372,17 @@
 
 <body>
     <div id="popup-overlay" style="display: none;">
-        <div id="popup-container">
-            <img src="/images/_Mahashivratri Banner.png" alt="અક્ષત જ્યોતિષ દર્પણ" id="popup-image">
-            <button id="close-popup">&times;</button>
+        <div id="popup-container" class="popup">
+            <div class="popup-content">
+
+                <video id="popup-video" controls autoplay muted>
+                    <source src="/images/२३ फरवरी से १४ मार्च तक ब्रह्मांड में बनने जा रहा है।.mp4" type="video/mp4">
+
+                </video>
+
+                <button id="close-popup">&times;</button>
+
+            </div>
         </div>
     </div>
     <!-- Navigation -->
@@ -1850,7 +1858,7 @@
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt contact-icon"></i>
                             <div class="contact-text">
-                                 ભુજ, કચ્છ, ગુજરાત - 370001
+                                ભુજ, કચ્છ, ગુજરાત - 370001
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1899,25 +1907,57 @@
                 body.classList.remove('no-scroll');
             });
         });
-        // Show popup on page load
         document.addEventListener('DOMContentLoaded', function () {
-            // Create a small delay to ensure everything is loaded
+
+            const popup = document.getElementById('popup-overlay');
+            const closeBtn = document.getElementById('close-popup');
+            const video = document.getElementById('popup-video');
+
+            // Show popup after 1 second
             setTimeout(function () {
-                document.getElementById('popup-overlay').style.display = 'flex';
-            }, 1000); // 1 second delay
+                popup.style.display = 'flex';
+            }, 1000);
+
+            // Close popup button
+            closeBtn.addEventListener('click', function () {
+                popup.style.display = 'none';
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+
+            // Close when clicking outside video
+            popup.addEventListener('click', function (e) {
+                if (e.target.id === 'popup-overlay') {
+                    popup.style.display = 'none';
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                }
+            });
+
         });
+        // Show popup on page load
+        //  document.addEventListener('DOMContentLoaded', function () {
+        // Create a small delay to ensure everything is loaded
+        // setTimeout(function () {
+        //     document.getElementById('popup-overlay').style.display = 'flex';
+        // }, 1000); // 1 second delay
+        // });
 
         // Close popup functionality
-        document.getElementById('close-popup').addEventListener('click', function () {
-            document.getElementById('popup-overlay').style.display = 'none';
-        });
+        //  document.getElementById('close-popup').addEventListener('click', function () {
+        //     document.getElementById('popup-overlay').style.display = 'none';
+        // });
 
         // Close popup when clicking outside the image
-        document.getElementById('popup-overlay').addEventListener('click', function (e) {
-            if (e.target.id === 'popup-overlay') {
-                document.getElementById('popup-overlay').style.display = 'none';
-            }
-        });
+        // document.getElementById('popup-overlay').addEventListener('click', function (e) {
+        //  if (e.target.id === 'popup-overlay') {
+        //      document.getElementById('popup-overlay').style.display = 'none';
+        //  }
+        // });
 
         // Create planet animations
         function animatePlanets() {
