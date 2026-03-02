@@ -2029,14 +2029,14 @@
             });
         }
     </script>
-    <!-- Festive Color Effects - Professional Version -->
+    <!-- Professional Holi Click Blast Effect -->
     <style>
-        /* Festival Control */
-        .festival-control {
+        /* --- Control Button (Matching your site's theme) --- */
+        .holi-control {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 9999;
+            z-index: 10000;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -2044,475 +2044,427 @@
             pointer-events: none;
         }
 
-        .festival-toggle-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .holi-toggle-btn {
+            background: linear-gradient(135deg, #f59e0b, #c026d3);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
+            gap: 12px;
+            transition: all 0.3s ease;
             pointer-events: auto;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             font-family: 'Noto Serif Gujarati', serif;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
-        .festival-toggle-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(109, 40, 217, 0.6);
+        .holi-toggle-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(192, 38, 211, 0.5);
         }
 
-        .festival-toggle-btn.active {
-            background: linear-gradient(135deg, #f59e0b, #c026d3);
+        .holi-toggle-btn.active {
+            background: linear-gradient(135deg, #f97316, #d946ef);
+            border-color: rgba(255, 223, 0, 0.6);
         }
 
-        .festival-badge {
+        .holi-badge {
             background: rgba(255, 255, 255, 0.2);
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 12px;
-            margin-left: 10px;
+            backdrop-filter: blur(4px);
         }
 
-        /* Festive Effects Container */
-        #festive-effects {
+        /* --- Main Canvas for Effects --- */
+        #holi-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 9997;
+            z-index: 9999;
             overflow: hidden;
         }
 
-        /* Color Overlay */
-        .color-overlay {
+        /* --- Click Blast Elements --- */
+        .blast-core {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(245, 158, 11, 0.05) 0%,
-                    rgba(192, 38, 211, 0.05) 25%,
-                    rgba(109, 40, 217, 0.05) 50%,
-                    rgba(6, 182, 212, 0.05) 75%,
-                    rgba(245, 158, 11, 0.05) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            mix-blend-mode: overlay;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            50% {
-                background-position: 100% 100%;
-            }
-
-            100% {
-                background-position: 0% 0%;
-            }
-        }
-
-        /* Floating Color Orbs */
-        .color-orb {
-            position: absolute;
-            width: 200px;
-            height: 200px;
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes orbFloat {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-        }
-
-        /* Color Particles */
-        .color-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            filter: blur(1px);
-            opacity: 0.3;
-            animation: particleFloat 15s linear infinite;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.3;
-            }
-
-            90% {
-                opacity: 0.3;
-            }
-
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        /* Light Rays */
-        .light-ray {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center,
-                    rgba(245, 158, 11, 0.03) 0%,
-                    rgba(192, 38, 211, 0.03) 25%,
-                    rgba(109, 40, 217, 0.03) 50%,
-                    transparent 70%);
-            animation: rayRotate 30s linear infinite;
+            transform: translate(-50%, -50%);
+            animation: blastExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            will-change: transform, opacity;
             pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
         }
 
-        @keyframes rayRotate {
+        @keyframes blastExpand {
             0% {
-                transform: rotate(0deg);
+                width: 0px;
+                height: 0px;
+                opacity: 0.9;
+                filter: blur(2px);
+            }
+
+            40% {
+                opacity: 0.8;
+                filter: blur(8px);
             }
 
             100% {
-                transform: rotate(360deg);
+                width: 350px;
+                height: 350px;
+                opacity: 0;
+                filter: blur(20px);
             }
         }
 
-        /* Theme-based color changes */
-        .festive-active .hero-title {
-            animation: titleColorShift 10s ease infinite;
+        .blast-particle {
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: particleFly 1s ease-out forwards;
+            will-change: transform, opacity;
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: 0 0 15px currentColor;
         }
 
-        @keyframes titleColorShift {
+        @keyframes particleFly {
             0% {
-                background: linear-gradient(to right, #f59e0b, #c026d3);
-                -webkit-background-clip: text;
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
             }
 
-            25% {
-                background: linear-gradient(to right, #c026d3, #6d28d9);
-                -webkit-background-clip: text;
+            100% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .blast-ripple {
+            position: absolute;
+            border: 3px solid;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleWave 1.5s ease-out forwards;
+            pointer-events: none;
+            z-index: 9998;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        @keyframes rippleWave {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.8;
+                width: 20px;
+                height: 20px;
             }
 
             50% {
-                background: linear-gradient(to right, #6d28d9, #06b6d4);
-                -webkit-background-clip: text;
-            }
-
-            75% {
-                background: linear-gradient(to right, #06b6d4, #f59e0b);
-                -webkit-background-clip: text;
+                opacity: 0.5;
             }
 
             100% {
-                background: linear-gradient(to right, #f59e0b, #c026d3);
-                -webkit-background-clip: text;
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+                width: 400px;
+                height: 400px;
             }
         }
 
-        .festive-active .service-card {
-            border: 2px solid transparent;
-            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                linear-gradient(135deg, #f59e0b, #c026d3, #6d28d9, #06b6d4) border-box;
-            animation: borderShift 10s ease infinite;
+        /* --- Floating Ambiance (Subtle background) --- */
+        .ambiance-particle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(4px);
+            animation: floatUp 8s linear infinite;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.4;
         }
 
-        @keyframes borderShift {
+        @keyframes floatUp {
             0% {
-                border-color: #f59e0b;
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
             }
 
-            25% {
-                border-color: #c026d3;
+            20% {
+                opacity: 0.4;
             }
 
-            50% {
-                border-color: #6d28d9;
-            }
-
-            75% {
-                border-color: #06b6d4;
+            80% {
+                opacity: 0.4;
             }
 
             100% {
-                border-color: #f59e0b;
+                transform: translateY(-20vh) scale(1.5);
+                opacity: 0;
             }
         }
 
-        .festive-active .cta-button {
-            background: linear-gradient(135deg, #f59e0b, #c026d3, #6d28d9, #06b6d4);
-            background-size: 300% 300%;
-            animation: buttonGradient 8s ease infinite;
-        }
-
-        @keyframes buttonGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .festive-active .section-title {
-            color: transparent;
-            background: linear-gradient(135deg, #f59e0b, #c026d3, #6d28d9, #06b6d4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: titleGlow 5s ease infinite;
-        }
-
-        @keyframes titleGlow {
-
-            0%,
-            100% {
-                text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
-            }
-
-            25% {
-                text-shadow: 0 0 20px rgba(192, 38, 211, 0.3);
-            }
-
-            50% {
-                text-shadow: 0 0 30px rgba(109, 40, 217, 0.3);
-            }
-
-            75% {
-                text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-            }
-        }
-
-        .festive-active .footer {
-            background: linear-gradient(135deg, #1e1b4b, #0f172a, #1e1b4b, #0f172a);
-            background-size: 400% 400%;
-            animation: footerGradient 15s ease infinite;
-        }
-
-        @keyframes footerGradient {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            50% {
-                background-position: 100% 100%;
-            }
-
-            100% {
-                background-position: 0% 0%;
-            }
-        }
-
-        /* Responsive */
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .festival-control {
+            .holi-control {
                 bottom: 10px;
                 right: 10px;
             }
 
-            .festival-toggle-btn {
+            .holi-toggle-btn {
                 padding: 10px 20px;
                 font-size: 14px;
+            }
+
+            @keyframes blastExpand {
+                100% {
+                    width: 250px;
+                    height: 250px;
+                }
+            }
+
+            @keyframes rippleWave {
+                100% {
+                    width: 280px;
+                    height: 280px;
+                }
             }
         }
     </style>
 
-    <!-- Festival Control Panel -->
-    <div class="festival-control">
-        <button class="festival-toggle-btn" id="festivalToggle">
-            <i class="fas fa-magic"></i>
-            <span>Festive Mode</span>
-            <span class="festival-badge">OFF</span>
+    <!-- Control Button -->
+    <div class="holi-control">
+        <button class="holi-toggle-btn" id="holiClickToggle">
+            <i class="fas fa-palette"></i>
+            <span>હોળી ક્લિક</span>
+            <span class="holi-badge">બંધ</span>
         </button>
     </div>
 
-    <!-- Festive Effects Container -->
-    <div id="festive-effects" style="display: none;"></div>
+    <!-- Effects Canvas -->
+    <div id="holi-canvas" style="display: none;"></div>
 
     <script>
-        // Festival Configuration
-        const FESTIVAL_CONFIG = {
-            // Set this to true to enable festival effects by default
-            ENABLED_BY_DEFAULT: true,  // Change to false if you want it off by default
+        (function () {
+            // --- Configuration ---
+            const CONFIG = {
+                ENABLED_BY_DEFAULT: true, // Start with effects on
+                COLORS: [
+                    '#f59e0b', // Saffron/Orange
+                    '#ec4899', // Pink
+                    '#8b5cf6', // Violet
+                    '#06b6d4', // Cyan
+                    '#f97316', // Deep Orange
+                    '#d946ef', // Fuchsia
+                    '#10b981', // Emerald Green
+                    '#f43f5e', // Rose
+                    '#fbbf24', // Golden
+                    '#c084fc'  // Lavender
+                ],
+                AMBIANCE_COUNT: 25, // Number of floating background particles
+                PARTICLE_COUNT: 14, // Particles per click blast
+                RIPPLE_COUNT: 3     // Ripples per click
+            };
 
-            // Color scheme for current festival
-            COLORS: [
-                '#f59e0b', // Amber
-                '#c026d3', // Pink
-                '#6d28d9', // Purple
-                '#06b6d4', // Cyan
-                '#ec4899', // Hot Pink
-                '#8b5cf6'  // Violet
-            ]
-        };
+            // --- Core Variables ---
+            const canvas = document.getElementById('holi-canvas');
+            const toggleBtn = document.getElementById('holiClickToggle');
+            const badge = toggleBtn.querySelector('.holi-badge');
+            let isActive = CONFIG.ENABLED_BY_DEFAULT;
+            let clickHandlerAttached = false;
 
-        // Festive Effects Manager
-        class FestiveEffects {
-            constructor() {
-                this.isActive = FESTIVAL_CONFIG.ENABLED_BY_DEFAULT;
-                this.container = document.getElementById('festive-effects');
-                this.toggleBtn = document.getElementById('festivalToggle');
-                this.badge = document.querySelector('.festival-badge');
-
-                this.init();
+            // --- Utility Functions ---
+            function getRandomColor() {
+                return CONFIG.COLORS[Math.floor(Math.random() * CONFIG.COLORS.length)];
             }
 
-            init() {
+            function getRandomOffset(range = 150) {
+                return (Math.random() - 0.5) * range;
+            }
+
+            // --- Core Blast Function (Triggered by Click) ---
+            function createBlastAt(x, y) {
+                if (!isActive || !canvas) return;
+
+                const coreColor = getRandomColor();
+                const rect = canvas.getBoundingClientRect();
+
+                // Calculate percentage positions for responsive placement
+                const posXPercent = (x / window.innerWidth) * 100;
+                const posYPercent = (y / window.innerHeight) * 100;
+
+                // 1. Create the main color core (the "blast")
+                const core = document.createElement('div');
+                core.className = 'blast-core';
+                core.style.left = posXPercent + '%';
+                core.style.top = posYPercent + '%';
+                core.style.background = `radial-gradient(circle, ${coreColor} 0%, ${coreColor}CC 30%, ${coreColor}33 70%, transparent 100%)`;
+                core.style.boxShadow = `0 0 50px ${coreColor}`;
+                canvas.appendChild(core);
+                setTimeout(() => core.remove(), 1200);
+
+                // 2. Create multiple particles flying outward
+                for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'blast-particle';
+                    particle.style.left = posXPercent + '%';
+                    particle.style.top = posYPercent + '%';
+
+                    const angle = (i / CONFIG.PARTICLE_COUNT) * Math.PI * 2 + (Math.random() * 0.5);
+                    const distance = 80 + Math.random() * 150;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+
+                    particle.style.setProperty('--tx', tx + 'px');
+                    particle.style.setProperty('--ty', ty + 'px');
+                    particle.style.background = getRandomColor();
+                    particle.style.width = (6 + Math.random() * 12) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
+                    particle.style.animationDelay = (Math.random() * 0.2) + 's';
+
+                    canvas.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1500);
+                }
+
+                // 3. Create elegant ripples
+                for (let i = 0; i < CONFIG.RIPPLE_COUNT; i++) {
+                    setTimeout(() => {
+                        const ripple = document.createElement('div');
+                        ripple.className = 'blast-ripple';
+                        ripple.style.left = posXPercent + '%';
+                        ripple.style.top = posYPercent + '%';
+                        ripple.style.borderColor = getRandomColor();
+                        ripple.style.animationDuration = (1.2 + Math.random() * 0.8) + 's';
+                        ripple.style.animationDelay = (i * 0.15) + 's';
+                        canvas.appendChild(ripple);
+                        setTimeout(() => ripple.remove(), 2000);
+                    }, i * 100);
+                }
+
+                // 4. Optional: tiny extra sparkles
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const spark = document.createElement('div');
+                        spark.className = 'blast-particle';
+                        spark.style.left = posXPercent + '%';
+                        spark.style.top = posYPercent + '%';
+                        spark.style.background = coreColor;
+                        spark.style.width = '4px';
+                        spark.style.height = '4px';
+                        spark.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+                        spark.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+                        spark.style.animationDuration = '0.6s';
+                        canvas.appendChild(spark);
+                        setTimeout(() => spark.remove(), 600);
+                    }, i * 120);
+                }
+            }
+
+            // --- Create Subtle Background Ambiance ---
+            function createAmbiance() {
+                for (let i = 0; i < CONFIG.AMBIANCE_COUNT; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'ambiance-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.background = getRandomColor();
+                    particle.style.width = (4 + Math.random() * 15) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDelay = (Math.random() * 5) + 's';
+                    particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+                    canvas.appendChild(particle);
+                }
+            }
+
+            // --- Clear Ambiance ---
+            function clearAmbiance() {
+                const particles = canvas.querySelectorAll('.ambiance-particle');
+                particles.forEach(p => p.remove());
+            }
+
+            // --- Click Handler ---
+            function onDocumentClick(e) {
+                if (!isActive) return;
+                createBlastAt(e.clientX, e.clientY);
+            }
+
+            // --- Toggle Functions ---
+            function enableEffects() {
+                isActive = true;
+                canvas.style.display = 'block';
+                toggleBtn.classList.add('active');
+                badge.textContent = 'ચાલુ';
+
+                // Clear and recreate ambiance
+                clearAmbiance();
+                createAmbiance();
+
+                // Attach click listener if not already attached
+                if (!clickHandlerAttached) {
+                    document.addEventListener('click', onDocumentClick);
+                    clickHandlerAttached = true;
+                }
+            }
+
+            function disableEffects() {
+                isActive = false;
+                canvas.style.display = 'none';
+                toggleBtn.classList.remove('active');
+                badge.textContent = 'બંધ';
+
+                // Remove click listener
+                if (clickHandlerAttached) {
+                    document.removeEventListener('click', onDocumentClick);
+                    clickHandlerAttached = false;
+                }
+
+                // Clear canvas
+                canvas.innerHTML = '';
+            }
+
+            function toggleEffects() {
+                if (isActive) {
+                    disableEffects();
+                } else {
+                    enableEffects();
+                }
+            }
+
+            // --- Initialization ---
+            function init() {
+                if (!canvas || !toggleBtn) {
+                    console.error('Holi canvas or button not found');
+                    return;
+                }
+
                 // Set initial state
-                if (this.isActive) {
-                    this.enableEffects();
-                    this.toggleBtn.classList.add('active');
-                    this.badge.textContent = 'ON';
+                if (CONFIG.ENABLED_BY_DEFAULT) {
+                    enableEffects();
+                } else {
+                    disableEffects();
                 }
 
                 // Add toggle listener
-                this.toggleBtn.addEventListener('click', () => this.toggle());
+                toggleBtn.addEventListener('click', toggleEffects);
             }
 
-            toggle() {
-                this.isActive = !this.isActive;
-
-                if (this.isActive) {
-                    this.enableEffects();
-                    this.toggleBtn.classList.add('active');
-                    this.badge.textContent = 'ON';
-                } else {
-                    this.disableEffects();
-                    this.toggleBtn.classList.remove('active');
-                    this.badge.textContent = 'OFF';
-                }
+            // Start when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
             }
-
-            enableEffects() {
-                if (!this.isActive) return;
-
-                this.container.style.display = 'block';
-                document.body.classList.add('festive-active');
-
-                // Create different effects
-                this.createColorOverlay();
-                this.createColorOrbs();
-                this.createLightRays();
-                this.createParticles();
-            }
-
-            disableEffects() {
-                this.container.style.display = 'none';
-                document.body.classList.remove('festive-active');
-
-                // Clear all effects
-                this.container.innerHTML = '';
-            }
-
-            createColorOverlay() {
-                const overlay = document.createElement('div');
-                overlay.className = 'color-overlay';
-                this.container.appendChild(overlay);
-            }
-
-            createColorOrbs() {
-                const positions = [
-                    { top: '10%', left: '5%' },
-                    { top: '20%', right: '10%' },
-                    { bottom: '15%', left: '15%' },
-                    { bottom: '25%', right: '5%' },
-                    { top: '50%', left: '20%' },
-                    { top: '70%', right: '15%' },
-                    { bottom: '40%', left: '30%' },
-                    { bottom: '60%', right: '25%' }
-                ];
-
-                positions.forEach((pos, index) => {
-                    const orb = document.createElement('div');
-                    orb.className = 'color-orb';
-                    orb.style.background = `radial-gradient(circle, ${FESTIVAL_CONFIG.COLORS[index % FESTIVAL_CONFIG.COLORS.length]} 0%, transparent 70%)`;
-                    orb.style.animationDelay = `${index * 2}s`;
-
-                    Object.assign(orb.style, pos);
-                    this.container.appendChild(orb);
-                });
-            }
-
-            createLightRays() {
-                const rays = document.createElement('div');
-                rays.className = 'light-ray';
-                this.container.appendChild(rays);
-            }
-
-            createParticles() {
-                const createParticle = () => {
-                    const particle = document.createElement('div');
-                    particle.className = 'color-particle';
-
-                    particle.style.background = FESTIVAL_CONFIG.COLORS[Math.floor(Math.random() * FESTIVAL_CONFIG.COLORS.length)];
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-                    particle.style.animationDelay = Math.random() * 5 + 's';
-                    particle.style.width = (2 + Math.random() * 6) + 'px';
-                    particle.style.height = particle.style.width;
-
-                    this.container.appendChild(particle);
-
-                    // Remove after animation
-                    setTimeout(() => particle.remove(), 20000);
-                };
-
-                // Create initial particles
-                for (let i = 0; i < 30; i++) {
-                    setTimeout(() => createParticle(), i * 100);
-                }
-
-                // Continuous particles
-                const particleInterval = setInterval(() => {
-                    if (this.isActive) {
-                        createParticle();
-                    } else {
-                        clearInterval(particleInterval);
-                    }
-                }, 500);
-            }
-        }
-
-        // Initialize effects when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            window.festiveEffects = new FestiveEffects();
-        });
+        })();
     </script>
+
 </body>
 
 </html>
